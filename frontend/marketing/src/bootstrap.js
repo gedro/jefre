@@ -18,16 +18,16 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
 
   return {
     onParentNavigate({ pathname: nextPathname }) {
-      const {pathname} = history.location;
+      const { pathname } = history.location;
 
       if (pathname !== nextPathname) {
         history.push(nextPathname);
       }
-    }
-  }
-}
+    },
+  };
+};
 
-if(process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   const devRoot = document.querySelector('#_marketing-dev-root');
 
   if (devRoot) {
