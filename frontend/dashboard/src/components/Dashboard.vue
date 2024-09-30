@@ -164,7 +164,7 @@
           </li>
         </ul>
       </Panel>
-    </div> -->
+    </div>  -->
 
     <div class="p-col-12 p-lg-4">
       <Panel header="Activity" style="height: 100%">
