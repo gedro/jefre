@@ -15,3 +15,5 @@
 - [ ] CORS + CSRF
 - [ ] User management
 - [ ] Role based access control
+- [ ] Spring Authentication Server
+- [ ] Spring AI
