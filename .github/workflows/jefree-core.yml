@@ -11,4 +11,4 @@ jobs:
   run:
     uses: ./.github/workflows/service-workflow.yml
     with:
-      service: service1
+      service: jefree-core
