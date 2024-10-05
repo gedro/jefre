@@ -26,4 +26,4 @@ jobs:
         run: mvn clean package --projects :${{ inputs.service }} --also-make --batch-mode -e
 
       - name: Build docker image
-        run: docker build . --build-arg JAR_FILE=services/${{ inputs.service }}/target/app.jar -t ${{ github.sha }}-${{ inputs.service }} --file backend/services/Dockerfile
+        run: docker build . --build-arg JAR_FILE=services/${{ inputs.service }}/target/app.jar -t ${{ github.sha }}-${{ inputs.service }}
