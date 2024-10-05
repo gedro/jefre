@@ -6,6 +6,8 @@ on:
     paths:
       - 'backend/services/jefree-core/**'
       - 'backend/libs/**'
+      - .github/workflows/service-workflow.yml
+      - .github/workflows/jefree-core.yml
 
 jobs:
   run:
