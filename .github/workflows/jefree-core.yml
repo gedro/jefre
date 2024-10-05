@@ -1,0 +1,14 @@
+name: jefree-core
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/services/jefree-core/**'
+      - 'backend/libs/**'
+
+jobs:
+  run:
+    uses: ./.github/workflows/service-workflow.yml
+    with:
+      service: service1
