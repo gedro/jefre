@@ -12,6 +12,7 @@
   - [ ] JWT token
   - [ ] OAuth2 - Google + GitHub
   - [ ] Multi factor authentication
+  - [ ] Audit log
 - [ ] CORS + CSRF
 - [ ] User management
 - [ ] Role based access control
