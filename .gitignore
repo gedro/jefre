@@ -1,5 +1,7 @@
 HELP.md
 .secret
+.env
+.env.*
 
 # Node.js
 node_modules/

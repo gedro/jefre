@@ -1,4 +1,7 @@
 # JEFREE - Jobs Easy and Free
+#### Find employees/jobs easy and free
+
+---
 
 ## Dev features
 - [x] Microfrontend architecture

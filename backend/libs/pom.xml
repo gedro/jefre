@@ -14,5 +14,8 @@
 
   <modules>
     <module>authentication</module>
+    <module>mailer</module>
+    <module>database</module>
+    <module>wsclient</module>
   </modules>
 </project>
