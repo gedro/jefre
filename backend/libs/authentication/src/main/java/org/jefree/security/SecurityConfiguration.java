@@ -1,6 +1,6 @@
 package org.jefree.security;
 
-import org.jefree.security.authentication.DefaultAuthEntryPoint;
+import org.jefree.security.authentication.DefaultUnauthorizedEntryPoint;
 import org.jefree.security.authentication.jwt.JwtService;
 import org.jefree.security.authentication.jwt.JwtTokenFilter;
 import org.jefree.security.authentication.oauth2.OAuth2LoginSuccessHandler;
@@ -43,7 +43,7 @@ public class SecurityConfiguration {
   @Bean
   SecurityFilterChain defaultSecurityFilterChain(
     final HttpSecurity http,
-    final DefaultAuthEntryPoint unauthorizedHandler,
+    final DefaultUnauthorizedEntryPoint unauthorizedHandler,
     @Lazy final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler,
     final JwtTokenFilter authenticationJwtTokenFilter
   ) throws Exception {

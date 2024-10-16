@@ -15,13 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class DefaultAuthEntryPoint implements AuthenticationEntryPoint {
+public class DefaultUnauthorizedEntryPoint implements AuthenticationEntryPoint {
 
-  private static final Logger logger = LoggerFactory.getLogger(DefaultAuthEntryPoint.class);
+  private static final Logger logger = LoggerFactory.getLogger(DefaultUnauthorizedEntryPoint.class);
 
   private final ObjectMapper objectMapper;
 
-  public DefaultAuthEntryPoint(final ObjectMapper objectMapper) {
+  public DefaultUnauthorizedEntryPoint(final ObjectMapper objectMapper) {
     this.objectMapper = objectMapper;
   }
 

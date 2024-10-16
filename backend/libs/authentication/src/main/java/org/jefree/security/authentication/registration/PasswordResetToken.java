@@ -1,4 +1,4 @@
-package org.jefree.security.authentication;
+package org.jefree.security.authentication.registration;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
