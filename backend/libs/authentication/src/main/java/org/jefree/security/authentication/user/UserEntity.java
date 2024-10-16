@@ -6,8 +6,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.jefree.security.audit.AuditableEntity;
-import org.jefree.security.authentication.oauth2.GitHubUserEntity;
-import org.jefree.security.authentication.oauth2.GoogleUserEntity;
+import org.jefree.security.authentication.oauth2.github.GitHubUserEntity;
+import org.jefree.security.authentication.oauth2.google.GoogleUserEntity;
 import org.jefree.security.authorization.role.RoleEntity;
 
 import java.time.LocalDate;

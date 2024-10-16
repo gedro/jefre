@@ -1,10 +1,11 @@
-package org.jefree.security.authentication.oauth2;
+package org.jefree.security.authentication.oauth2.google;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.jefree.security.audit.AuditableEntity;
+import org.jefree.security.authentication.oauth2.OAuthEntity;
 import org.jefree.security.authentication.user.UserEntity;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 

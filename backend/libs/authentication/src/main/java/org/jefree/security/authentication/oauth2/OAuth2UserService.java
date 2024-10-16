@@ -3,6 +3,10 @@ package org.jefree.security.authentication.oauth2;
 import jakarta.transaction.Transactional;
 import org.jefree.security.authentication.oauth2.github.GitHubClient;
 import org.jefree.security.authentication.oauth2.github.GitHubEmailResponse;
+import org.jefree.security.authentication.oauth2.github.GitHubUserEntity;
+import org.jefree.security.authentication.oauth2.github.GitHubUserRepository;
+import org.jefree.security.authentication.oauth2.google.GoogleUserEntity;
+import org.jefree.security.authentication.oauth2.google.GoogleUserRepository;
 import org.jefree.security.authentication.user.User;
 import org.jefree.security.authentication.user.UserEntity;
 import org.jefree.security.authentication.user.UserRepository;
@@ -54,11 +58,10 @@ public class OAuth2UserService {
             GitHubUserEntity.createFrom(principal, foundEmail), gitHubUserRepository, "github", GitHubUserEntity.class
           );
         }
-        case "google" -> {
+        case "google" ->
           userEntity = saveUserIfNotExists(
             GoogleUserEntity.createFrom(principal), googleUserRepository, "google", GoogleUserEntity.class
           );
-        }
         default -> throw new IllegalArgumentException(
           "Unknown user type: " + oAuth2Token.getAuthorizedClientRegistrationId()
         );
@@ -91,7 +94,7 @@ public class OAuth2UserService {
   }
 
   private <T extends OAuthEntity> UserEntity saveUserIfNotExists(
-    final T user, final OAuthUserRepository<T> repository, final String type,  final Class<T> clazz
+    final T user, final OAuthUserRepository<T> repository, final String type,  final Class<T> ignoredClazz
   ) {
     final T oAuthUserEntity = repository
       .findByExternalId(user.getExternalId())
