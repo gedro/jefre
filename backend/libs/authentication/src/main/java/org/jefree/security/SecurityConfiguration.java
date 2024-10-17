@@ -68,6 +68,7 @@ public class SecurityConfiguration {
 
     http.addFilterBefore(authenticationJwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
+    http.cors(withDefaults());
     http.formLogin(withDefaults());
     http.httpBasic(withDefaults());
 

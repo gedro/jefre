@@ -35,7 +35,7 @@ public class JwtService {
     @Value("${libs.security.jwt.secret}") final String jwtSecret,
     @Value("${libs.security.jwt.expiration: 86400000}") final int jwtExpirationMs,
     @Value("${libs.security.jwt.header: Authorization}") final String jwtHeader,
-    @Value("${libs.security.jwt.prefix: Bearer }") final String jwtPrefix
+    @Value("${libs.security.jwt.prefix: Bearer}") final String jwtPrefix
   ) {
     this.jwtSecret = jwtSecret;
     this.jwtExpirationMs = jwtExpirationMs;
@@ -50,7 +50,7 @@ public class JwtService {
     logger.debug("Authorization Header: {}", authHeader);
 
     if (authHeader != null && authHeader.startsWith(jwtPrefix)) {
-      return authHeader.replace(jwtPrefix, "");
+      return authHeader.replace(jwtPrefix + " ", "");
     }
     return null;
   }
@@ -86,7 +86,7 @@ public class JwtService {
       claims.get(JwtFields.JWT_EMAIL, String.class)
     )
       .mfaEnabled(claims.get(JwtFields.JWT_IS_MFA_ENABLED, Boolean.class))
-      .roles(claims.get(JwtFields.JWT_ROLES, String.class).split(","))
+      .authorities(claims.get(JwtFields.JWT_ROLES, String.class).split(","))
       .build();
   }
 

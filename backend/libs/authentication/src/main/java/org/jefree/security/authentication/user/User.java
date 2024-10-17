@@ -1,5 +1,8 @@
 package org.jefree.security.authentication.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import net.minidev.json.annotate.JsonIgnore;
 import org.jefree.security.authorization.annotation.IsAdminOrMe;
 import org.jefree.security.authorization.annotation.Mask;
 import org.jefree.security.authorization.annotation.MaskEmailWhenAuthZDenied;
@@ -16,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 
+@JsonIgnoreProperties("authorities")
 @IsAdminOrMe
 public class User extends org.springframework.security.core.userdetails.User {
 
@@ -23,6 +27,7 @@ public class User extends org.springframework.security.core.userdetails.User {
   private final String email;
   private final String name;
   private final boolean mfaEnabled;
+  private final List<String> roles;
 
   public User (
     final Long id, final String username, final String email, final String name, final String password,
@@ -43,7 +48,7 @@ public class User extends org.springframework.security.core.userdetails.User {
   ) {
     super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     Assert.isTrue(
-      email != null && !email.isEmpty() && id != null,
+      email != null && !email.isEmpty(),
       "Cannot pass null or empty values to constructor"
     );
 
@@ -51,6 +56,7 @@ public class User extends org.springframework.security.core.userdetails.User {
     this.email = email;
     this.name = name;
     this.mfaEnabled = mfaEnabled;
+    this.roles = getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
   }
 
   @ReturnNullWhenAuthZDenied
@@ -73,12 +79,19 @@ public class User extends org.springframework.security.core.userdetails.User {
     return mfaEnabled;
   }
 
+  @JsonIgnore
   @ReturnNullWhenAuthZDenied
   @Override
   public Collection<GrantedAuthority> getAuthorities() {
     return super.getAuthorities();
   }
 
+  @ReturnNullWhenAuthZDenied
+  public List<String> getRoles() {
+    return roles;
+  }
+
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   @Mask("*****")
   @Override
   public String getPassword() {
@@ -157,7 +170,7 @@ public class User extends org.springframework.security.core.userdetails.User {
 
     private String name;
 
-    private String password;
+    private String password = "";
 
     private List<GrantedAuthority> authorities = new ArrayList<>();
 
@@ -185,7 +198,7 @@ public class User extends org.springframework.security.core.userdetails.User {
      * @return the {@link UserBuilder} for method chaining (i.e. to populate
      * additional attributes for this user)
      */
-    public UserBuilder id(final long id) {
+    public UserBuilder id(final Long id) {
       this.id = id;
       return this;
     }
