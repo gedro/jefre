@@ -50,7 +50,6 @@ public class SecurityConfiguration {
 
     http.csrf(csrf ->
       csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//        .ignoringRequestMatchers(new NegatedRequestMatcher(new AntPathRequestMatcher("/api/public/auth/csrf-token")))
         .ignoringRequestMatchers("/api/public/auth/**")
     );
 

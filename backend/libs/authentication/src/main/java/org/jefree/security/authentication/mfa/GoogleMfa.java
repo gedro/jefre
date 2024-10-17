@@ -1,4 +1,4 @@
-package org.jefree.security.authentication;
+package org.jefree.security.authentication.mfa;
 
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;

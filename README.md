@@ -11,15 +11,17 @@
   - [x] Independent deployment per module
 - [x] Git flow (CI/CD)
 - [x] AWS Deployment
-- [ ] Authentication
-  - [ ] JWT token
-  - [ ] OAuth2 - Google + GitHub
-  - [ ] Multi factor authentication
-  - [ ] Audit log
-- [ ] CORS + CSRF
-- [ ] User management
-- [ ] Role based access control
+- [x] Authentication
+  - [x] JWT token
+  - [x] OAuth2 - Google + GitHub
+  - [ ] Multifactor authentication
+  - [x] Audit log
+- [x] CORS + CSRF
+- [x] User management
+- [x] Role based access control
+- [x] Gmail API (Instead of Java Mailer to enable the use of Google Workspace company email group as sender)
 - [ ] Spring Authentication Server
+- [ ] Spring Resource Server
 - [ ] Spring AI
 
 # Getting Started

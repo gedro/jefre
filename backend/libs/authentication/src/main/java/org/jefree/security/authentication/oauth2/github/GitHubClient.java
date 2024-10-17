@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.List;
 
-@FeignClient(value = "github-emails", url = "https://api.github.com")
+@FeignClient(value = "github-client", url = "https://api.github.com")
 public interface GitHubClient {
 
   @GetMapping("/user/emails")
