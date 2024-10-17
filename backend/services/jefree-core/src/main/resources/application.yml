@@ -58,6 +58,12 @@ app:
   frontend-url: ${JEFREE_FRONTEND_URL:http://localhost:3000}
 
 libs:
+  mailer:
+    google:
+      client-id: ${JEFREE_GOOGLE_CLIENT_ID}
+      client-secret: ${JEFREE_GOOGLE_CLIENT_SECRET}
+      refresh-token: ${JEFREE_GOOGLE_REFRESH_TOKEN}
+      from-email: ${JEFREE_GOOGLE_FROM_EMAIL}
   security:
     jwt:
       secret: ${JEFREE_JWT_SECRET:JEFREE}
