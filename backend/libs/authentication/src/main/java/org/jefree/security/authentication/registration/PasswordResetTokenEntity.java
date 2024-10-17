@@ -17,7 +17,7 @@ import java.time.Instant;
     @UniqueConstraint(columnNames = "token")
   }
 )
-public class PasswordResetToken extends AuditableEntity<String> {
+public class PasswordResetTokenEntity extends AuditableEntity<String> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,4 +38,44 @@ public class PasswordResetToken extends AuditableEntity<String> {
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
   private UserEntity user;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(final Long id) {
+    this.id = id;
+  }
+
+  public @NotBlank @Size(max = 60) String getToken() {
+    return token;
+  }
+
+  public void setToken(@NotBlank @Size(max = 60) final String token) {
+    this.token = token;
+  }
+
+  public Instant getExpiryDate() {
+    return expiryDate;
+  }
+
+  public void setExpiryDate(final Instant expiryDate) {
+    this.expiryDate = expiryDate;
+  }
+
+  public boolean isUsed() {
+    return used;
+  }
+
+  public void setUsed(final boolean used) {
+    this.used = used;
+  }
+
+  public UserEntity getUser() {
+    return user;
+  }
+
+  public void setUser(final UserEntity user) {
+    this.user = user;
+  }
 }
