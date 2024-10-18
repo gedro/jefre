@@ -6,15 +6,15 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorQRGenerator;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GoogleMfa {
+public class GoogleMfaService {
 
   private final GoogleAuthenticator authenticator;
 
-  public GoogleMfa(final GoogleAuthenticator authenticator) {
+  public GoogleMfaService(final GoogleAuthenticator authenticator) {
     this.authenticator = authenticator;
   }
 
-  public GoogleMfa() {
+  public GoogleMfaService() {
     this.authenticator = new GoogleAuthenticator();
   }
 
@@ -22,8 +22,8 @@ public class GoogleMfa {
     return authenticator.createCredentials();
   }
 
-  public String getQrCodeUrl(final GoogleAuthenticatorKey secret, final String username) {
-    return GoogleAuthenticatorQRGenerator.getOtpAuthURL("JEFREE", username, secret);
+  public String getQrCodeUrl(final GoogleAuthenticatorKey secret, final String email) {
+    return GoogleAuthenticatorQRGenerator.getOtpAuthURL("JEFREE", email, secret);
   }
 
   public boolean verifyCode(final String secret, final int code) {

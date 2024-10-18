@@ -43,8 +43,7 @@ public class SimpleAuthenticationController {
     }
 
     final User user = userOptional.get();
-    final String token = jwtService.generateToken(user);
-    jwtService.storeJwtUserToSecurityContext(user, request);
+    final String token = jwtService.generateNewJwtAndStoreToSecurityContext(user, request);
 
     return ResponseEntity.ok(new AuthResponse(user.getId(), user.getName(), user.getRoles(), token));
   }

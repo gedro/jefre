@@ -46,9 +46,7 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     if(authentication instanceof OAuth2AuthenticationToken oAuth2Token) {
       final User user = oAuth2UserService.saveUserIfNotExists(oAuth2Token);
       if(user != null) {
-        final String jwtToken = jwtService.generateToken(user);
-
-        jwtService.storeJwtUserToSecurityContext(user, request);
+        final String jwtToken = jwtService.generateNewJwtAndStoreToSecurityContext(user, request);
 
         final String targetUrl = UriComponentsBuilder.fromUriString(frontendUrl + "/oauth2/redirect")
           .queryParam("token", jwtToken)

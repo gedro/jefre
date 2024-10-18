@@ -107,19 +107,25 @@ public class JwtService {
       .compact();
   }
 
-  public void storeJwtUserToSecurityContext(final User userDetails, final HttpServletRequest request) {
-    if(userDetails == null) {
+  public void storeJwtUserToSecurityContext(final User user, final HttpServletRequest request) {
+    if(user == null) {
       return;
     }
 
     final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-      userDetails, null, userDetails.getAuthorities()
+      user, null, user.getAuthorities()
     );
 
-    logger.debug("User from JWT: {}", userDetails);
+    logger.debug("User from JWT: {}", user);
 
     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
     SecurityContextHolder.getContext().setAuthentication(authentication);
+  }
+
+  public String generateNewJwtAndStoreToSecurityContext(final User user, final HttpServletRequest request) {
+    final String jwtToken = generateToken(user);
+    storeJwtUserToSecurityContext(user, request);
+    return jwtToken;
   }
 
   private SecretKey key() {
