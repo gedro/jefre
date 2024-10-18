@@ -74,8 +74,8 @@ public class UserEntity extends AuditableEntity<String> {
   @Column(name="signup_method", length = 10, updatable = false, nullable = false)
   private String signUpMethod;
 
-  @Size(max = 30)
-  @Column(name="mfa_secret", length = 30, updatable = true)
+  @Size(max = 60)
+  @Column(name="mfa_secret", length = 60, updatable = true)
   private String mfaSecret;
 
   @Column(name="mfa_enabled", updatable = true, nullable = false)
@@ -173,11 +173,11 @@ public class UserEntity extends AuditableEntity<String> {
     this.signUpMethod = signUpMethod;
   }
 
-  public @Size(max = 30) String getMfaSecret() {
+  public @Size(max = 60) String getMfaSecret() {
     return mfaSecret;
   }
 
-  public void setMfaSecret(@Size(max = 30) final String mfaSecret) {
+  public void setMfaSecret(@Size(max = 60) final String mfaSecret) {
     this.mfaSecret = mfaSecret;
   }
 

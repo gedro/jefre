@@ -188,5 +188,6 @@ libs:
           "X-Correlation-ID",
           "X-UA-Compatible",
           "X-XSS-Protection",
-          "X-CZ-RESPONSECODE"
+          "X-CZ-RESPONSECODE",
+          "Clear-Site-Data"
         ]

@@ -1,28 +1,5 @@
 package org.jefree.security.authentication.user;
 
-//import com.secure.notes.dtos.UserDTO;
-//import com.secure.notes.models.AppRole;
-//import com.secure.notes.models.PasswordResetToken;
-//import com.secure.notes.models.Role;
-//import com.secure.notes.models.User;
-//import com.secure.notes.repositories.PasswordResetTokenRepository;
-//import com.secure.notes.repositories.RoleRepository;
-//import com.secure.notes.repositories.UserRepository;
-//import com.secure.notes.services.TotpService;
-//import com.secure.notes.services.UserService;
-//import com.secure.notes.util.EmailService;
-//import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.stereotype.Service;
-//
-//import java.time.Instant;
-//import java.time.temporal.ChronoUnit;
-//import java.util.List;
-//import java.util.Optional;
-//import java.util.UUID;
-
 import jakarta.transaction.Transactional;
 import org.jefree.mailer.google.EmailService;
 import org.jefree.security.authentication.registration.PasswordResetTokenEntity;
@@ -199,6 +176,46 @@ public class UserService {
     passwordResetTokenRepository.save(resetToken);
   }
 
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void storeMfaSecret(final User user, final String mfaSecret) {
+    final UserEntity userEntity = findById(user);
+    userEntity.setMfaSecret(mfaSecret);
+    userRepository.save(userEntity);
+  }
+
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void enableMfa(final User user){
+    changeMfa(user, true);
+  }
+
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void disableMfa(final User user){
+    changeMfa(user, false);
+  }
+
+  @Transactional(Transactional.TxType.SUPPORTS)
+  public String getMfaSecret(final User user){
+    return findById(user).getMfaSecret();
+  }
+
+  private void changeMfa(final User user, final boolean enable) {
+    final UserEntity userEntity = findById(user);
+    userEntity.setMfaEnabled(enable);
+    if(!enable) {
+      userEntity.setMfaSecret(null);
+    }
+    userRepository.save(userEntity);
+  }
+
+  private UserEntity findById(final User user) {
+    return findById(user.getId());
+  }
+
+  private UserEntity findById(final Long id) {
+    return userRepository.findById(id)
+      .orElseThrow(() -> new UserNotFoundException("User not found"));
+  }
+
   private PasswordResetTokenEntity createNewToken(final UserEntity userEntity) {
     final PasswordResetTokenEntity resetToken = new PasswordResetTokenEntity();
 
@@ -230,11 +247,6 @@ public class UserService {
 
     return entity;
   }
-
-
-//
-//    @Autowired
-//    TotpService totpService;
 
 
 //    @Override
@@ -281,51 +293,4 @@ public class UserService {
 //            throw new RuntimeException("Failed to update password");
 //        }
 //    }
-//
-//    @Override
-//    public Optional<User> findByEmail(String email) {
-//        return userRepository.findByEmail(email);
-//    }
-//
-//    @Override
-//    public User registerUser(User user){
-//        if (user.getPassword() != null)
-//            user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        return userRepository.save(user);
-//    }
-//
-//    @Override
-//    public GoogleAuthenticatorKey generate2FASecret(Long userId){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//        GoogleAuthenticatorKey key = totpService.generateSecret();
-//        user.setTwoFactorSecret(key.getKey());
-//        userRepository.save(user);
-//        return key;
-//    }
-//
-//    @Override
-//    public boolean validate2FACode(Long userId, int code){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//        return totpService.verifyCode(user.getTwoFactorSecret(), code);
-//    }
-//
-//    @Override
-//    public void enable2FA(Long userId){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//        user.setTwoFactorEnabled(true);
-//        userRepository.save(user);
-//    }
-//
-//    @Override
-//    public void disable2FA(Long userId){
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//        user.setTwoFactorEnabled(false);
-//        userRepository.save(user);
-//    }
-
-
 }

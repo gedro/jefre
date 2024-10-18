@@ -16,7 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -58,6 +60,7 @@ public class SecurityConfiguration {
         .requestMatchers("/api/admin/**").hasRole("ADMIN")
         .requestMatchers("/api/auth/csrf-token").permitAll()
         .requestMatchers("/api/public/**").permitAll()
+        .requestMatchers("/api/logout").permitAll()
         .anyRequest().authenticated()
     ).oauth2Login( oauth2 -> oauth2
       .successHandler(oAuth2LoginSuccessHandler)
@@ -67,6 +70,16 @@ public class SecurityConfiguration {
     http.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler));
 
     http.addFilterBefore(authenticationJwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
+    http.logout((logout) -> logout
+      .logoutUrl("/api/logout")
+      .deleteCookies("JSESSIONID")
+      .invalidateHttpSession(true)
+      .clearAuthentication(true)
+      .addLogoutHandler(
+        new HeaderWriterLogoutHandler(new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.ALL))
+      )
+    );
 
     http.cors(withDefaults());
     http.formLogin(withDefaults());
