@@ -12,6 +12,9 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: {
         './ProductsIndex': './src/bootstrap',
+        // usage:
+        // import { mount as productMount } from 'products/ProductsIndex';
+        // productMount(document.querySelector('#my-products'));
       },
       shared: ['faker'],
     }),

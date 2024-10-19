@@ -12,6 +12,9 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: {
         './CartShow': './src/bootstrap',
+        // usage:
+        // import { mount as cartMount } from 'cart/CartShow';
+        // cartMount(document.querySelector('#my-cart'));
       },
       shared: ['faker'],
     }),
