@@ -21,7 +21,7 @@ public class MfaController {
   private final UserService userService;
   private final GoogleMfaService mfaService;
 
-  public MfaController(
+  public MfaController (
     final UserService userService,
     final GoogleMfaService mfaService
   ) {
@@ -55,19 +55,4 @@ public class MfaController {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid MFA Code");
     }
   }
-
-//  @PostMapping("/public/verify-2fa-login")
-//  public ResponseEntity<String> verify2FALogin(@RequestParam int code,
-//                                               @RequestParam String jwtToken) {
-//    String username = jwtUtils.getUserNameFromJwtToken(jwtToken);
-//    User user = userService.findByUsername(username);
-//    boolean isValid = userService.validate2FACode(user.getUserId(), code);
-//    if (isValid) {
-//      return ResponseEntity.ok("2FA Verified");
-//    } else {
-//      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//        .body("Invalid 2FA Code");
-//    }
-//  }
-
 }

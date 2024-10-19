@@ -27,6 +27,7 @@ public class OAuth2UserService {
   private final GoogleUserRepository googleUserRepository;
   private final GitHubUserRepository gitHubUserRepository;
   private final GitHubClient githubClient;
+  //TODO: get rid of repositories and replace them with services
   private final UserRepository userRepository;
   private final UserService userService;
 
