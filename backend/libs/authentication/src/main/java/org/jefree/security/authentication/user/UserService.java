@@ -5,10 +5,7 @@ import org.jefree.mailer.google.EmailService;
 import org.jefree.security.authentication.registration.PasswordResetTokenEntity;
 import org.jefree.security.authentication.registration.PasswordResetTokenRepository;
 import org.jefree.security.authentication.registration.ResetMailTemplate;
-import org.jefree.security.authorization.role.DefaultRole;
-import org.jefree.security.authorization.role.Role;
-import org.jefree.security.authorization.role.RoleRepository;
-import org.jefree.security.authorization.role.UserRoleDecorator;
+import org.jefree.security.authorization.role.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -58,6 +55,13 @@ public class UserService {
   }
 
   @Transactional(Transactional.TxType.SUPPORTS)
+  public List<RoleView> getRoles() {
+    return roleRepository.findAll().stream()
+      .map(RoleView::new)
+      .collect(Collectors.toList());
+  }
+
+  @Transactional(Transactional.TxType.SUPPORTS)
   public Optional<User> getUserByUsername(final String username) {
     return userRepository.findByUsername(username).map(User::builder).map(User.UserBuilder::build);
   }
@@ -65,6 +69,11 @@ public class UserService {
   @Transactional(Transactional.TxType.SUPPORTS)
   public Optional<User> getUserByEmail(final String email) {
     return userRepository.findByEmail(email).map(User::builder).map(User.UserBuilder::build);
+  }
+
+  @Transactional(Transactional.TxType.SUPPORTS)
+  public User getUserById(final long id) {
+    return User.builder(findById(id)).build();
   }
 
   @Transactional(Transactional.TxType.SUPPORTS)
@@ -196,6 +205,46 @@ public class UserService {
   @Transactional(Transactional.TxType.SUPPORTS)
   public String getMfaSecret(final User user){
     return findById(user).getMfaSecret();
+  }
+
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void userLocked(final Long id, final boolean locked) {
+    final UserEntity userEntity = findById(id);
+    userEntity.setAccountNonLocked(!locked);
+    userRepository.save(userEntity);
+  }
+
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void userAccountExpired(final Long id, final boolean expired) {
+    final UserEntity userEntity = findById(id);
+    userEntity.setAccountNonExpired(!expired);
+    userRepository.save(userEntity);
+  }
+
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void userEnabled(final Long id, final boolean enabled) {
+    final UserEntity userEntity = findById(id);
+    userEntity.setEnabled(enabled);
+    userRepository.save(userEntity);
+  }
+
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void userCredentialsExpired(final Long id, final boolean expired) {
+    final UserEntity userEntity = findById(id);
+    userEntity.setCredentialsNonExpired(!expired);
+    userRepository.save(userEntity);
+  }
+
+
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public void updatePassword(final Long id, final String password) {
+    try {
+      final UserEntity userEntity = findById(id);
+      userEntity.setPassword(passwordEncoder.encode(password));
+      userRepository.save(userEntity);
+    } catch (Exception e) {
+      throw new RuntimeException("Failed to update password");
+    }
   }
 
   private void changeMfa(final User user, final boolean enable) {

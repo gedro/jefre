@@ -33,6 +33,10 @@ public class RoleEntity extends AuditableEntity<String> {
   @ManyToMany(mappedBy = "roles", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
   private Set<UserEntity> users = new HashSet<>();
 
+  public Long getId() {
+    return id;
+  }
+
   public @NotBlank @Size(max = 30) String getName() {
     return name;
   }

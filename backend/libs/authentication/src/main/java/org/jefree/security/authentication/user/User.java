@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.util.Assert;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,6 +28,7 @@ public class User extends org.springframework.security.core.userdetails.User {
   private final String email;
   private final String name;
   private final boolean mfaEnabled;
+  private final LocalDateTime createdDate;
   private final List<String> roles;
 
   public User (
@@ -36,14 +38,14 @@ public class User extends org.springframework.security.core.userdetails.User {
     this(
       id, username, email, password, name,
       true, true, true, true, false,
-      authorities
+      LocalDateTime.now(), authorities
     );
   }
 
   public User (
     final Long id, final String username, final String email, final String name, final String password,
     final boolean enabled, final boolean accountNonExpired, final boolean credentialsNonExpired,
-    final boolean accountNonLocked, final boolean mfaEnabled,
+    final boolean accountNonLocked, final boolean mfaEnabled, final LocalDateTime createdDate,
     final Collection<? extends GrantedAuthority> authorities
   ) {
     super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
@@ -56,6 +58,7 @@ public class User extends org.springframework.security.core.userdetails.User {
     this.email = email;
     this.name = name;
     this.mfaEnabled = mfaEnabled;
+    this.createdDate = createdDate;
     this.roles = getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
   }
 
@@ -98,6 +101,11 @@ public class User extends org.springframework.security.core.userdetails.User {
     return super.getPassword();
   }
 
+  @ReturnNullWhenAuthZDenied
+  public LocalDateTime getCreatedDate() {
+    return createdDate;
+  }
+
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder();
@@ -106,6 +114,7 @@ public class User extends org.springframework.security.core.userdetails.User {
     sb.append("Email=").append(this.getEmail()).append(", ");
     sb.append("Name=").append(this.getName()).append(", ");
     sb.append("MFA Enabled=").append(this.isMfaEnabled()).append(", ");
+    sb.append("Created date=").append(createdDate);
     return sb.toString();
   }
 
@@ -146,6 +155,7 @@ public class User extends org.springframework.security.core.userdetails.User {
       .accountLocked(!userEntity.isAccountNonLocked())
       .disabled(!userEntity.isEnabled())
       .mfaEnabled(userEntity.isMfaEnabled())
+      .createdDate(userEntity.getCreatedDate())
       .authorities(userEntity.getRoles().stream().map(RoleEntity::getName).toArray(String[]::new));
   }
 
@@ -183,6 +193,8 @@ public class User extends org.springframework.security.core.userdetails.User {
     private boolean disabled = false;
 
     private boolean mfaEnabled = false;
+
+    private LocalDateTime createdDate;
 
     private Function<String, String> passwordEncoder = (password) -> password;
 
@@ -382,12 +394,17 @@ public class User extends org.springframework.security.core.userdetails.User {
       return this;
     }
 
+    public UserBuilder createdDate(final LocalDateTime createdDate) {
+      this.createdDate = createdDate;
+      return this;
+    }
+
     public User build() {
       final String encodedPassword = "".equals(password) ? "" : this.passwordEncoder.apply(this.password);
       return new User (
         this.id, this.username, email, name, encodedPassword,
         !this.disabled, !this.accountExpired, !this.credentialsExpired,
-        !this.accountLocked, this.mfaEnabled, this.authorities
+        !this.accountLocked, this.mfaEnabled, this.createdDate, this.authorities
       );
     }
   }
