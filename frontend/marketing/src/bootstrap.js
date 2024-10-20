@@ -2,37 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createMemoryHistory, createBrowserHistory } from 'history';
 import App from './App';
+import MountBuilder from /*webpackIgnore: true*/ '../../utils/MountBuilder';
 
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
-  const history =
-    defaultHistory ||
-    createMemoryHistory({
-      initialEntries: [initialPath],
-    });
+const appTitle = 'Marketing';
 
-  if (onNavigate) {
-    history.listen(onNavigate);
-  }
-
+const callback = (el, appConfig, history) => {
   ReactDOM.render(<App history={history} />, el);
-
-  return {
-    onParentNavigate({ pathname: nextPathname }) {
-      const { pathname } = history.location;
-
-      if (pathname !== nextPathname) {
-        history.push(nextPathname);
-      }
-    },
-  };
-};
-
-if (process.env.NODE_ENV === 'development') {
-  const devRoot = document.querySelector('#_marketing-dev-root');
-
-  if (devRoot) {
-    mount(devRoot, { defaultHistory: createBrowserHistory() });
-  }
 }
+
+const mount = MountBuilder.build(
+  callback, appTitle, createMemoryHistory, createBrowserHistory
+);
 
 export { mount };

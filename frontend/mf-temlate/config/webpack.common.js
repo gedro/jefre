@@ -2,10 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const packageJson = require('../package.json');
 
-const name = 'auth';
-const port = 9082;
+const name = 'xxx';           //FIXME: replace XXX with the name of the project
+const port = 908X;          //FIXME: replace X with the number of the port you are using
 const exposes = {
-  './AuthApp': './src/bootstrap',
+  './XxxApp': './src/bootstrap',    //FIXME: replace XXX with the name of the exposed component
 };
 
 module.exports = {
