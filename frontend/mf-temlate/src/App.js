@@ -6,7 +6,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'ma',  //FIXME: replace with your prefix
 });
 
-export default ({ history, appConfig }) => {
+export default ({ history, appContext }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
@@ -16,7 +16,7 @@ export default ({ history, appConfig }) => {
             <!-- !!! EXAMPLES !!! -->
             <Route exact path="/pricing" component={Pricing} />
             <Route path="/auth/signup">
-              <SignUp onSignIn={appConfig?.onSignIn} />
+              <SignUp onSignIn={appContext?.onSignIn} />
             </Route>
             <!-- !!! EXAMPLES !!! -->
           </Switch>

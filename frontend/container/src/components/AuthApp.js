@@ -2,7 +2,7 @@ import { mount } from 'auth/AuthApp';
 import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default ({ appConfig }) => {
+export default ({ appContext }) => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -16,7 +16,7 @@ export default ({ appConfig }) => {
           history.push(nextPathname);
         }
       },
-      appConfig: appConfig,
+      appContext: appContext,
     });
 
     history.listen(onParentNavigate);

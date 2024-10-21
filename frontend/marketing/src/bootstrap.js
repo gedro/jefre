@@ -6,7 +6,7 @@ import MountBuilder from /*webpackIgnore: true*/ '../../utils/MountBuilder';
 
 const appTitle = 'Marketing';
 
-const callback = (el, appConfig, history) => {
+const callback = (el, appContext, history) => {
   ReactDOM.render(<App history={history} />, el);
 }
 
