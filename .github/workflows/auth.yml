@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/auth/**'
+      - '.github/workflows/auth.yml'
 
 defaults:
     run:
