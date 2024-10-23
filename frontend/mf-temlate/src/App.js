@@ -6,7 +6,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'ma',  //FIXME: replace with your prefix
 });
 
-export default ({ history, appContext }) => {
+export default ({ appContext, onAppContextChanged, history }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>

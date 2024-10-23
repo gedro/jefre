@@ -6,12 +6,10 @@ import MountBuilder from /*webpackIgnore: true*/ '../../utils/MountBuilder';
 
 const appTitle = 'Authentication';
 
-const callback = (el, appContext, history) => {
-  ReactDOM.render(<App appContext={appContext} history={history} />, el);
+const callback = (el, appContext, onAppContextChanged, history) => {
+  ReactDOM.render(<App appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />, el);
 }
 
-const mount = MountBuilder.build(
-  callback, appTitle, createMemoryHistory, createBrowserHistory
-);
+const mount = MountBuilder.build(callback, appTitle, createMemoryHistory, createBrowserHistory);
 
 export { mount };

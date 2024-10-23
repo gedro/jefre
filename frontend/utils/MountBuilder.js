@@ -1,7 +1,7 @@
 const MountBuilder = (function () {
 
   function build(callback, appTitle, createMemoryHistory, createBrowserHistory) {
-    const mount = (el, {appContext, onNavigate, defaultHistory, initialPath}) => {
+    const mount = (el, {appContext, onAppContextChanged, onNavigate, defaultHistory, initialPath}) => {
       const history =
         defaultHistory ||
         createMemoryHistory({
@@ -12,7 +12,7 @@ const MountBuilder = (function () {
         history.listen(onNavigate);
       }
 
-      callback(el, appContext, history);
+      callback(el, appContext, onAppContextChanged, history);
 
       return {
         onParentNavigate({pathname: nextPathname}) {
