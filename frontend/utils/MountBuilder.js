@@ -26,11 +26,25 @@ const MountBuilder = (function () {
     };
 
     if (process.env.NODE_ENV === 'development') {
-      const devRoot = document.querySelector('#_testing-dev-root');
+      const context = {
+        apiUrl: '',
+        api: {},
+        token: "",
+        user: {},
+        isSignedIn: false,
+        isAdmin: false,
+        isCandidate: false,
+        isRecruiter: false,
+      };
 
+      const devRoot = document.querySelector('#_testing-dev-root');
       if (devRoot) {
         document.title = appTitle;
-        mount(devRoot, {defaultHistory: createBrowserHistory()});
+        mount(devRoot, {
+          appContext: context,
+          onAppContextChanged: context => context,
+          defaultHistory: createBrowserHistory()
+        });
       }
     }
 

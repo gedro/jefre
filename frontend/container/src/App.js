@@ -9,6 +9,7 @@ import Header from './components/Header';
 const MarketingLazy = lazy(() => import('./components/MarketingApp'));
 const AuthLazy = lazy(() => import('./components/AuthApp'));
 const DashboardLazy = lazy(() => import('./components/DashboardApp'));
+const BackendApiLazy = lazy(() => import('./components/BackendApiApp'));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'co',
@@ -17,13 +18,52 @@ const generateClassName = createGenerateClassName({
 const history = createBrowserHistory();
 
 export default () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const storageToken = localStorage.getItem("JWT_TOKEN");
+  const getToken = storageToken ? JSON.stringify(storageToken) : null;
+
+  const isADmin = localStorage.getItem("IS_ADMIN")
+    ? JSON.stringify(localStorage.getItem("IS_ADMIN"))
+    : false;
+
+  const [appContext, setAppContext] = useState({
+    apiUrl: process.env.API_BASE_URL,
+    api: null,
+    token: getToken,
+    user: null,
+    isSignedIn: false,
+    isAdmin: false,
+    isCandidate: false,
+    isRecruiter: false,
+  });
+
+  const setIsSignedIn = (isSignedIn) => {
+    setAppContext(previousState => {
+      return { ...previousState, isSignedIn: isSignedIn }
+    });
+  }
+
+  const setApi = (api) => {
+    setAppContext(previousState => {
+      return { ...previousState, api: api }
+    });
+  }
 
   useEffect(() => {
-    if (isSignedIn) {
+    if (appContext.isSignedIn) {
       history.push('/dashboard');
     }
-  }, [isSignedIn]);
+  }, [appContext.isSignedIn]);
+
+  useEffect(() => {
+    if (appContext.api) {
+      console.log("appContext.api", appContext.api);
+      // console.log("api", api);
+      appContext.api.get("").then((response) => {
+        console.log("response", response);
+      });
+    }
+  }, [appContext.api]);
 
   return (
     <Router history={history}>
@@ -31,15 +71,22 @@ export default () => {
         <div>
           <Header
             onSignOut={() => setIsSignedIn(false)}
-            isSignedIn={isSignedIn}
+            isSignedIn={appContext.isSignedIn}
           />
           <Suspense fallback={<Progress />}>
+            <BackendApiLazy
+              appContext={{...appContext, onApiSet: (api) => setApi(api)}}
+              onAppContextChanged={setAppContext}
+            />
             <Switch>
               <Route path="/auth">
-                <AuthLazy appConfig={{onSignIn: () => setIsSignedIn(true)}} />
+                <AuthLazy
+                  appContext={{...appContext, onSignIn: () => setIsSignedIn(true)}}
+                  onAppContextChanged={setAppContext}
+                />
               </Route>
               <Route path="/dashboard">
-                {!isSignedIn && <Redirect to="/" />}
+                {!appContext.isSignedIn && <Redirect to="/" />}
                 <DashboardLazy />
               </Route>
               <Route path="/" component={MarketingLazy} />

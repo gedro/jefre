@@ -31,6 +31,12 @@ public class SimpleAuthenticationController {
   }
 
   @Public
+  @GetMapping
+  public ResponseEntity<?> statusCheck() {
+    return ResponseEntity.ok("READY");
+  }
+
+  @Public
   @PostMapping("/public/auth/signin")
   public ResponseEntity<AuthResponse> login(
     @Valid @RequestBody final LoginRequest loginRequest, final HttpServletRequest request
