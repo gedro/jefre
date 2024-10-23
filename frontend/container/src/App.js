@@ -68,7 +68,7 @@ export default () => {
   return (
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
-        <div>
+        <React.Fragment>
           <Header
             onSignOut={() => setIsSignedIn(false)}
             isSignedIn={appContext.isSignedIn}
@@ -92,7 +92,7 @@ export default () => {
               <Route path="/" component={MarketingLazy} />
             </Switch>
           </Suspense>
-        </div>
+        </React.Fragment>
       </StylesProvider>
     </Router>
   );
