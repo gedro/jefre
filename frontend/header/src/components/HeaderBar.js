@@ -37,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Montserrat',
     fontSize: '1.2rem',
   },
+  logo: {
+    position: 'absolute',
+    top: '100%',
+    transform: 'translateY(-30%)',
+  }
 }));
 
 export default function HeaderBar({ appContext, onAppContextChanged }) {
@@ -59,7 +64,7 @@ export default function HeaderBar({ appContext, onAppContextChanged }) {
         >
           <Toolbar className={classes.toolbar}>
             <Link to='/'>
-              <img src={logo} alt="logo" width={70} height={70}/>
+              <img src={logo} alt="logo" width={260} height={262} className={classes.logo} />
             </Link>
             <div className={classes.menu}>
               <Link to='/contact' className={classes.link}>
