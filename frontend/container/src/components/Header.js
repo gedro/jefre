@@ -3,7 +3,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import logo from '../../public/jefree-logo-transparent.png';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -22,34 +24,18 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    backgroundColor: 'black',
   },
   link: {
     margin: theme.spacing(1, 1.5),
-  },
-  heroContent: {
-    padding: theme.spacing(8, 0, 6),
-  },
-  cardHeader: {
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[700],
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing(2),
-  },
-  footer: {
-    borderTop: `1px solid ${theme.palette.divider}`,
-    marginTop: theme.spacing(8),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
-    },
+    color: 'white',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+    marginRight: '3rem',
+    cursor: 'pointer',
+    unicodeBidi: 'isolate',
+    fontFamily: 'Montserrat',
+    fontSize: '1.2rem',
   },
 }));
 
@@ -64,7 +50,7 @@ export default function Header({ isSignedIn, onSignOut }) {
 
   return (
     <React.Fragment>
-      <header className="h-headerHeight z-50 text-textColor bg-headerColor shadow-sm  flex items-center sticky top-0">
+      <header>
         <AppBar
           position="static"
           color="default"
@@ -72,19 +58,27 @@ export default function Header({ isSignedIn, onSignOut }) {
           className={classes.appBar}
         >
           <Toolbar className={classes.toolbar}>
-            <RouterLink to='/'>
-              <img src="public/jefree-logo.png" alt="logo" width={70} height={70}/>
-            </RouterLink>
-            <Button
-              color="primary"
-              variant="outlined"
-              className={classes.link}
-              component={RouterLink}
-              to={isSignedIn ? '/' : '/auth/signin'}
-              onClick={onClick}
-            >
-              {isSignedIn ? 'Logout' : 'Login'}
-            </Button>
+            <Link to='/'>
+              <img src={logo} alt="logo" width={70} height={70}/>
+            </Link>
+            <div className={classes.menu}>
+              <Link to='/contact' className={classes.link}>
+                Contact
+              </Link>
+              <Link to='/about' className={classes.link}>
+                About
+              </Link>
+              <Button
+                color={isSignedIn ? 'secondary' : 'primary'}
+                variant="contained"
+                className={classes.link}
+                component={Link}
+                to={isSignedIn ? '/login?logout=true' : '/auth/signin'}
+                onClick={onClick}
+              >
+                {isSignedIn ? 'Logout' : 'Login'}
+              </Button>
+            </div>
           </Toolbar>
         </AppBar>
       </header>
