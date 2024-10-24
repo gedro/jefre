@@ -14,6 +14,7 @@ const ContactLazy = lazy(() => import('./components/ContactApp'));
 const TermsLazy = lazy(() => import('./components/TermsApp'));
 const PrivacyLazy = lazy(() => import('./components/PrivacyApp'));
 const AuthLazy = lazy(() => import('./components/AuthApp'));
+const AdminLazy = lazy(() => import('./components/AdminApp'));
 const DashboardLazy = lazy(() => import('./components/DashboardApp'));
 
 const generateClassName = createGenerateClassName({
@@ -106,6 +107,13 @@ export default () => {
                 <Route path="/dashboard">
                   {!appContext.isSignedIn && <Redirect to="/" />}
                   <DashboardLazy />
+                </Route>
+                <Route path="/admin">
+                  {!appContext.isSignedIn && <Redirect to="/" />}
+                  <AdminLazy
+                    appContext={appContext}
+                    onAppContextChanged={setAppContext}
+                  />
                 </Route>
                 <Route path="/" component={HomeLazy} />
               </Switch>

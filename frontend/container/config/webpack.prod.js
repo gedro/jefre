@@ -25,6 +25,7 @@ const prodConfig = {
         terms: `terms@${domain}/terms/latest/remoteEntry.js`,
         privacy: `privacy@${domain}/privacy/latest/remoteEntry.js`,
         auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+        admin: `admin@${domain}/admin/latest/remoteEntry.js`,
         dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
