@@ -15,12 +15,15 @@ const prodConfig = {
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
-        auth: `auth@${domain}/auth/latest/remoteEntry.js`,
-        dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
+        header: `header@${domain}/header/latest/remoteEntry.js`,
+        footer: `footer@${domain}/footer/latest/remoteEntry.js`,
+        authnz: `authnz@${domain}/authnz/latest/remoteEntry.js`,
         api: `api@${domain}/api/latest/remoteEntry.js`,
+        home: `home@${domain}/home/latest/remoteEntry.js`,
         aboutus: `aboutus@${domain}/aboutus/latest/remoteEntry.js`,
         contact: `contact@${domain}/contact/latest/remoteEntry.js`,
+        auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+        dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),

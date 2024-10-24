@@ -3,7 +3,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const packageJson = require('../package.json');
 
 const name = 'aboutus';
-const port = 9085;
+const port = 9086;
 const exposes = {
   './AboutUsApp': './src/bootstrap',
 };

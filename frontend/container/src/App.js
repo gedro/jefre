@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history';
 import Progress from './components/Progress';
 import Header from './components/Header';
 
-const MarketingLazy = lazy(() => import('./components/MarketingApp'));
+const HomeLazy = lazy(() => import('./components/HomeApp'));
 const AuthLazy = lazy(() => import('./components/AuthApp'));
 const DashboardLazy = lazy(() => import('./components/DashboardApp'));
 const BackendApiLazy = lazy(() => import('./components/BackendApiApp'));
@@ -102,7 +102,7 @@ export default () => {
                   {!appContext.isSignedIn && <Redirect to="/" />}
                   <DashboardLazy />
                 </Route>
-                <Route path="/" component={MarketingLazy} />
+                <Route path="/" component={HomeLazy} />
               </Switch>
             </Suspense>
           </div>

@@ -2,10 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const packageJson = require('../package.json');
 
-const name = 'marketing';
+const name = 'header';
 const port = 9081;
 const exposes = {
-  './MarketingApp': './src/bootstrap',
+  './HeaderApp': './src/bootstrap',
 };
 
 module.exports = {

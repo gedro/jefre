@@ -1,4 +1,4 @@
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'home/HomeApp';
 import doMount from './MountUtil';
 
 export default ({ appContext, onAppContextChanged }) => {
