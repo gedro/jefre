@@ -22,6 +22,8 @@ const prodConfig = {
         home: `home@${domain}/home/latest/remoteEntry.js`,
         aboutus: `aboutus@${domain}/aboutus/latest/remoteEntry.js`,
         contact: `contact@${domain}/contact/latest/remoteEntry.js`,
+        terms: `terms@${domain}/terms/latest/remoteEntry.js`,
+        privacy: `privacy@${domain}/privacy/latest/remoteEntry.js`,
         auth: `auth@${domain}/auth/latest/remoteEntry.js`,
         dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
       },

@@ -25,6 +25,8 @@ const devConfig = {
         home: 'home@http://localhost:9085/remoteEntry.js',
         aboutus: 'aboutus@http://localhost:9086/remoteEntry.js',
         contact: 'contact@http://localhost:9087/remoteEntry.js',
+        terms: 'terms@http://localhost:9088/remoteEntry.js',
+        privacy: 'privacy@http://localhost:9089/remoteEntry.js',
         auth: 'auth@http://localhost:9090/remoteEntry.js',
         dashboard: 'dashboard@http://localhost:9099/remoteEntry.js',
       },

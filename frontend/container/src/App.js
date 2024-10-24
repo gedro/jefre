@@ -11,6 +11,8 @@ const BackendApiLazy = lazy(() => import('./components/BackendApiApp'));
 const HomeLazy = lazy(() => import('./components/HomeApp'));
 const AboutUsLazy = lazy(() => import('./components/AboutUsApp'));
 const ContactLazy = lazy(() => import('./components/ContactApp'));
+const TermsLazy = lazy(() => import('./components/TermsApp'));
+const PrivacyLazy = lazy(() => import('./components/PrivacyApp'));
 const AuthLazy = lazy(() => import('./components/AuthApp'));
 const DashboardLazy = lazy(() => import('./components/DashboardApp'));
 
@@ -93,6 +95,8 @@ export default () => {
               <Switch>
                 <Route path="/about" component={AboutUsLazy} />
                 <Route path="/contact" component={ContactLazy} />
+                <Route path="/terms" component={TermsLazy} />
+                <Route path="/policy" component={PrivacyLazy} />
                 <Route path="/auth">
                   <AuthLazy
                     appContext={{...appContext, onSignIn: () => setIsSignedIn(true)}}
