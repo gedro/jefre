@@ -25,12 +25,18 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   aboutus: {
-    width: '50%',
+    width: '100%',
     minWidth: '768px',
     padding: '2rem',
     minHeight: '100vh',
     display: 'block',
     unicodeBidi: 'isolate',
+    twBgOpacity: 1,
+    backgroundColor: 'rgb(255 255 255)',
+    borderRadius: '0.5rem',
+    maxWidth: '28rem',
+    marginLeft: '1rem',
+    marginRight: '1rem',
   },
   h1: {
     fontSize: '2.25rem',
