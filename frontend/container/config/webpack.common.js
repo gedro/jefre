@@ -18,13 +18,6 @@ module.exports = {
             plugins: ['@babel/plugin-transform-runtime'],
           },
         },
-      },
-      {
-        test: /\.(jpg|png|svg)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 25000,
-        },
       }
     ],
   },

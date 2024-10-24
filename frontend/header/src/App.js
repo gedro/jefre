@@ -13,7 +13,10 @@ export default ({ appContext, onAppContextChanged, history }) => {
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
-          <HeaderBar />
+          <HeaderBar
+            appContext={appContext}
+            onAppContextChanged={onAppContextChanged}
+          />
         </Router>
       </StylesProvider>
     </div>

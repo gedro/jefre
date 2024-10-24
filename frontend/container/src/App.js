@@ -4,14 +4,15 @@ import { StylesProvider, createGenerateClassName } from '@material-ui/core/style
 import { createBrowserHistory } from 'history';
 
 import Progress from './components/Progress';
-import Header from './components/Header';
 
-const HomeLazy = lazy(() => import('./components/HomeApp'));
-const AuthLazy = lazy(() => import('./components/AuthApp'));
-const DashboardLazy = lazy(() => import('./components/DashboardApp'));
+const HeaderLazy = lazy(() => import('./components/HeaderApp'));
+const FooterLazy = lazy(() => import('./components/FooterApp'));
 const BackendApiLazy = lazy(() => import('./components/BackendApiApp'));
+const HomeLazy = lazy(() => import('./components/HomeApp'));
 const AboutUsLazy = lazy(() => import('./components/AboutUsApp'));
 const ContactLazy = lazy(() => import('./components/ContactApp'));
+const AuthLazy = lazy(() => import('./components/AuthApp'));
+const DashboardLazy = lazy(() => import('./components/DashboardApp'));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'co',
@@ -71,20 +72,20 @@ export default () => {
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
         <React.Fragment>
-          <Header
-            onSignOut={() => setIsSignedIn(false)}
-            isSignedIn={appContext.isSignedIn}
-          />
-          <div style={{
-            twBgOpacity: 1,
-            backgroundColor: 'rgb(243 244 246)',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: 'calc(100vh - 74px)',
-            display: 'flex',
-            unicodeBidi: 'isolate',
-          }}>
-            <Suspense fallback={<Progress />}>
+          <Suspense fallback={<Progress />}>
+            <HeaderLazy
+              appContext={{...appContext, onSignOut: () => setIsSignedIn(false)}}
+              onAppContextChanged={setAppContext}
+            />
+            <div style={{
+              twBgOpacity: 1,
+              backgroundColor: 'rgb(243 244 246)',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: 'calc(100vh - 74px)',
+              display: 'flex',
+              unicodeBidi: 'isolate',
+            }}>
               <BackendApiLazy
                 appContext={{...appContext, onApiSet: (api) => setApi(api)}}
                 onAppContextChanged={setAppContext}
@@ -104,8 +105,9 @@ export default () => {
                 </Route>
                 <Route path="/" component={HomeLazy} />
               </Switch>
-            </Suspense>
-          </div>
+            </div>
+            <FooterLazy />
+          </Suspense>
         </React.Fragment>
       </StylesProvider>
     </Router>
