@@ -74,26 +74,37 @@ export default () => {
             onSignOut={() => setIsSignedIn(false)}
             isSignedIn={appContext.isSignedIn}
           />
-          <Suspense fallback={<Progress />}>
-            <BackendApiLazy
-              appContext={{...appContext, onApiSet: (api) => setApi(api)}}
-              onAppContextChanged={setAppContext}
-            />
-            <Switch>
-              <Route path="/about" component={AboutUsLazy} />
-              <Route path="/auth">
-                <AuthLazy
-                  appContext={{...appContext, onSignIn: () => setIsSignedIn(true)}}
-                  onAppContextChanged={setAppContext}
-                />
-              </Route>
-              <Route path="/dashboard">
-                {!appContext.isSignedIn && <Redirect to="/" />}
-                <DashboardLazy />
-              </Route>
-              <Route path="/" component={MarketingLazy} />
-            </Switch>
-          </Suspense>
+          <div style={{
+            twBgOpacity: 1,
+            backgroundColor: 'rgb(243 244 246)',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 'calc(100vh - 74px)',
+            display: 'flex',
+            unicodeBidi: 'isolate',
+          }}>
+            <Suspense fallback={<Progress />}>
+              <BackendApiLazy
+                appContext={{...appContext, onApiSet: (api) => setApi(api)}}
+                onAppContextChanged={setAppContext}
+              />
+              <Switch>
+                <Route path="/about" component={AboutUsLazy} />
+                <Route path="/contact" component={ContactLazy} />
+                <Route path="/auth">
+                  <AuthLazy
+                    appContext={{...appContext, onSignIn: () => setIsSignedIn(true)}}
+                    onAppContextChanged={setAppContext}
+                  />
+                </Route>
+                <Route path="/dashboard">
+                  {!appContext.isSignedIn && <Redirect to="/" />}
+                  <DashboardLazy />
+                </Route>
+                <Route path="/" component={MarketingLazy} />
+              </Switch>
+            </Suspense>
+          </div>
         </React.Fragment>
       </StylesProvider>
     </Router>
