@@ -10,6 +10,7 @@ const MarketingLazy = lazy(() => import('./components/MarketingApp'));
 const AuthLazy = lazy(() => import('./components/AuthApp'));
 const DashboardLazy = lazy(() => import('./components/DashboardApp'));
 const BackendApiLazy = lazy(() => import('./components/BackendApiApp'));
+const AboutUsLazy = lazy(() => import('./components/AboutUsApp'));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'co',
@@ -79,6 +80,7 @@ export default () => {
               onAppContextChanged={setAppContext}
             />
             <Switch>
+              <Route path="/about" component={AboutUsLazy} />
               <Route path="/auth">
                 <AuthLazy
                   appContext={{...appContext, onSignIn: () => setIsSignedIn(true)}}
