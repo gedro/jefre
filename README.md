@@ -14,7 +14,7 @@
 - [x] Authentication
   - [x] JWT token
   - [x] OAuth2 - Google + GitHub
-  - [ ] Multifactor authentication
+  - [x] Multifactor authentication
   - [x] Audit log
 - [x] CORS + CSRF
 - [x] User management
