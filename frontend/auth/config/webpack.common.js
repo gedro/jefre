@@ -3,7 +3,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const packageJson = require('../package.json');
 
 const name = 'auth';
-const port = 9088;
+const port = 9090;
 const exposes = {
   './AuthApp': './src/bootstrap',
 };

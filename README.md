@@ -46,6 +46,11 @@
 - Home: http://localhost:9085
 - About: http://localhost:9086
 - Contact: http://localhost:9087
-- Authentication Page: http://localhost:9088
-- Admin: http://localhost:9089
+- Terms of Service: http://localhost:9088
+- Privacy Policy: http://localhost:9089
+- Authentication Page: http://localhost:9090
+- User Profile: http://localhost:9091
+- Admin: http://localhost:9092
+- Candidate: http://localhost:9093
+- Recruiter: http://localhost:9094
 - Dashboard: http://localhost:9099
