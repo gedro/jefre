@@ -23,6 +23,7 @@ const devConfig = {
         dashboard: 'dashboard@http://localhost:9083/remoteEntry.js',
         api: 'api@http://localhost:9084/remoteEntry.js',
         aboutus: 'aboutus@http://localhost:9085/remoteEntry.js',
+        contact: 'contact@http://localhost:9086/remoteEntry.js',
       },
       shared: packageJson.dependencies,
     }),
