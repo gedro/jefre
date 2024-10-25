@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
       unicodeBidi: 'isolate',
     }
   },
-  terms: {
+  policy: {
     width: '100%',
     minWidth: '768px',
     padding: '2rem',
@@ -54,7 +54,7 @@ export default function AboutUs() {
   const classes = useStyles();
 
   return (
-    <div className={classes.terms}>
+    <div className={classes.policy}>
       <h1 className={classes.h1}>Privacy Policy</h1>
       <p>
       </p>
