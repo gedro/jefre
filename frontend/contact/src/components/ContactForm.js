@@ -129,7 +129,12 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
     borderStyle: 'solid',
     borderColor: '#e5e7eb',
-  }
+  },
+  centerDiv: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 }));
 
 export default function AboutUs() {
@@ -142,25 +147,27 @@ export default function AboutUs() {
   return (
     <div className={classes.contact}>
       <h1 className={classes.h1}>Contact Us</h1>
-      <p className={classes.p}>
-        We'd love to hear from you! If you have any questions or feedback,
-        feel free to reach out to us.
-      </p>
+      <div className={classes.centerDiv}>
+        <p className={classes.p}>
+          We'd love to hear from you! If you have any questions or feedback,
+          feel free to reach out to us.
+        </p>
+      </div>
       <form onSubmit={onSubmitHandler} className={classes.form}>
         <div className={classes.div}>
-          <label className={classes.label} htmlFor="name" >
+          <label className={classes.label} htmlFor="name">
             Name
           </label>
-          <input type="text" id="name" className={classes.input} />
+          <input type="text" id="name" className={classes.input}/>
         </div>
         <div className={classes.div}>
-          <label className={classes.label} htmlFor="email" >
+          <label className={classes.label} htmlFor="email">
             Email
           </label>
-          <input type="email" id="email" className={classes.input} />
+          <input type="email" id="email" className={classes.input}/>
         </div>
         <div className={classes.div}>
-          <label className={classes.label} htmlFor="message" >
+          <label className={classes.label} htmlFor="message">
             Message
           </label>
           <textarea id="message" className={classes.textarea}></textarea>
