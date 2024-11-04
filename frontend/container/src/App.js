@@ -5,17 +5,17 @@ import { createBrowserHistory } from 'history';
 
 import Progress from './components/Progress';
 
-const HeaderLazy = lazy(() => import('./components/HeaderApp'));
-const FooterLazy = lazy(() => import('./components/FooterApp'));
-const BackendApiLazy = lazy(() => import('./components/BackendApiApp'));
-const HomeLazy = lazy(() => import('./components/HomeApp'));
-const AboutUsLazy = lazy(() => import('./components/AboutUsApp'));
-const ContactLazy = lazy(() => import('./components/ContactApp'));
-const TermsLazy = lazy(() => import('./components/TermsApp'));
-const PrivacyLazy = lazy(() => import('./components/PrivacyApp'));
-const AuthLazy = lazy(() => import('./components/AuthApp'));
-const AdminLazy = lazy(() => import('./components/AdminApp'));
-const DashboardLazy = lazy(() => import('./components/DashboardApp'));
+const HeaderLazy = lazy(() => import('./components/mfe/connector/HeaderApp'));
+const FooterLazy = lazy(() => import('./components/mfe/connector/FooterApp'));
+const BackendApiLazy = lazy(() => import('./components/mfe/connector/BackendApiApp'));
+const HomeLazy = lazy(() => import('./components/mfe/connector/HomeApp'));
+const AboutUsLazy = lazy(() => import('./components/mfe/connector/AboutUsApp'));
+const ContactLazy = lazy(() => import('./components/mfe/connector/ContactApp'));
+const TermsLazy = lazy(() => import('./components/mfe/connector/TermsApp'));
+const PrivacyLazy = lazy(() => import('./components/mfe/connector/PrivacyApp'));
+const AuthLazy = lazy(() => import('./components/mfe/connector/AuthApp'));
+const AdminLazy = lazy(() => import('./components/mfe/connector/AdminApp'));
+const DashboardLazy = lazy(() => import('./components/mfe/connector/DashboardApp'));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'co',
