@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     twBgOpacity: 1,
     backgroundColor: 'rgb(255 255 255)',
     borderRadius: '0.5rem',
-    maxWidth: '28rem',
+    maxWidth: '65rem',
     marginLeft: '1rem',
     marginRight: '1rem',
   },
