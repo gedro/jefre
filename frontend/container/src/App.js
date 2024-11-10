@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { Fragment, lazy, Suspense, useState, useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 import { createBrowserHistory } from 'history';
@@ -75,7 +75,7 @@ export default () => {
   return (
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
-        <React.Fragment>
+        <Fragment>
           <Suspense fallback={<Progress />}>
             <HeaderLazy
               appContext={{...appContext, onSignOut: () => setIsSignedIn(false)}}
@@ -122,7 +122,7 @@ export default () => {
             <FooterLazy />
           </Suspense>
           <Toaster position="bottom-center" reverseOrder={false} />
-        </React.Fragment>
+        </Fragment>
       </StylesProvider>
     </Router>
   );
