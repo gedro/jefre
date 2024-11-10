@@ -2,6 +2,14 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  '@global': {
+    '*, ::before, ::after': {
+      boxSizing: 'border-box',
+      borderWidth: '0',
+      borderStyle: 'solid',
+      borderColor: '#e5e7eb',
+    }
+  },
   contact: {
     padding: '2rem',
     twBgOpacity: 1,
@@ -71,9 +79,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '100%',
     margin: '0',
     marginBottom: '1rem',
-    boxSizing: 'border-box',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
   },
   textarea: {
     paddingTop: '0.5rem',
@@ -97,9 +102,6 @@ const useStyles = makeStyles((theme) => ({
     overflowWrap: 'break-word',
     backgroundColor: 'field',
     columnCount: 'initial !important',
-    boxSizing: 'border-box',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
   },
   submit: {
     alignItems: 'center',
@@ -126,9 +128,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     paddingBlock: '1em',
     paddingInline: '4em',
-    boxSizing: 'border-box',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
   },
   centerDiv: {
     display: 'flex',

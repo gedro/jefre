@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import {FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter} from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
+  '@global': {
+    '*, ::before, ::after': {
+      boxSizing: 'border-box',
+      borderWidth: '0',
+      borderStyle: 'solid',
+      borderColor: '#e5e7eb',
+    }
+  },
   footer: {
     paddingTop: '0.5rem',
     paddingBottom: '0.5rem',
@@ -11,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '7rem',
     zIndex: '50',
     position: 'relative',
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     display: 'block',
     unicodeBidi: 'isolate',
     lineHeight: 'inherit',
@@ -28,10 +32,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     minHeight: '7rem',
     display: 'flex',
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     unicodeBidi: 'isolate',
     lineHeight: 'inherit',
   },
@@ -45,10 +45,6 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     margin: '0',
     padding: '0',
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     unicodeBidi: 'isolate',
     lineHeight: 'inherit',
     marginBlockStart: '1em',
@@ -58,10 +54,6 @@ const useStyles = makeStyles((theme) => ({
     paddingInlineStart: '40px',
   },
   copyright: {
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     unicodeBidi: 'isolate',
     marginBlockStart: '1em',
     marginBlockEnd: '1em',
@@ -77,19 +69,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   copyrightSpan: {
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     color: 'rgb(255 255 255)',
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
   },
   socialButtons: {
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     unicodeBidi: 'isolate',
     justifyContent: 'flex-end',
     gap: '1.5rem',
@@ -120,10 +104,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 'inherit',
   },
   socialButton: {
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     display: 'block',
     verticalAlign: 'middle',
     transformOrigin: '0px 0px',
@@ -139,10 +119,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   li: {
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     unicodeBidi: 'isolate',
     color: 'rgb(255 255 255)',
     display: 'list-item',
@@ -152,10 +128,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 'inherit',
   },
   link: {
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     color: 'inherit',
     textDecoration: 'inherit',
     cursor: 'pointer',

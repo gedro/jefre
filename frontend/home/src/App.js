@@ -14,14 +14,18 @@ const generateClassName = createGenerateClassName({
 });
 
 const useStyles = makeStyles((theme) => ({
+  '@global': {
+    '*, ::before, ::after': {
+      boxSizing: 'border-box',
+      borderWidth: '0',
+      borderStyle: 'solid',
+      borderColor: '#e5e7eb',
+    }
+  },
   home: {
     // body
     lineHeight: 'inherit',
     display: 'block',
-    boxSizing: 'border-box',
-    borderWidth: '0',
-    borderStyle: 'solid',
-    borderColor: '#e5e7eb',
     unicodeBidi: 'isolate',
 
     // home
