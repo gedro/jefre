@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,14 +6,21 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../public/jefree-logo-transparent.png';
 
-export default function HeaderBar({ appContext, onAppContextChanged }) {
-  const classes = useStyles();
+export default function HeaderBar({ appContext, onAppContextChanged, classes }) {
+  console.log('appContext', appContext);
 
   const onClick = () => {
     if (appContext && appContext.isSignedIn && appContext.onSignOut) {
       appContext.onSignOut();
     }
   };
+
+  const [isSignedIn, setIsSignedIn] = useState(appContext?.isSignedIn);
+
+  useEffect(() => {
+    setIsSignedIn(appContext.isSignedIn);
+    console.log('appContext ------------ ', appContext);
+  }, [appContext.isSignedIn]);
 
   return (
     <React.Fragment>
@@ -36,14 +43,14 @@ export default function HeaderBar({ appContext, onAppContextChanged }) {
                 About
               </Link>
               <Button
-                color={appContext?.isSignedIn ? 'secondary' : 'primary'}
+                color={isSignedIn ? 'secondary' : 'primary'}
                 variant="contained"
                 className={classes.he_link}
                 component={Link}
-                to={appContext?.isSignedIn ? '/login?logout=true' : '/auth/signin'}
+                to={isSignedIn ? '/login?logout=true' : '/auth/signin'}
                 onClick={onClick}
               >
-                {appContext?.isSignedIn ? 'Logout' : 'Login'}
+                {isSignedIn ? 'Logout' : 'Login'}
               </Button>
             </div>
           </Toolbar>
