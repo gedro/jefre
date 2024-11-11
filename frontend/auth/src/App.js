@@ -1,29 +1,22 @@
-import React from 'react';
-import { Switch, Route, Router } from 'react-router-dom';
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+import React, { Fragment } from 'react';
+import { Router } from 'react-router-dom';
+import {StylesProvider, createGenerateClassName} from '@material-ui/core/styles';
 
-import SignIn from './components/Signin';
-import SignUp from './components/Signup';
+import StyledApp from './StyledApp';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'au',
 });
 
 export default ({ appContext, onAppContextChanged, history }) => {
+
   return (
-    <div>
+    <Fragment>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
-          <Switch>
-            <Route path="/auth/signin">
-              <SignIn onSignIn={appContext?.onSignIn} />
-            </Route>
-            <Route path="/auth/signup">
-              <SignUp onSignIn={appContext?.onSignIn} />
-            </Route>
-          </Switch>
+          <StyledApp appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Router>
       </StylesProvider>
-    </div>
+    </Fragment>
   );
 };
