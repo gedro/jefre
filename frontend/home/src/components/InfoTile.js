@@ -11,11 +11,11 @@ export default function InfoTile({ classes, text, icon: Icon, title }) {
       }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className={classes.infoTile}
+      className={classes.ho_infoTile}
     >
-      <Icon className={classes.infoTileIcon} />
-      <h3 className={classes.infoTileH3} >{title}</h3>
-      <p className={classes.infoTileP} >{text}</p>
+      <Icon className={classes.ho_infoTileIcon} />
+      <h3 className={classes.ho_infoTileH3} >{title}</h3>
+      <p className={classes.ho_infoTileP} >{text}</p>
     </motion.div>
   );
 };

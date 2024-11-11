@@ -3,11 +3,11 @@ import { FaPuzzlePiece, FaSmile, FaLanguage } from "react-icons/fa";
 
 import InfoTile from "./InfoTile";
 
-export default function WhyChoose({classes}) {
+export default function WhyChoose({ classes }) {
   return (
-    <div className={classes.parts}>
-      <h1 className={classes.h1}>Why Choose JEFREE?</h1>
-      <div className={classes.tiles}>
+    <div className={classes.ho_parts}>
+      <h1 className={classes.ho_h1}>Why Choose JEFREE?</h1>
+      <div className={classes.ho_tiles}>
         <InfoTile
           classes={classes}
           title="Standardized Matching"

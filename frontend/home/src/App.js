@@ -20,9 +20,16 @@ const useStyles = makeStyles((theme) => ({
       borderWidth: '0',
       borderStyle: 'solid',
       borderColor: '#e5e7eb',
+    },
+    html: {
+      lineHeight: '1.5',
+      tabSize: '4',
+      fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      fontFeatureSettings: 'normal',
+      fontVariationSettings: 'normal',
     }
   },
-  home: {
+  ho_home: {
     // body
     lineHeight: 'inherit',
     display: 'block',
@@ -45,18 +52,18 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '1rem',
     marginRight: '1rem',
   },
-  centerDiv: {
+  ho_centerDiv: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  parts: {
+  ho_parts: {
     display: 'block',
     paddingTop: '2rem',
     paddingBottom: '2rem',
     width: '90%',
   },
-  p: {
+  ho_p: {
     marginTop: '1rem',
     marginBottom: '1rem',
     width: '80%',
@@ -70,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     marginInlineEnd: '0px',
     unicodeBidi: 'isolate',
   },
-  h1: {
+  ho_h1: {
     opacity: '1',
     transform: 'none',
     fontSize: '50px',
@@ -91,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     unicodeBidi: 'isolate',
     display: 'block',
   },
-  h2: {
+  ho_h2: {
     marginTop: '1rem',
     marginBottom: '1rem',
     fontSize: '40px',
@@ -107,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
     marginInlineEnd: '0px',
     unicodeBidi: 'isolate',
   },
-  h3: {
+  ho_h3: {
     marginTop: '1rem',
     marginBottom: '1rem',
     fontSize: '1.5rem',
@@ -123,10 +130,10 @@ const useStyles = makeStyles((theme) => ({
     marginInlineEnd: '0px',
     unicodeBidi: 'isolate',
   },
-  pStrong: {
+  ho_pStrong: {
     fontSize: '1.3rem',
   },
-  infoTile: {
+  ho_infoTile: {
     opacity: '1',
     transform: 'none',
     boxShadow: '#0172F4 0 1px 2px 0',
@@ -141,14 +148,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     // width: '30%',
   },
-  infoTileIcon: {
+  ho_infoTileIcon: {
     color: 'rgb(51 65 85)',
     fontSize: '3.75rem',
     lineHeight: '1',
     display: 'block',
     verticalAlign: 'middle',
   },
-  infoTileH3: {
+  ho_infoTileH3: {
     color: 'rgb(51 65 85)',
     fontWeight: '700',
     fontSize: '1.25rem',
@@ -160,7 +167,7 @@ const useStyles = makeStyles((theme) => ({
     marginInlineEnd: '0px',
     unicodeBidi: 'isolate',
   },
-  infoTileP: {
+  ho_infoTileP: {
     color: 'rgb(71 85 105)',
     textAlign: 'center',
     margin: '0',
@@ -171,7 +178,7 @@ const useStyles = makeStyles((theme) => ({
     marginInlineEnd: '0px',
     unicodeBidi: 'isolate',
   },
-  tiles: {
+  ho_tiles: {
     gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     paddingLeft: '0px',
     paddingRight: '0px',
@@ -197,31 +204,31 @@ export default ({ appContext, onAppContextChanged, history }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
-        <div className={classes.home}>
+        <div className={classes.ho_home}>
           <Router history={history}>
             <motion.div
-              className={classes.centerDiv}
+              className={classes.ho_centerDiv}
               variants={fadeInFromTop}
               initial="hidden" animate="visible"
             >
               <Welcome classes={classes}/>
             </motion.div>
             <motion.div
-              className={classes.centerDiv}
+              className={classes.ho_centerDiv}
               variants={fadeInFromBotom}
               initial="hidden" animate="visible"
             >
               <ForJobSeekers classes={classes}/>
             </motion.div>
             <motion.div
-              className={classes.centerDiv}
+              className={classes.ho_centerDiv}
               variants={fadeInFromBotom}
               initial="hidden" animate="visible"
             >
               <ForEmployers classes={classes} />
             </motion.div>
-            <div className={classes.centerDiv}><WhyChoose classes={classes} /></div>
-            <div className={classes.centerDiv}><GetStarted classes={classes}/></div>
+            <div className={classes.ho_centerDiv}><WhyChoose classes={classes} /></div>
+            <div className={classes.ho_centerDiv}><GetStarted classes={classes}/></div>
           </Router>
         </div>
       </StylesProvider>

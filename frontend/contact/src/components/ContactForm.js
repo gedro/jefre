@@ -1,177 +1,40 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  '@global': {
-    '*, ::before, ::after': {
-      boxSizing: 'border-box',
-      borderWidth: '0',
-      borderStyle: 'solid',
-      borderColor: '#e5e7eb',
-    }
-  },
-  contact: {
-    padding: '2rem',
-    twBgOpacity: 1,
-    backgroundColor: 'rgb(255 255 255)',
-    borderRadius: '0.5rem',
-    maxWidth: '65rem',
-    width: '100%',
-    marginLeft: '1rem',
-    marginRight: '1rem',
-    display: 'block',
-    unicodeBidi: 'isolate',
-  },
-  h1: {
-    fontWeight: '700',
-    fontSize: '1.875rem',
-    lineHeight: '2.25rem',
-    marginBottom: '1rem',
-    margin: '0',
-    display: 'block',
-    marginBlockStart: '0.67em',
-    marginBlockEnd: '0.67em',
-    marginInlineStart: '0px',
-    marginInlineEnd: '0px',
-    unicodeBidi: 'isolate',
-    textAlign: 'center',
-    twBgOpacity: 1,
-  },
-  form: {
-    display: 'block',
-    marginTop: '0em',
-    unicodeBidi: 'isolate',
-    textAlign: 'center',
-  },
-  p: {
-    twTextOpacity: 1,
-    color: 'rgb(75 85 99)',
-    marginBottom: '1rem',
-    margin: '0',
-    display: 'block',
-    marginBlockStart: '1em',
-    marginBlockEnd: '1em',
-    marginInlineStart: '0px',
-    marginInlineEnd: '0px',
-    unicodeBidi: 'isolate',
-    textAlign: 'center',
-  },
-  div: {
-    display: 'block',
-    unicodeBidi: 'isolate',
-  },
-  label: {
-    twTextOpacity: 1,
-    color: 'rgb(55 65 81)',
-    textAlign: 'left',
-    display: 'block',
-    marginBottom: '0.5rem',
-    cursor: 'default',
-  },
-  input: {
-    paddingTop: '0.5rem',
-    paddingBottom: '0.5rem',
-    paddingLeft: '1rem',
-    paddingRight: '1rem',
-    borderWidth: '1px',
-    borderRadius: '0.5rem',
-    width: '100%',
-    fontSize: '100%',
-    margin: '0',
-    marginBottom: '1rem',
-  },
-  textarea: {
-    paddingTop: '0.5rem',
-    paddingBottom: '0.5rem',
-    paddingLeft: '1rem',
-    paddingRight: '1rem',
-    borderWidth: '1px',
-    borderRadius: '0.5rem',
-    width: '100%',
-    fontSize: '100%',
-    margin: '0',
-    resize: 'vertical',
-    textRendering: 'auto',
-    textTransform: 'none',
-    textIndent: '0px',
-    textShadow: 'none',
-    display: 'inline-block',
-    textAlign: 'start',
-    appearance: 'auto',
-    cursor: 'text',
-    overflowWrap: 'break-word',
-    backgroundColor: 'field',
-    columnCount: 'initial !important',
-  },
-  submit: {
-    alignItems: 'center',
-    marginTop: '1rem',
-    marginBottom: '1rem',
-    twTextOpacity: 1,
-    color: 'rgb(255 255 255)',
-    paddingTop: '1rem',
-    paddingBottom: '1rem',
-    paddingLeft: '1rem',
-    paddingRight: '1rem',
-    backgroundColor: 'rgb(59 130 246)',
-    borderRadius: '0.6rem',
-    cursor: 'pointer',
-    backgroundImage: 'none',
-    textTransform: 'none',
-    fontSize: '100%',
-    margin: '0',
-    textRendering: 'auto',
-    wordSpacing: 'normal',
-    textIndent: '0px',
-    textShadow: 'none',
-    display: 'inline-block',
-    textAlign: 'center',
-    paddingBlock: '1em',
-    paddingInline: '4em',
-  },
-  centerDiv: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}));
-
-export default function AboutUs() {
-  const classes = useStyles();
+export default function ContactForm({ classes }) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
   };
 
   return (
-    <div className={classes.contact}>
-      <h1 className={classes.h1}>Contact Us</h1>
-      <div className={classes.centerDiv}>
-        <p className={classes.p}>
+    <div className={classes.con_contact}>
+      <h1 className={classes.con_h1}>Contact Us</h1>
+      <div className={classes.con_centerDiv}>
+        <p className={classes.con_p}>
           We'd love to hear from you! If you have any questions or feedback,
           feel free to reach out to us.
         </p>
       </div>
-      <form onSubmit={onSubmitHandler} className={classes.form}>
-        <div className={classes.div}>
-          <label className={classes.label} htmlFor="name">
+      <form onSubmit={onSubmitHandler} className={classes.con_form}>
+        <div className={classes.con_div}>
+          <label className={classes.con_label} htmlFor="name">
             Name
           </label>
-          <input type="text" id="name" className={classes.input}/>
+          <input type="text" id="name" className={classes.con_input}/>
         </div>
-        <div className={classes.div}>
-          <label className={classes.label} htmlFor="email">
+        <div className={classes.con_div}>
+          <label className={classes.con_label} htmlFor="email">
             Email
           </label>
-          <input type="email" id="email" className={classes.input}/>
+          <input type="email" id="email" className={classes.con_input}/>
         </div>
-        <div className={classes.div}>
-          <label className={classes.label} htmlFor="message">
+        <div className={classes.con_div}>
+          <label className={classes.con_label} htmlFor="message">
             Message
           </label>
-          <textarea id="message" className={classes.textarea}></textarea>
+          <textarea id="message" className={classes.con_textarea}></textarea>
         </div>
-        <button type="submit" className={classes.submit}>
+        <button type="submit" className={classes.con_submit}>
           Send Message
         </button>
       </form>

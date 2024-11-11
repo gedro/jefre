@@ -1,15 +1,13 @@
 import React from "react";
 import { FaSearch, FaUserCheck, FaUnlock } from "react-icons/fa";
 
-// 65rem
-// 768px
 import InfoTile from './InfoTile';
 
-export default function ForJobSeekers({classes}) {
+export default function ForJobSeekers({ classes }) {
   return (
-    <div className={classes.parts}>
-      <h1 className={classes.h1}>For Job Seekers</h1>
-      <div className={classes.tiles}>
+    <div className={classes.ho_parts}>
+      <h1 className={classes.ho_h1}>For Job Seekers</h1>
+      <div className={classes.ho_tiles}>
         <InfoTile
           classes={classes}
           title="Discover Opportunities"

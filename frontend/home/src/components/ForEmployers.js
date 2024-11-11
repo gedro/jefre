@@ -3,11 +3,11 @@ import { FaUsers, FaClipboardCheck, FaHandshake } from "react-icons/fa";
 
 import InfoTile from "./InfoTile";
 
-export default function ForEmployers({classes}) {
+export default function ForEmployers({ classes }) {
   return (
-    <div className={classes.parts}>
-      <h1 className={classes.h1}>For Employers</h1>
-      <div className={classes.tiles}>
+    <div className={classes.ho_parts}>
+      <h1 className={classes.ho_h1}>For Employers</h1>
+      <div className={classes.ho_tiles}>
         <InfoTile
           classes={classes}
           title="Find the Right Talent"
