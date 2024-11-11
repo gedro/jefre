@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     minHeight: 'calc(100vh - 74px)',
     display: 'flex',
-    backgroundColor: 'rgb(255 255 255)',
   },
   au_form: {
     display: 'block',
@@ -38,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '2rem',
     width: '450px',
     boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'rgb(255 255 255)',
   },
   au_socialDiv: {
     display: 'block',
