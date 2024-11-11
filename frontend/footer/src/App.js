@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Router } from 'react-router-dom';
 import {StylesProvider, createGenerateClassName} from '@material-ui/core/styles';
 
-import FooterLine from './components/FooterLine';
+import StyledApp from './StyledApp';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'fo',
@@ -11,12 +11,12 @@ const generateClassName = createGenerateClassName({
 export default ({ appContext, onAppContextChanged, history }) => {
 
   return (
-    <div>
+    <Fragment>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
-          <FooterLine />
+          <StyledApp appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Router>
       </StylesProvider>
-    </div>
+    </Fragment>
   );
 };
