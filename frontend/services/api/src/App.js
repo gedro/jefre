@@ -9,8 +9,14 @@ const generateClassName = createGenerateClassName({
 export default ({ appContext, onAppContextChanged, history }) => {
 
   useEffect(() => {
-    if(appContext.apiUrl != null && appContext.onApiSet) {
-      appContext?.onApiSet(api(appContext.apiUrl));
+    if(appContext.apiUrl != null) {
+
+      onAppContextChanged(previousState => {
+        return {
+          ...previousState,
+          api: api(appContext.apiUrl)
+        }
+      });
     }
   }, [appContext.apiUrl]);
 

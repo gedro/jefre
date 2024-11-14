@@ -50,12 +50,6 @@ export default () => {
     });
   }
 
-  const setApi = (api) => {
-    setAppContext(previousState => {
-      return { ...previousState, api: api }
-    });
-  }
-
   useEffect(() => {
     if (appContext.isSignedIn) {
       history.push('/dashboard');
@@ -72,15 +66,25 @@ export default () => {
     }
   }, [appContext.api]);
 
+  // only for logging, no need to keep this
+  useEffect(() => {
+    console.log("appContextChanged", appContext);
+  }, [
+    appContext.user, appContext.token, appContext.isSignedIn,
+    appContext.isAdmin, appContext.isCandidate, appContext.isRecruiter
+  ]);
+
+  useEffect(() => {
+    console.log('appContextChanged isSignedIn ', appContext);
+  }, [appContext.isSignedIn]);
+
   return (
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
         <Fragment>
           <Suspense fallback={<Progress />}>
-            <HeaderLazy
-              appContext={{...appContext, onSignOut: () => setIsSignedIn(false)}}
-              onAppContextChanged={setAppContext}
-            />
+            <BackendApiLazy appContext={appContext} onAppContextChanged={setAppContext} />
+            <HeaderLazy appContext={appContext} onAppContextChanged={setAppContext} />
             <div style={{
               twBgOpacity: 1,
               backgroundColor: 'rgb(243 244 246)',
@@ -90,10 +94,6 @@ export default () => {
               display: 'flex',
               unicodeBidi: 'isolate',
             }}>
-              <BackendApiLazy
-                appContext={{...appContext, onApiSet: (api) => setApi(api)}}
-                onAppContextChanged={setAppContext}
-              />
               <Switch>
                 <Route path="/about" component={AboutUsLazy} />
                 <Route path="/contact" component={ContactLazy} />
