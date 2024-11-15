@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/services/authnz/**'
+      - 'frontend/utils/**'
       - '.github/workflows/authnz.yml'
 
 defaults:

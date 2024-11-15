@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/dashboard/**'
+      - 'frontend/utils/**'
       - '.github/workflows/dashboard.yml'
 
 defaults:

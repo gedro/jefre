@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/aboutus/**'
+      - 'frontend/utils/**'
       - '.github/workflows/aboutus.yml'
 
 defaults:

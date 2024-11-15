@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/services/api/**'
+      - 'frontend/utils/**'
       - '.github/workflows/api.yml'
 
 defaults:

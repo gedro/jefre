@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/contact/**'
+      - 'frontend/utils/**'
       - '.github/workflows/contact.yml'
 
 defaults:

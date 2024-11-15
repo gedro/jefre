@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/admin/**'
+      - 'frontend/utils/**'
       - '.github/workflows/admin.yml'
 
 defaults:

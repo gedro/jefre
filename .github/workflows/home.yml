@@ -6,7 +6,8 @@ on:
       - main
     paths:
       - 'frontend/home/**'
-      - 'home.yml'
+      - 'frontend/utils/**'
+      - '.github/workflows/home.yml'
 
 defaults:
     run:

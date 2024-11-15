@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/terms/**'
+      - 'frontend/utils/**'
       - '.github/workflows/terms.yml'
 
 defaults:
