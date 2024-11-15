@@ -1,0 +1,16 @@
+name: deploy-backend-jefree-core
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/services/jefree-core/**'
+      - 'backend/libs/**'
+      - .github/workflows/backend-service-workflow.yml
+      - .github/workflows/backend-jefree-core.yml
+
+jobs:
+  run:
+    uses: ./.github/workflows/backend-service-workflow.yml
+    with:
+      service: jefree-core

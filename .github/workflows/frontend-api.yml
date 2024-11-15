@@ -1,17 +1,17 @@
-name: deploy-contact
+name: deploy-mfe-api
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'frontend/contact/**'
+      - 'frontend/services/api/**'
       - 'frontend/utils/**'
-      - '.github/workflows/contact.yml'
+      - '.github/workflows/frontend-api.yml'
 
 defaults:
     run:
-        working-directory: frontend/contact
+        working-directory: frontend/services/api
 
 jobs:
   build:
@@ -23,13 +23,13 @@ jobs:
       - run: npm run build
 
       - uses: shinyinc/action-aws-cli@v1.2
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/contact/latest
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/api/latest
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-central-1
 
-      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/contact/latest/remoteEntry.js"
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/api/latest/remoteEntry.js"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

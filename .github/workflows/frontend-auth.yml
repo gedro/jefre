@@ -1,4 +1,4 @@
-name: deploy-auth
+name: deploy-mfe-auth
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     paths:
       - 'frontend/auth/**'
       - 'frontend/utils/**'
-      - '.github/workflows/auth.yml'
+      - '.github/workflows/frontend-auth.yml'
 
 defaults:
     run:
