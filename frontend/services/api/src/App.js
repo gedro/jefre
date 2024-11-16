@@ -11,11 +11,8 @@ export default ({ appContext, onAppContextChanged, history }) => {
   useEffect(() => {
     if(appContext.apiUrl != null) {
 
-      onAppContextChanged(previousState => {
-        return {
-          ...previousState,
-          api: api(appContext.apiUrl)
-        }
+      onAppContextChanged({
+        api: api(appContext.apiUrl)
       });
     }
   }, [appContext.apiUrl]);

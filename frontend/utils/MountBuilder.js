@@ -22,6 +22,9 @@ const MountBuilder = (function () {
             history.push(nextPathname);
           }
         },
+        refresh(appContext, onAppContextChanged) {
+          callback(el, appContext, onAppContextChanged, history);
+        }
       };
     };
 

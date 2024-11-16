@@ -44,9 +44,9 @@ export default () => {
     isRecruiter: false,
   });
 
-  const setIsSignedIn = (isSignedIn) => {
+  const onAppContextChanged = (newAppContext) => {
     setAppContext(previousState => {
-      return { ...previousState, isSignedIn: isSignedIn }
+      return { ...previousState, ...newAppContext }
     });
   }
 
@@ -58,8 +58,7 @@ export default () => {
 
   useEffect(() => {
     if (appContext.api) {
-      console.log("appContext.api", appContext.api);
-      // console.log("api", api);
+      console.log("CONTAINER appContext.api", appContext.api);
       appContext.api.get("").then((response) => {
         console.log("response", response);
       });
@@ -68,23 +67,19 @@ export default () => {
 
   // only for logging, no need to keep this
   useEffect(() => {
-    console.log("appContextChanged", appContext);
+    console.log("CONTAINER appContextChanged", appContext);
   }, [
     appContext.user, appContext.token, appContext.isSignedIn,
     appContext.isAdmin, appContext.isCandidate, appContext.isRecruiter
   ]);
-
-  useEffect(() => {
-    console.log('appContextChanged isSignedIn ', appContext);
-  }, [appContext.isSignedIn]);
 
   return (
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
         <Fragment>
           <Suspense fallback={<Progress />}>
-            <BackendApiLazy appContext={appContext} onAppContextChanged={setAppContext} />
-            <HeaderLazy appContext={appContext} onAppContextChanged={setAppContext} />
+            <BackendApiLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
+            <HeaderLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
             <div style={{
               twBgOpacity: 1,
               backgroundColor: 'rgb(243 244 246)',
@@ -100,10 +95,7 @@ export default () => {
                 <Route path="/terms" component={TermsLazy} />
                 <Route path="/policy" component={PrivacyLazy} />
                 <Route path="/auth">
-                  <AuthLazy
-                    appContext={{...appContext, onSignIn: () => setIsSignedIn(true)}}
-                    onAppContextChanged={setAppContext}
-                  />
+                  <AuthLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
                 <Route path="/dashboard">
                   {!appContext.isSignedIn && <Redirect to="/" />}
@@ -111,10 +103,7 @@ export default () => {
                 </Route>
                 <Route path="/admin">
                   {!appContext.isSignedIn && <Redirect to="/" />}
-                  <AdminLazy
-                    appContext={appContext}
-                    onAppContextChanged={setAppContext}
-                  />
+                  <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
                 <Route path="/" component={HomeLazy} />
               </Switch>
