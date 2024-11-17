@@ -2,7 +2,7 @@ import React, { Fragment, lazy, Suspense, useState, useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 import { createBrowserHistory } from 'history';
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import Progress from './components/Progress';
 
@@ -26,22 +26,26 @@ const history = createBrowserHistory();
 
 export default () => {
 
+  const storageCsrfToken = localStorage.getItem("CSRF_TOKEN");
+  const foundCsrfToken = storageCsrfToken ? JSON.parse(storageCsrfToken) : null;
+
   const storageToken = localStorage.getItem("JWT_TOKEN");
-  const getToken = storageToken ? JSON.stringify(storageToken) : null;
+  const foundToken = storageToken ? JSON.parse(storageToken) : null;
 
-  const isADmin = localStorage.getItem("IS_ADMIN")
-    ? JSON.stringify(localStorage.getItem("IS_ADMIN"))
-    : false;
+  const storageUser = localStorage.getItem("USER");
+  const foundUser = storageUser ? JSON.parse(storageUser) : null;
 
+  //TODO: validate token and user against backend
   const [appContext, setAppContext] = useState({
     apiUrl: process.env.API_BASE_URL,
     api: null,
-    token: getToken,
-    user: null,
-    isSignedIn: false,
-    isAdmin: false,
-    isCandidate: false,
-    isRecruiter: false,
+    csrfToken: foundCsrfToken,
+    token: foundToken,
+    user: foundUser,
+    isSignedIn: foundToken && foundUser,
+    isAdmin: foundUser && foundUser.roles?.includes("ROLE_ADMIN"),
+    isCandidate: foundUser && foundUser.roles?.includes("ROLE_CANDIDATE"),
+    isRecruiter: foundUser && foundUser.roles?.includes("ROLE_RECRUITER"),
   });
 
   const onAppContextChanged = (newAppContext) => {
@@ -52,23 +56,62 @@ export default () => {
 
   useEffect(() => {
     if (appContext.isSignedIn) {
-      history.push('/dashboard');
+      let targetPath = '/profile';
+
+      if(appContext.isAdmin) {
+        targetPath = '/admin';
+      } else if(appContext.isCandidate) {
+        targetPath = '/candidate';
+      } else if(appContext.isRecruiter) {
+        targetPath = '/recruiter';
+      }
+
+      history.push(targetPath);
+    } else if (appContext?.user || appContext?.token) {
+      appContext.api.post("/logout")
+        .then(() => toast.success("Logged out"))
+        .then(() => onAppContextChanged({
+          csrfToken: null,
+          token: null,
+          user: null,
+          isAdmin: false,
+          isCandidate: false,
+          isRecruiter: false
+        }))
+        .then(() => history.push('/'))
+        .catch(() => toast.error("Failed to logout"));
     }
   }, [appContext.isSignedIn]);
 
   useEffect(() => {
-    if (appContext.api) {
-      console.log("CONTAINER appContext.api", appContext.api);
-      appContext.api.get("").then((response) => {
-        console.log("response", response);
-      });
+    if (appContext.csrfToken) {
+      localStorage.setItem("CSRF_TOKEN", JSON.stringify(appContext.csrfToken));
+    } else {
+      localStorage.removeItem("CSRF_TOKEN");
     }
-  }, [appContext.api]);
+  }, [appContext.csrfToken]);
+
+  useEffect(() => {
+    if (appContext.token) {
+      localStorage.setItem("JWT_TOKEN", JSON.stringify(appContext.token));
+    } else {
+      localStorage.removeItem("JWT_TOKEN");
+    }
+  }, [appContext.token]);
+
+  useEffect(() => {
+    if (appContext.user) {
+      localStorage.setItem("USER", JSON.stringify(appContext.user));
+    } else {
+      localStorage.removeItem("USER");
+    }
+  }, [appContext.user]);
 
   // only for logging, no need to keep this
   useEffect(() => {
     console.log("CONTAINER appContextChanged", appContext);
   }, [
+    appContext.api, appContext.csrfToken,
     appContext.user, appContext.token, appContext.isSignedIn,
     appContext.isAdmin, appContext.isCandidate, appContext.isRecruiter
   ]);

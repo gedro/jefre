@@ -10,7 +10,7 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
 
   const onClick = () => {
     if (appContext?.isSignedIn) {
-      // appContext.onSignOut();
+      onAppContextChanged({ isSignedIn: false });
     }
   };
 
@@ -39,7 +39,7 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
                 variant="contained"
                 className={classes.he_link}
                 component={Link}
-                to={appContext.isSignedIn ? '/login?logout=true' : '/auth/signin'}
+                to='/auth/signin'
                 onClick={onClick}
               >
                 {appContext.isSignedIn ? 'Logout' : 'Login'}

@@ -32,6 +32,7 @@ const MountBuilder = (function () {
       const context = {
         apiUrl: '',
         api: {},
+        csrfToken: null,
         token: "",
         user: {},
         isSignedIn: false,
