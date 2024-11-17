@@ -5,7 +5,11 @@ export const SuccessfulLoginHandler = (token, appContext, onAppContextChanged) =
   const decodedToken = jwtDecode(token);
 
   const user = {
-    username: decodedToken.sub,
+    id: decodedToken.sub,
+    name: decodedToken.name,
+    username: decodedToken.username,
+    email: decodedToken.email,
+    isMfaEnabled: decodedToken.isMfaEnabled,
     roles: decodedToken.roles ? decodedToken.roles.split(",") : [],
   };
 
