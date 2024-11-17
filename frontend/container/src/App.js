@@ -152,8 +152,20 @@ export default () => {
                   {!appContext.isSignedIn && <Redirect to="/" />}
                   <DashboardLazy />
                 </Route>
-                <Route path="/admin">
+                <Route path="/recruiter">
+                  {(!appContext.isSignedIn || !appContext.isRecruiter) && <Redirect to="/" />}
+                  <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
+                </Route>
+                <Route path="/candidate">
+                  {(!appContext.isSignedIn || !appContext.isCandidate) && <Redirect to="/" />}
+                  <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
+                </Route>
+                <Route path="/profile">
                   {!appContext.isSignedIn && <Redirect to="/" />}
+                  <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
+                </Route>
+                <Route path="/admin">
+                  {(!appContext.isSignedIn || !appContext.isAdmin) && <Redirect to="/" />}
                   <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
                 <Route path="/" component={HomeLazy} />

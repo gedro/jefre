@@ -37,6 +37,26 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
               <Link to='/about' className={classes.he_link}>
                 About
               </Link>
+              {appContext?.isSignedIn && appContext?.isRecruiter &&
+                <Link to='/recruiter' className={classes.he_link}>
+                  Recruiter
+                </Link>
+              }
+              {appContext?.isSignedIn && appContext?.isCandidate &&
+                <Link to='/candidate' className={classes.he_link}>
+                  Candidate
+                </Link>
+              }
+              {appContext?.isSignedIn &&
+                <Link to='/profile' className={classes.he_link}>
+                  Profile
+                </Link>
+              }
+              {appContext?.isSignedIn && appContext?.isAdmin &&
+                <Link to='/admin' className={classes.he_link}>
+                  <strong>ADMIN</strong>
+                </Link>
+              }
               <Button
                 color={appContext.isSignedIn ? 'secondary' : 'primary'}
                 variant="contained"
