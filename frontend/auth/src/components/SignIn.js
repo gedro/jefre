@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
-import { jwtDecode } from "jwt-decode";
 
 import SocialButtons from "./SocialButtons";
 import InputTextField from "./InputTextField";
+
+import { SuccessfulLoginHandler } from "../services/login-handler";
 
 export default function SignIn({ classes, appContext, onAppContextChanged }) {
 
@@ -32,12 +33,10 @@ export default function SignIn({ classes, appContext, onAppContextChanged }) {
       setLoading(true);
 
       const response = await appContext.api.post("/public/auth/signin", data);
-      toast.success("Login Successful");
       reset();
 
       if (response.status === 200 && response.data.jwtToken) {
-        const decodedToken = jwtDecode(response.data.jwtToken);
-        handleSuccessfulLogin(response.data.jwtToken, decodedToken);
+        SuccessfulLoginHandler(response.data.jwtToken, appContext, onAppContextChanged);
       } else {
         toast.error("Login failed. Please check your credentials and try again.");
       }
@@ -48,24 +47,6 @@ export default function SignIn({ classes, appContext, onAppContextChanged }) {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleSuccessfulLogin = (token, decodedToken) => {
-    const user = {
-      username: decodedToken.sub,
-      roles: decodedToken.roles ? decodedToken.roles.split(",") : [],
-    };
-
-    const newAppContext = {
-      user: user,
-      token: token,
-      isSignedIn: true,
-      isAdmin: user.roles.includes("ROLE_ADMIN"),
-      isCandidate: user.roles.includes("ROLE_CANDIDATE"),
-      isRecruiter: user.roles.includes("ROLE_RECRUITER")
-    };
-
-    onAppContextChanged(newAppContext);
   };
 
   return (

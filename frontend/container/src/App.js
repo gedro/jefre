@@ -35,17 +35,25 @@ export default () => {
   const storageUser = localStorage.getItem("USER");
   const foundUser = storageUser ? JSON.parse(storageUser) : null;
 
+  // Clean up local storage if token or user is missing (inconsistency)
+  if(foundToken && !foundUser) {
+    localStorage.removeItem("JWT_TOKEN");
+  }
+  if(foundUser && !foundToken) {
+    localStorage.removeItem("USER");
+  }
+
   //TODO: validate token and user against backend
   const [appContext, setAppContext] = useState({
     apiUrl: process.env.API_BASE_URL,
     api: null,
     csrfToken: foundCsrfToken,
-    token: foundToken,
-    user: foundUser,
+    token: foundToken && foundUser ? foundToken : null,
+    user: foundToken && foundUser ? foundUser : null,
     isSignedIn: foundToken && foundUser,
-    isAdmin: foundUser && foundUser.roles?.includes("ROLE_ADMIN"),
-    isCandidate: foundUser && foundUser.roles?.includes("ROLE_CANDIDATE"),
-    isRecruiter: foundUser && foundUser.roles?.includes("ROLE_RECRUITER"),
+    isAdmin: foundToken && foundUser && foundUser.roles?.includes("ROLE_ADMIN"),
+    isCandidate: foundToken && foundUser && foundUser.roles?.includes("ROLE_CANDIDATE"),
+    isRecruiter: foundToken && foundUser && foundUser.roles?.includes("ROLE_RECRUITER"),
   });
 
   const onAppContextChanged = (newAppContext) => {

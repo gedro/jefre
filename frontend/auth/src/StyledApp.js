@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import OAuth2RedirectHandler from './components/OAuth2RedirectHandler';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -277,6 +278,9 @@ export default ({ appContext, onAppContextChanged, history }) => {
       </Route>
       <Route path="/auth/signup">
         <SignUp classes={classes} onSignIn={appContext?.onSignIn} />
+      </Route>
+      <Route path="/auth/oauth2/redirect">
+        <OAuth2RedirectHandler appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
       </Route>
     </Switch>
   );
