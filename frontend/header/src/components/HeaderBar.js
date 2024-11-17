@@ -31,12 +31,6 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
               <div className={classes.welcomeDiv}>Welcome&nbsp;<strong>{appContext.user.name}</strong>!</div>
             }
             <div className={classes.he_menu}>
-              <Link to='/contact' className={classes.he_link}>
-                Contact
-              </Link>
-              <Link to='/about' className={classes.he_link}>
-                About
-              </Link>
               {appContext?.isSignedIn && appContext?.isRecruiter &&
                 <Link to='/recruiter' className={classes.he_link}>
                   Recruiter
@@ -52,6 +46,12 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
                   Profile
                 </Link>
               }
+              <Link to='/contact' className={classes.he_link}>
+                Contact
+              </Link>
+              <Link to='/about' className={classes.he_link}>
+                About
+              </Link>
               {appContext?.isSignedIn && appContext?.isAdmin &&
                 <Link to='/admin' className={classes.he_link}>
                   <strong>ADMIN</strong>
