@@ -30,12 +30,17 @@ export default function SignIn({ classes, appContext, onAppContextChanged }) {
   //function for handle login with credentials
   const onLoginHandler = async (data) => {
     try {
-      setLoading(true);
 
-      const response = await appContext.api.post("/public/auth/signin", data);
-      reset();
+      let response = null;
+      try {
+        setLoading(true);
+        response = await appContext.api.post("/public/auth/signin", data);
+        reset();
+      } finally {
+        setLoading(false);
+      }
 
-      if (response.status === 200 && response.data.jwtToken) {
+      if (response && response.status === 200 && response.data.jwtToken) {
         SuccessfulLoginHandler(response.data.jwtToken, appContext, onAppContextChanged);
       } else {
         toast.error("Login failed. Please check your credentials and try again.");
@@ -44,8 +49,6 @@ export default function SignIn({ classes, appContext, onAppContextChanged }) {
       if (error) {
         toast.error("Invalid credentials");
       }
-    } finally {
-      setLoading(false);
     }
   };
 

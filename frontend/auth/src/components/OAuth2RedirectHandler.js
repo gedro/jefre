@@ -11,7 +11,6 @@ export default ({ appContext, onAppContextChanged, history }) => {
 
     if (token) {
       SuccessfulLoginHandler(token, appContext, onAppContextChanged);
-      toast.success("Login Successful");
     } else {
       toast.error("Failed to login, please try again.");
       history.push('/auth/signin');
