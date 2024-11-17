@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 'calc(100vh - 74px)',
     display: 'flex',
   },
+  au_signup: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   au_form: {
     display: 'block',
     marginTop: '0em',
