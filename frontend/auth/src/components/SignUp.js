@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import SocialButtons from "./SocialButtons";
 import InputTextField from "./InputTextField";
 
-export default function SignUp({ classes, onSignIn }) {
+export default function SignUp({ classes, appContext, onAppContextChanged }) {
 
   //react hook form initialization
   const {
@@ -40,7 +40,7 @@ export default function SignUp({ classes, onSignIn }) {
             Enter your credentials to create new account{" "}
           </p>
 
-          <SocialButtons classes={classes} />
+          <SocialButtons classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} />
         </div>
 
         <div className={classes.au_formDiv}>

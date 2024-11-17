@@ -146,6 +146,7 @@ export default () => {
                 <Route path="/terms" component={TermsLazy} />
                 <Route path="/policy" component={PrivacyLazy} />
                 <Route path="/auth">
+                  {appContext.isSignedIn && <Redirect to="/" />}
                   <AuthLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
                 <Route path="/dashboard">
