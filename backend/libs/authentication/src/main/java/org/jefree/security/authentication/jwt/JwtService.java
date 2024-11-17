@@ -97,6 +97,7 @@ public class JwtService {
 
     return Jwts.builder()
       .subject(user.getId().toString())
+      .claim(JwtFields.JWT_NAME, user.getName())
       .claim(JwtFields.JWT_USERNAME, user.getUsername())
       .claim(JwtFields.JWT_EMAIL, user.getEmail())
       .claim(JwtFields.JWT_ROLES, roles)
