@@ -27,6 +27,9 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
             <Link to='/'>
               <img src={logo} alt="logo" width={260} height={262} className={classes.he_logo} />
             </Link>
+            {appContext?.user?.name &&
+              <div className={classes.welcomeDiv}>Welcome&nbsp;<strong>{appContext.user.name}</strong>!</div>
+            }
             <div className={classes.he_menu}>
               <Link to='/contact' className={classes.he_link}>
                 Contact
