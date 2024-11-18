@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import ResetPassword from './components/ResetPassword';
+import ForgotPassword from './components/ForgotPassword';
 import OAuth2RedirectHandler from './components/OAuth2RedirectHandler';
 
 const useStyles = makeStyles((theme) => ({
@@ -127,7 +129,9 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
   au_socialDivider: {
+    margin: '1em !important',
     fontWeight: '600',
+    borderBottomWidth: 'thin',
   },
   au_formDiv: {
     gap: '0.5rem',
@@ -286,6 +290,12 @@ export default ({ appContext, onAppContextChanged, history }) => {
       </Route>
       <Route path="/auth/oauth2/redirect">
         <OAuth2RedirectHandler appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+      </Route>
+      <Route path="/auth/reset-password">
+        <ResetPassword classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+      </Route>
+      <Route path="/auth/forgot-password">
+        <ForgotPassword classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
       </Route>
     </Switch>
   );

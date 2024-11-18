@@ -94,7 +94,7 @@ export default function SignIn({ classes, appContext, onAppContextChanged, histo
         </button>
 
         <p className={classes.au_pForgotPassword}>
-          <Link className={classes.au_linkForgotPassword} to="/forgot-password">
+          <Link className={classes.au_linkForgotPassword} to="/auth/forgot-password">
             Forgot Password?
           </Link>
         </p>

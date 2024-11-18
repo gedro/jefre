@@ -175,7 +175,7 @@ public class UserService {
     final PasswordResetTokenEntity resetToken = createNewToken(userEntity);
     passwordResetTokenRepository.save(resetToken);
 
-    final String resetUrl = frontendUrl + "/reset-password?token=" + resetToken.getToken();
+    final String resetUrl = frontendUrl + "/auth/reset-password?token=" + resetToken.getToken();
     emailService.sendEmail(ResetMailTemplate.compose(userEntity.getEmail(), resetUrl));
   }
 
