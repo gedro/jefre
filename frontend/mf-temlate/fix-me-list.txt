@@ -1,5 +1,8 @@
 * package.json
 * config/webpack.common.js
 * src/bootstrap.js
+* frontend/container/config/webpack.prod.js
+* frontend/container/config/webpack.dev.js
+* change productionPrefix in src/App.js
 * delete fix-me-list.txt
-* implement src/App.js
+* implement src/StyledApp.js
