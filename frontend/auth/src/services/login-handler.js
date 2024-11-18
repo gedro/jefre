@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
 
-export const SuccessfulLoginHandler = (token, appContext, onAppContextChanged) => {
+export const SuccessfulLoginHandler = (token, appContext, onAppContextChanged, history) => {
   const decodedToken = jwtDecode(token);
 
   const user = {
@@ -26,4 +26,14 @@ export const SuccessfulLoginHandler = (token, appContext, onAppContextChanged) =
   onAppContextChanged(newAppContext);
 
   toast.success("Login Successful");
+
+  let targetPath = '/profile';
+  if(newAppContext.isAdmin) {
+    targetPath = '/admin';
+  } else if(newAppContext.isCandidate) {
+    targetPath = '/candidate';
+  } else if(newAppContext.isRecruiter) {
+    targetPath = '/recruiter';
+  }
+  history.push(targetPath);
 };

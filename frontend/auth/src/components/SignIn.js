@@ -40,7 +40,7 @@ export default function SignIn({ classes, appContext, onAppContextChanged, histo
       }
 
       if (response && response.status === 200 && response.data.jwtToken) {
-        SuccessfulLoginHandler(response.data.jwtToken, appContext, onAppContextChanged);
+        SuccessfulLoginHandler(response.data.jwtToken, appContext, onAppContextChanged, history);
       } else {
         toast.error("Login failed. Please check your credentials and try again.");
       }

@@ -10,7 +10,7 @@ export default ({ appContext, onAppContextChanged, history }) => {
     const token = params.get('token');
 
     if (token) {
-      SuccessfulLoginHandler(token, appContext, onAppContextChanged);
+      SuccessfulLoginHandler(token, appContext, onAppContextChanged, history);
     } else {
       toast.error("Failed to login, please try again.");
       history.push('/auth/signin');

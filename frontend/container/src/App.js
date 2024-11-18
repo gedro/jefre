@@ -64,19 +64,7 @@ export default () => {
   }
 
   useEffect(() => {
-    if (appContext.isSignedIn) {
-      let targetPath = '/profile';
-
-      if(appContext.isAdmin) {
-        targetPath = '/admin';
-      } else if(appContext.isCandidate) {
-        targetPath = '/candidate';
-      } else if(appContext.isRecruiter) {
-        targetPath = '/recruiter';
-      }
-
-      history.push(targetPath);
-    } else if (appContext?.user || appContext?.token) {
+    if (!appContext.isSignedIn && (appContext?.user || appContext?.token)) {
       appContext.api.post("/logout")
         .then(() => toast.success("Logged out"))
         .then(() => onAppContextChanged({
