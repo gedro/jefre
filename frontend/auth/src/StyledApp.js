@@ -294,7 +294,7 @@ export default ({ appContext, onAppContextChanged, history }) => {
       <Route path="/auth/reset-password">
         <ResetPassword classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
       </Route>
-      <Route path="/auth/forgot-password">
+      <Route exact path="/auth/forgot-password">
         <ForgotPassword classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
       </Route>
     </Switch>

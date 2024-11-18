@@ -141,15 +141,15 @@ export default () => {
               unicodeBidi: 'isolate',
             }}>
               <Switch>
-                <Route path="/about" component={AboutUsLazy} />
-                <Route path="/contact" component={ContactLazy} />
-                <Route path="/terms" component={TermsLazy} />
-                <Route path="/policy" component={PrivacyLazy} />
+                <Route exact path="/about" component={AboutUsLazy} />
+                <Route exact path="/contact" component={ContactLazy} />
+                <Route exact path="/terms" component={TermsLazy} />
+                <Route exact path="/policy" component={PrivacyLazy} />
                 <Route path="/auth">
                   {appContext.isSignedIn && <Redirect to="/" />}
                   <AuthLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
-                <Route path="/dashboard">
+                <Route exact path="/dashboard">
                   {!appContext.isSignedIn && <Redirect to="/" />}
                   <DashboardLazy />
                 </Route>
@@ -169,7 +169,7 @@ export default () => {
                   {(!appContext.isSignedIn || !appContext.isAdmin) && <Redirect to="/" />}
                   <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
-                <Route path="/" component={HomeLazy} />
+                <Route exact path="/" component={HomeLazy} />
               </Switch>
             </div>
             <FooterLazy />
