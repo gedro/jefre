@@ -5,6 +5,7 @@ export default function InputTextField({
   classes,
   label,
   id,
+  name,
   errors,
   register,
   message,
@@ -13,6 +14,8 @@ export default function InputTextField({
   autoComplete,
   autoFocus
 }) {
+
+  const type = name ? name : id;
 
   return (
     <div className={classes.au_inputFieldDiv}>
@@ -24,8 +27,8 @@ export default function InputTextField({
         fullWidth
         id={id}
         label={label}
-        name={id}
-        type={id === "password" ? "password" : (id === "email" ? "email" : "text")}
+        name={name ? name : id}
+        type={type === "password" ? "password" : (type === "email" ? "email" : "text")}
         autoComplete={autoComplete ? autoComplete : id}
         autoFocus={autoFocus ? autoFocus : false}
 

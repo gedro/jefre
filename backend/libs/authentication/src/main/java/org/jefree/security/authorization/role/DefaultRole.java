@@ -1,6 +1,7 @@
 package org.jefree.security.authorization.role;
 
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Set;
 
 public enum DefaultRole implements Role {
@@ -14,7 +15,7 @@ public enum DefaultRole implements Role {
     final Set<Role> includedRoles,
     final Set<Permission> permissions
   ) {
-    this.includedRoles = includedRoles;
+    this.includedRoles = new HashSet<>(includedRoles);
     this.permissions = permissions;
   }
 

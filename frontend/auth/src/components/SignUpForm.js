@@ -40,14 +40,17 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
             Enter your credentials to create new account{" "}
           </p>
 
-          <SocialButtons classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} />
+          <SocialButtons
+            classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} type={type}
+          />
         </div>
 
         <div className={classes.au_formDiv}>
           <InputTextField
             classes={classes}
             label="Name"
-            id="name"
+            id={type + "_name"}
+            name="name"
             message="*Name is required"
             register={register}
             errors={errors}
@@ -55,7 +58,8 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
           <InputTextField
             classes={classes}
             label="UserName"
-            id="username"
+            id={type + "_username"}
+            name="username"
             message="*UserName is required"
             register={register}
             errors={errors}
@@ -63,7 +67,8 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
           <InputTextField
             classes={classes}
             label="Email"
-            id="email"
+            id={type + "_email"}
+            name="email"
             message="*Email is required"
             register={register}
             errors={errors}
@@ -71,7 +76,8 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
           <InputTextField
             classes={classes}
             label="Password"
-            id="password"
+            id={type + "_password"}
+            name="password"
             message="*Password is required"
             register={register}
             errors={errors}

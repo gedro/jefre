@@ -55,14 +55,14 @@ public class OAuth2UserService {
       switch (oAuth2Token.getAuthorizedClientRegistrationId()) {
         case "github" -> {
           final String foundEmail = lookupGitHubEmail(oAuth2Token);
-          userEntity = saveUserIfNotExists(
+          userEntity = userService.decorateWithRoles( saveUserIfNotExists(
             GitHubUserEntity.createFrom(principal, foundEmail), gitHubUserRepository, "github", GitHubUserEntity.class
-          );
+          ));
         }
         case "google" ->
-          userEntity = saveUserIfNotExists(
+          userEntity = userService.decorateWithRoles( saveUserIfNotExists(
             GoogleUserEntity.createFrom(principal), googleUserRepository, "google", GoogleUserEntity.class
-          );
+          ));
         default -> throw new IllegalArgumentException(
           "Unknown user type: " + oAuth2Token.getAuthorizedClientRegistrationId()
         );
@@ -108,11 +108,9 @@ public class OAuth2UserService {
     }
 
     //TODO: move this to the UserService
-    final UserEntity userEntity = userRepository.findByEmail(user.getEmail()).orElseGet(() ->
-      userService.decorateWithRoles(
-        userRepository.save(convertToUserEntity(user, type))
-      )
-    );
+    final UserEntity userEntity = userRepository
+      .findByEmail(user.getEmail())
+      .orElseGet(() -> userRepository.save(convertToUserEntity(user, type)));
 
     oAuthUserEntity.setRegisteredUser(userEntity);
     repository.save(oAuthUserEntity);

@@ -3,11 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Divider from "@mui/material/Divider";
 
-export default function SocialButtons({ classes, appContext, onAppContextChanged }) {
+export default function SocialButtons({ type, classes, appContext, onAppContextChanged }) {
 
   const ouathBaseUrl = `${appContext.apiUrl}/api/public/auth/oauth2/authorization`;
-  const googleLink = `${ouathBaseUrl}/google`;
-  const githubLink = `${ouathBaseUrl}/github`;
+  const extraParam = type ? "?registrationType=" + (type === "candidate" ? "candidate" : "recruiter") : "";
+  const googleLink = `${ouathBaseUrl}/google${extraParam}`;
+  const githubLink = `${ouathBaseUrl}/github${extraParam}`;
 
   return (
     <Fragment>
