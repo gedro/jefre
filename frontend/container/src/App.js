@@ -15,6 +15,7 @@ const ContactLazy = lazy(() => import('./components/mfe/connector/ContactApp'));
 const TermsLazy = lazy(() => import('./components/mfe/connector/TermsApp'));
 const PrivacyLazy = lazy(() => import('./components/mfe/connector/PrivacyApp'));
 const AuthLazy = lazy(() => import('./components/mfe/connector/AuthApp'));
+const UserProfileLazy = lazy(() => import('./components/mfe/connector/UserProfileApp'));
 const AdminLazy = lazy(() => import('./components/mfe/connector/AdminApp'));
 const DashboardLazy = lazy(() => import('./components/mfe/connector/DashboardApp'));
 
@@ -163,7 +164,7 @@ export default () => {
                 </Route>
                 <Route path="/profile">
                   {!appContext.isSignedIn && <Redirect to="/" />}
-                  <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
+                  <UserProfileLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
                 <Route path="/admin">
                   {(!appContext.isSignedIn || !appContext.isAdmin) && <Redirect to="/" />}
