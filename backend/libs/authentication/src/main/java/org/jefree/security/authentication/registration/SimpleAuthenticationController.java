@@ -41,7 +41,7 @@ public class SimpleAuthenticationController {
   public ResponseEntity<AuthResponse> login(
     @Valid @RequestBody final LoginRequest loginRequest, final HttpServletRequest request
   ) {
-    final Optional<User> userOptional = userService.validUsernameAndPassword(
+    final Optional<User> userOptional = userService.validUsernameOrEmailAndPassword(
       loginRequest.getUsername(), loginRequest.getPassword()
     );
     if (userOptional.isEmpty()) {
@@ -57,19 +57,31 @@ public class SimpleAuthenticationController {
   @Public
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("/public/auth/signup")
-  public ResponseEntity<MessageResponse> signUp(@Valid @RequestBody final SignupRequest signUpRequest) {
-    if (userService.hasUserWithUsername(signUpRequest.getUsername())) {
+  public ResponseEntity<MessageResponse> signUp(@Valid @RequestBody final SignupRequest request) {
+    if (
+      userService.hasUserWithUsername(request.getUsername()) &&
+      userService.validUsernameOrEmailAndPassword(request.getUsername(), request.getPassword()).isEmpty()
+    ) {
       throw new DuplicatedUserInfoException(
-        String.format("Username %s is already been used", signUpRequest.getUsername())
+        String.format("Username %s has already been used", request.getUsername())
       );
     }
-    if (userService.hasUserWithEmail(signUpRequest.getEmail())) {
+    if (
+      userService.hasUserWithEmail(request.getEmail()) &&
+      userService.validUsernameOrEmailAndPassword(request.getEmail(), request.getPassword()).isEmpty()
+    ) {
       throw new DuplicatedUserInfoException(
-        String.format("Email %s is already been used", signUpRequest.getEmail())
+        String.format("Email %s has already been used", request.getEmail())
       );
     }
 
-    userService.saveNewUser(createUser(signUpRequest), signUpRequest.getPassword());
+    if(!userService.getUserByUsername(request.getUsername()).equals(userService.getUserByEmail(request.getEmail()))) {
+      throw new DuplicatedUserInfoException(
+        String.format("Username %s or Email %s has already been used", request.getUsername(), request.getEmail())
+      );
+    }
+
+    userService.saveUser(createUser(request), request.getPassword());
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }

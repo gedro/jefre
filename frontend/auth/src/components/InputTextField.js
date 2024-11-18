@@ -15,7 +15,7 @@ export default function InputTextField({
   autoFocus
 }) {
 
-  const type = name ? name : id;
+  const inputName = name ? name : id;
 
   return (
     <div className={classes.au_inputFieldDiv}>
@@ -25,20 +25,21 @@ export default function InputTextField({
         margin="normal"
         required
         fullWidth
+        name={inputName}
         id={id}
         label={label}
-        name={name ? name : id}
-        type={type === "password" ? "password" : (type === "email" ? "email" : "text")}
+        type={inputName === "password" ? "password" : (inputName === "email" ? "email" : "text")}
         autoComplete={autoComplete ? autoComplete : id}
         autoFocus={autoFocus ? autoFocus : false}
 
         InputProps={{
           classes: {
             notchedOutline: classes.au_inputField + (errors[id]?.message ? " " + classes.au_inputFieldError : "")
-          }
+          },
+          name: inputName,
         }}
 
-        {...register(id, {
+        {...register(inputName, {
           required: {value: true, message},
           minLength: min
             ? {value: min, message: "Minimum " + min + " character is required"}

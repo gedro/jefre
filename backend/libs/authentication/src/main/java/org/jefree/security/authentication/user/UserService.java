@@ -103,6 +103,14 @@ public class UserService {
       .orElseThrow(() -> new UserNotFoundException(String.format("User with email %s not found", email)));
   }
 
+  @Transactional(Transactional.TxType.REQUIRED)
+  public User saveUser(final User.UserBuilder builder, final String password) {
+    final Optional<UserEntity> userEntity = userRepository.findByEmail(builder.build().getEmail());
+    return userEntity
+      .map(entity -> User.builder(userRepository.save(decorateWithRoles(entity))).build())
+      .orElseGet(() -> saveNewUser(builder, password));
+  }
+
   // TODO: cleanup responsibilities between User and UserEntity
   // TODO: create a general user save method that can be used for both new and existing users
   @Transactional(Transactional.TxType.REQUIRED)
@@ -132,8 +140,15 @@ public class UserService {
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
-  public Optional<User> validUsernameAndPassword(final String username, final String password) {
-    return getUserByUsername(username)
+  public Optional<User> validUsernameOrEmailAndPassword(final String usernameOrEmail, final String password) {
+    final Optional<User> optionalUser;
+    if(hasUserWithEmail(usernameOrEmail)) {
+      optionalUser = getUserByEmail(usernameOrEmail);
+    } else {
+      optionalUser = getUserByUsername(usernameOrEmail);
+    }
+
+    return optionalUser
       .filter(user -> passwordEncoder.matches(password, user.getPassword()));
   }
 

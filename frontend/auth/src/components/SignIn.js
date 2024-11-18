@@ -69,9 +69,9 @@ export default function SignIn({ classes, appContext, onAppContextChanged }) {
         <div className={classes.au_formDiv}>
           <InputTextField
             classes={classes}
-            label="UserName"
+            label="UserName / Email"
             id="username"
-            message="*UserName is required"
+            message="*UserName or Email is required"
             register={register}
             errors={errors}
           />{" "}

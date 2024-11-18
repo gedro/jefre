@@ -62,6 +62,7 @@ public class SecurityConfiguration {
         .requestMatchers("/api/public/**").permitAll()
         .requestMatchers("/api/logout").permitAll()
         .requestMatchers("/api").permitAll()
+        .requestMatchers("/error").permitAll()
         .anyRequest().authenticated()
     ).oauth2Login( oauth2 -> oauth2
       .successHandler(oAuth2LoginSuccessHandler)

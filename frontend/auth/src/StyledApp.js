@@ -282,7 +282,7 @@ export default ({ appContext, onAppContextChanged, history }) => {
         <SignIn classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} />
       </Route>
       <Route path="/auth/signup">
-        <SignUp classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} />
+        <SignUp classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
       </Route>
       <Route path="/auth/oauth2/redirect">
         <OAuth2RedirectHandler appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />

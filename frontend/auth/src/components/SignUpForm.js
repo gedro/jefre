@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
+import toast from "react-hot-toast";
 
 import SocialButtons from "./SocialButtons";
 import InputTextField from "./InputTextField";
 
-export default function SignUpForm({ type, classes, appContext, onAppContextChanged }) {
+export default function SignUpForm({ type, classes, appContext, onAppContextChanged, history }) {
 
   //react hook form initialization
   const {
@@ -26,12 +27,29 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
 
   const [loading, setLoading] = useState(false);
 
+  const onSubmitHandler = async (data) => {
+    try {
+      setLoading(true);
+      const response = await appContext.api.post("/public/auth/signup?registrationType=" + type, data);
+      toast.success("Register Successful");
+      reset();
+      if (response.data) {
+        history.push("/auth/signin");
+      }
+    } catch (error) {
+      // TODO: error handling does not work properly
+      if (error?.status === 409) {
+        setError("username", { message: "Username is already taken" });
+        setError("email", { message: "Email is already in use" });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className={classes.au_signin}>
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className={classes.au_form}
-      >
+      <form onSubmit={handleSubmit(onSubmitHandler)} className={classes.au_form}>
         <div className={classes.au_socialDiv} >
           <h1 className={classes.au_h1}>
             <u>{type === "candidate" ? "Candidate" : "Recruiter"}</u> Registration
@@ -81,7 +99,7 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
             message="*Password is required"
             register={register}
             errors={errors}
-            min={6}
+            min={10}
           />
         </div>
 
