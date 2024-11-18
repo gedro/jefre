@@ -41,17 +41,17 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
                   Candidate
                 </Link>
               }
-              {appContext?.isSignedIn &&
-                <Link to='/profile' className={classes.he_link}>
-                  Profile
-                </Link>
-              }
               <Link to='/contact' className={classes.he_link}>
                 Contact
               </Link>
               <Link to='/about' className={classes.he_link}>
                 About
               </Link>
+              {appContext?.isSignedIn &&
+                <Link to='/profile' className={classes.he_link}>
+                  <u>Profile</u>
+                </Link>
+              }
               {appContext?.isSignedIn && appContext?.isAdmin &&
                 <Link to='/admin' className={classes.he_link}>
                   <strong>ADMIN</strong>
