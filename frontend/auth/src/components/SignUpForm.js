@@ -8,7 +8,6 @@ import InputTextField from "./InputTextField";
 
 export default function SignUpForm({ type, classes, appContext, onAppContextChanged, history }) {
 
-  //react hook form initialization
   const {
     register,
     handleSubmit,

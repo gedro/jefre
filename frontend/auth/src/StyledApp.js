@@ -279,7 +279,7 @@ export default ({ appContext, onAppContextChanged, history }) => {
   return (
     <Switch>
       <Route path="/auth/signin">
-        <SignIn classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} />
+        <SignIn classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
       </Route>
       <Route path="/auth/signup">
         <SignUp classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />

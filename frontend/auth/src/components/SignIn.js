@@ -8,9 +8,8 @@ import InputTextField from "./InputTextField";
 
 import { SuccessfulLoginHandler } from "../services/login-handler";
 
-export default function SignIn({ classes, appContext, onAppContextChanged }) {
+export default function SignIn({ classes, appContext, onAppContextChanged, history }) {
 
-  //react hook form initialization
   const {
     register,
     handleSubmit,
