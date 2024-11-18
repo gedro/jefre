@@ -262,7 +262,7 @@ public class UserService {
 
   private UserEntity findById(final Long id) {
     return userRepository.findById(id)
-      .orElseThrow(() -> new UserNotFoundException("User not found"));
+      .orElseThrow(() -> new UserNotFoundException("User not found: " + id));
   }
 
   private PasswordResetTokenEntity createNewToken(final UserEntity userEntity) {

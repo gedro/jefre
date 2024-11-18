@@ -107,6 +107,7 @@ public class OAuth2UserService {
       return userRepository.findById(registeredUser.getId()).get();
     }
 
+    //TODO: move this to the UserService
     final UserEntity userEntity = userRepository.findByEmail(user.getEmail()).orElseGet(() ->
       userService.decorateWithRoles(
         userRepository.save(convertToUserEntity(user, type))
