@@ -22,10 +22,15 @@ export default function ResetPassword({ classes, appContext, onAppContextChanged
 
   const [loading, setLoading] = useState(false);
 
-  const handleResetPassword = async (data) => {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
 
+  if(!token) {
+    toast.error("Invalid reset token.\nPlease try again.");
+    history.push("/auth/signin");
+  }
+
+  const handleResetPassword = async (data) => {
     const { password } = data;
 
     try {
@@ -70,7 +75,7 @@ export default function ResetPassword({ classes, appContext, onAppContextChanged
             message="*Password is required"
             register={register}
             errors={errors}
-            min={6}
+            min={10}
           />{" "}
         </div>
         <button
