@@ -46,7 +46,7 @@ export default () => {
 
   //TODO: validate token and user against backend
   const [appContext, setAppContext] = useState({
-    apiUrl: process.env.API_BASE_URL,
+    apiUrl: process.env.PRODUCTION_BACKEND_DOMAIN,
     api: null,
     csrfToken: foundCsrfToken,
     token: foundToken && foundUser ? foundToken : null,

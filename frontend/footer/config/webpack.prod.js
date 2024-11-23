@@ -4,6 +4,16 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const projectConfig = require('./project.config.json');
 const packageJson = require("../package.json");
 
+const remotes = projectConfig.remotesProd;
+
+if(remotes) {
+  const domain = process.env.PRODUCTION_DOMAIN;
+  Object.keys(remotes).forEach(key => {
+    eval("`" + remotes + "`")
+    remotes[key] = eval("`" + remotes[key] + "`");
+  });
+}
+
 const prodConfig = {
   mode: 'production',
   output: {
@@ -15,7 +25,7 @@ const prodConfig = {
       name: projectConfig.name,
       filename: 'remoteEntry.js',
       exposes: projectConfig.exposes,
-      remotes: projectConfig.remotesProd,
+      remotes: remotes,
       shared: packageJson.dependencies,
     }),
   ],
