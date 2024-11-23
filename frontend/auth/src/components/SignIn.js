@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
 
 import SocialButtons from "./SocialButtons";
-import InputTextField from "./InputTextField";
+import InputTextField from "components/InputTextField";
 
 import { SuccessfulLoginHandler } from "../services/login-handler";
 
@@ -67,7 +67,6 @@ export default function SignIn({ classes, appContext, onAppContextChanged, histo
 
         <div className={classes.au_formDiv}>
           <InputTextField
-            classes={classes}
             label="UserName / Email"
             id="username"
             message="*UserName or Email is required"
@@ -75,7 +74,6 @@ export default function SignIn({ classes, appContext, onAppContextChanged, histo
             errors={errors}
           />{" "}
           <InputTextField
-            classes={classes}
             label="Password"
             id="password"
             message="*Password is required"

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Divider } from "@mui/material";
 import toast from "react-hot-toast";
 
-import InputTextField from "./InputTextField";
+import InputTextField from "components/InputTextField";
 
 export default function ResetPassword({ classes, appContext, onAppContextChanged, history }) {
 
@@ -69,7 +69,6 @@ export default function ResetPassword({ classes, appContext, onAppContextChanged
 
         <div className={classes.au_formDiv}>
           <InputTextField
-            classes={classes}
             label="Password"
             id="password"
             message="*Password is required"

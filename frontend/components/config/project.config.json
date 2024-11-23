@@ -1,0 +1,9 @@
+{
+  "name": "components",
+  "devServerPort": 9083,
+  "exposes": {
+    "./InputTextField": "./src/components/InputTextField.js"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

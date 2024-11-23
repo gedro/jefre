@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Divider } from "@mui/material";
 import toast from "react-hot-toast";
 
-import InputTextField from "./InputTextField";
+import InputTextField from "components/InputTextField";
 
 export default function ForgotPassword({ classes, appContext, onAppContextChanged, history }) {
 
@@ -59,7 +59,6 @@ export default function ForgotPassword({ classes, appContext, onAppContextChange
 
         <div className={classes.au_formDiv}>
           <InputTextField
-            classes={classes}
             label="Email"
             id="email"
             message="*Email is required"

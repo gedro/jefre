@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
 
 import SocialButtons from "./SocialButtons";
-import InputTextField from "./InputTextField";
+import InputTextField from "components/InputTextField";
 
 export default function SignUpForm({ type, classes, appContext, onAppContextChanged, history }) {
 
@@ -64,7 +64,6 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
 
         <div className={classes.au_formDiv}>
           <InputTextField
-            classes={classes}
             label="Name"
             id={type + "_name"}
             name="name"
@@ -73,7 +72,6 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
             errors={errors}
           />{" "}
           <InputTextField
-            classes={classes}
             label="UserName"
             id={type + "_username"}
             name="username"
@@ -82,7 +80,6 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
             errors={errors}
           />{" "}
           <InputTextField
-            classes={classes}
             label="Email"
             id={type + "_email"}
             name="email"
@@ -91,7 +88,6 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
             errors={errors}
           />{" "}
           <InputTextField
-            classes={classes}
             label="Password"
             id={type + "_password"}
             name="password"

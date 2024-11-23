@@ -41,7 +41,7 @@
 - Header: http://localhost:9081
 - Footer: http://localhost:9082
 - Services
-  - AuthN/AuthZ: http://localhost:9083
+  - Shared React Components: http://localhost:9083
   - Backend API: http://localhost:9084
 - Home: http://localhost:9085
 - About: http://localhost:9086
