@@ -145,11 +145,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     unicodeBidi: 'isolate',
   },
-  au_inputFieldLabel: {
-    color: 'rgb(30 41 59)',
-    fontWeight: '600',
-    cursor: 'default',
-  },
   au_inputField: {
     outline: '2px solid transparent',
     outlineOffset: '2px',

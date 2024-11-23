@@ -5,10 +5,10 @@ import Divider from "@mui/material/Divider";
 
 export default function SocialButtons({ type, classes, appContext, onAppContextChanged }) {
 
-  const ouathBaseUrl = `${appContext.apiUrl}/api/public/auth/oauth2/authorization`;
+  const oauthBaseUrl = `${appContext.apiUrl}/api/public/auth/oauth2/authorization`;
   const extraParam = type ? "?registrationType=" + (type === "candidate" ? "candidate" : "recruiter") : "";
-  const googleLink = `${ouathBaseUrl}/google${extraParam}`;
-  const githubLink = `${ouathBaseUrl}/github${extraParam}`;
+  const googleLink = `${oauthBaseUrl}/google${extraParam}`;
+  const githubLink = `${oauthBaseUrl}/github${extraParam}`;
 
   return (
     <Fragment>
