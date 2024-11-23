@@ -1,0 +1,9 @@
+{
+  "name": "contact",
+  "devServerPort": 9087,
+  "exposes": {
+    "./ContactApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

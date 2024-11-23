@@ -1,0 +1,9 @@
+{
+  "name": "userprofile",
+  "devServerPort": 9091,
+  "exposes": {
+    "./UserProfileApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

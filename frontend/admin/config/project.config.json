@@ -1,0 +1,9 @@
+{
+  "name": "admin",
+  "devServerPort": 9092,
+  "exposes": {
+    "./AdminApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

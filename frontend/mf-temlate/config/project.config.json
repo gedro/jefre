@@ -1,0 +1,9 @@
+{
+  "name": "xxx",                    //FIXME: replace XXX with the name of the project
+  "devServerPort": 908X,            //FIXME: replace X with the number of the port you are using
+  "exposes": {
+    "./XxxApp": "./src/bootstrap"   //FIXME: replace XXX with the name of the exposed component
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

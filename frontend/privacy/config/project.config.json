@@ -1,0 +1,9 @@
+{
+  "name": "privacy",
+  "devServerPort": 9089,
+  "exposes": {
+    "./PrivacyApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

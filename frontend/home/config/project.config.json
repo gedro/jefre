@@ -1,0 +1,9 @@
+{
+  "name": "home",
+  "devServerPort": 9085,
+  "exposes": {
+    "./HomeApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

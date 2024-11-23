@@ -1,0 +1,9 @@
+{
+  "name": "footer",
+  "devServerPort": 9082,
+  "exposes": {
+    "./FooterApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

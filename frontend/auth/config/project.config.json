@@ -1,0 +1,13 @@
+{
+  "name": "auth",
+  "devServerPort": 9090,
+  "exposes": {
+    "./AuthApp": "./src/bootstrap"
+  },
+  "remotesDev": {
+    "components": "components@http://localhost:9083/remoteEntry.js"
+  },
+  "remotesProd": {
+    "components": "components@${domain}/components/latest/remoteEntry.js"
+  }
+}

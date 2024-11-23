@@ -1,0 +1,9 @@
+{
+  "name": "aboutus",
+  "devServerPort": 9086,
+  "exposes": {
+    "./AboutUsApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

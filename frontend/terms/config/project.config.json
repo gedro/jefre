@@ -1,0 +1,9 @@
+{
+  "name": "terms",
+  "devServerPort": 9088,
+  "exposes": {
+    "./TermsApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

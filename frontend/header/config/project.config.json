@@ -1,0 +1,9 @@
+{
+  "name": "header",
+  "devServerPort": 9081,
+  "exposes": {
+    "./HeaderApp": "./src/bootstrap"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}
