@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5rem',
     position: 'absolute',
     left: '42.5%',
+    width: '12em',
+    textAlign: 'center',
   },
   he_menu: {
     paddingLeft: '0px',
