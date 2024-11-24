@@ -3,7 +3,8 @@
   "devServerPort": 9083,
   "exposes": {
     "./InputTextField": "./src/components/InputTextField.js",
-    "./Button": "./src/components/Button.js"
+    "./Button": "./src/components/Button.js",
+    "./Switch": "./src/components/Switch.js"
   },
   "remotesDev": { },
   "remotesProd": { }
