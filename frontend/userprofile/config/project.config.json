@@ -4,6 +4,10 @@
   "exposes": {
     "./UserProfileApp": "./src/bootstrap"
   },
-  "remotesDev": { },
-  "remotesProd": { }
+  "remotesDev": {
+    "components": "components@http://localhost:9083/remoteEntry.js"
+  },
+  "remotesProd": {
+    "components": "components@${domain}/components/latest/remoteEntry.js"
+  }
 }

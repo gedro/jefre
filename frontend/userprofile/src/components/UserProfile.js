@@ -1,9 +1,13 @@
 import React from "react";
 
+import ProfileDetails from './ProfileDetails';
+import Mfa from './Mfa';
+
 export default function UserProfile({ classes, appContext, onAppContextChanged, history }) {
   return (
     <div className={classes.up_userprofile}>
-      <h1>UserProfile</h1>
+      <ProfileDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+      <Mfa classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
     </div>
   );
 };
