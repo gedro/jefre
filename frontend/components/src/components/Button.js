@@ -40,8 +40,7 @@ export default function Button({ loading, text }) {
   return (
     <button
       disabled={loading}
-      onClick={() => {
-      }}
+      onClick={() => {}}
       className={classes.com_formButton}
       type="text"
     >

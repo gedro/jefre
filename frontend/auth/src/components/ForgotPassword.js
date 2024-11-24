@@ -5,6 +5,7 @@ import { Divider } from "@mui/material";
 import toast from "react-hot-toast";
 
 import InputTextField from "components/InputTextField";
+import Button from "components/Button";
 
 export default function ForgotPassword({ classes, appContext, onAppContextChanged, history }) {
 
@@ -66,14 +67,8 @@ export default function ForgotPassword({ classes, appContext, onAppContextChange
             errors={errors}
           />{" "}
         </div>
-        <button
-          disabled={loading}
-          onClick={() => {}}
-          className={classes.au_formButton}
-          type="text"
-        >
-          {loading ? <span>Loading...</span> : "Send"}
-        </button>
+        <Button loading={loading} text="Send" />
+
         <p className={classes.au_pForgotPassword}>
           <Link className={classes.au_linkForgotPassword} to="/auth/signin">
             Back To Login

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 import SocialButtons from "./SocialButtons";
 import InputTextField from "components/InputTextField";
+import Button from "components/Button";
 
 import { SuccessfulLoginHandler } from "../services/login-handler";
 
@@ -82,14 +83,7 @@ export default function SignIn({ classes, appContext, onAppContextChanged, histo
           />
         </div>
 
-        <button
-          disabled={loading}
-          onClick={() => {}}
-          className={classes.au_formButton}
-          type="text"
-        >
-          {loading ? <span>Loading...</span> : "LogIn"}
-        </button>
+        <Button loading={loading} text="LogIn" />
 
         <p className={classes.au_pForgotPassword}>
           <Link className={classes.au_linkForgotPassword} to="/auth/forgot-password">

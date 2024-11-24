@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 import SocialButtons from "./SocialButtons";
 import InputTextField from "components/InputTextField";
+import Button from "components/Button";
 
 export default function SignUpForm({ type, classes, appContext, onAppContextChanged, history }) {
 
@@ -98,14 +99,7 @@ export default function SignUpForm({ type, classes, appContext, onAppContextChan
           />
         </div>
 
-        <button
-          disabled={loading}
-          onClick={() => {}}
-          className={classes.au_formButton}
-          type="text"
-        >
-          {loading ? <span>Loading...</span> : "Register as " + (type === "candidate" ? "Candidate" : "Recruiter")}
-        </button>
+        <Button loading={loading} text={"Register as " + (type === "candidate" ? "Candidate" : "Recruiter")} />
 
         <p className={classes.au_belowP}>
           Already have an account?{" "}
