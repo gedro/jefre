@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
     // custom
     width: '100%',
-    minWidth: '768px',
+    minWidth: '976px',
     padding: '2rem',
     twBgOpacity: 1,
     backgroundColor: 'rgb(255 255 255)',

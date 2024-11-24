@@ -6,7 +6,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 const useStyles = makeStyles((theme) => ({
   pp_policy: {
     width: '100%',
-    minWidth: '768px',
+    minWidth: '976px',
     padding: '2rem',
     minHeight: '100vh',
     display: 'block',

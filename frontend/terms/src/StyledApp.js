@@ -6,7 +6,7 @@ import TermsOfService from './components/TermsOfService';
 const useStyles = makeStyles((theme) => ({
   tos_terms: {
     width: '100%',
-    minWidth: '768px',
+    minWidth: '976px',
     padding: '2rem',
     minHeight: '100vh',
     display: 'block',

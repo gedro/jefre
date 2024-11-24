@@ -6,7 +6,7 @@ import AboutUs from './components/AboutUs';
 const useStyles = makeStyles((theme) => ({
   ab_aboutus: {
     width: '100%',
-    minWidth: '768px',
+    minWidth: '976px',
     padding: '2rem',
     minHeight: '100vh',
     display: 'block',
