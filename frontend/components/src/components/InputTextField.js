@@ -88,7 +88,7 @@ export default function InputTextField({
         name={inputName}
         id={id}
         label={label}
-        type={inputName === "password" ? "password" : (inputName === "email" ? "email" : "text")}
+        type={inputName.includes("password") ? "password" : (inputName.includes("email") ? "email" : "text")}
         autoComplete={autoComplete ? autoComplete : id}
         autoFocus={autoFocus ? autoFocus : false}
 
