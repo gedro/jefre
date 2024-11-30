@@ -58,6 +58,16 @@ export default () => {
     isRecruiter: foundToken && foundUser && foundUser.roles?.includes("ROLE_RECRUITER"),
   });
 
+  if(!appContext?.isAdmin) {
+    localStorage.removeItem("ADMIN_SIDEBAR_OPEN");
+  }
+  if(!appContext?.isCandidate) {
+    localStorage.removeItem("CANDIDATE_SIDEBAR_OPEN");
+  }
+  if(!appContext?.isRecruiter) {
+    localStorage.removeItem("RECRUITER_SIDEBAR_OPEN");
+  }
+
   const onAppContextChanged = (newAppContext) => {
     setAppContext(previousState => {
       return { ...previousState, ...newAppContext }
