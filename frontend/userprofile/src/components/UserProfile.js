@@ -1,7 +1,7 @@
 import React from "react";
 
 import ProfileDetails from './ProfileDetails';
-import Mfa from './Mfa';
+import Mfa from './mfa/Mfa';
 
 export default function UserProfile({ classes, appContext, onAppContextChanged, history }) {
   return (
