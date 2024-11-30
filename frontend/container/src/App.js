@@ -122,13 +122,13 @@ export default () => {
             <BackendApiLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
             <HeaderLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
             <div style={{
-              twBgOpacity: 1,
               backgroundColor: 'rgb(243 244 246)',
               justifyContent: 'center',
               alignItems: 'center',
               minHeight: 'calc(100vh - 74px)',
               display: 'flex',
               unicodeBidi: 'isolate',
+              width: '100%'
             }}>
               <Switch>
                 <Route exact path="/about" component={AboutUsLazy} />

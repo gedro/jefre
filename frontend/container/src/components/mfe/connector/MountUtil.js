@@ -31,7 +31,12 @@ const doMount = (mount, { appContext, onAppContextChanged }) => {
     }
   }, [appContext, onAppContextChanged]);
 
-  return <div ref={ref} />;
+  return <div ref={ref} style={{
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }}/>;
 };
 
 export default doMount;

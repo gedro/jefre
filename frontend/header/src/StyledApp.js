@@ -4,6 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import HeaderBar from './components/HeaderBar';
 
 const useStyles = makeStyles((theme) => ({
+  he_header: {
+    display: 'block',
+    width: '100%',
+  },
   he_appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },

@@ -16,7 +16,7 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
 
   return (
     <React.Fragment>
-      <header>
+      <header className={classes.he_header} >
         <AppBar
           position="static"
           color="default"

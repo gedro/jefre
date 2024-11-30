@@ -13,13 +13,14 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   fo_footer: {
+    display: 'block',
+    width: '100%',
     paddingTop: '0.5rem',
     paddingBottom: '0.5rem',
     backgroundColor: 'rgb(36 37 48)',
     minHeight: '7rem',
     zIndex: '50',
     position: 'relative',
-    display: 'block',
     unicodeBidi: 'isolate',
     lineHeight: 'inherit',
   },
