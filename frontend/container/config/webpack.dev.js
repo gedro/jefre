@@ -29,6 +29,7 @@ const devConfig = {
         auth: 'auth@http://localhost:9090/remoteEntry.js',
         userprofile: 'userprofile@http://localhost:9091/remoteEntry.js',
         admin: 'admin@http://localhost:9092/remoteEntry.js',
+        candidate: 'candidate@http://localhost:9093/remoteEntry.js',
         dashboard: 'dashboard@http://localhost:9099/remoteEntry.js',
       },
       shared: packageJson.dependencies,

@@ -1,0 +1,13 @@
+{
+  "name": "candidate",
+  "devServerPort": 9093,
+  "exposes": {
+    "./CandidateApp": "./src/bootstrap"
+  },
+  "remotesDev": {
+    "components": "components@http://localhost:9083/remoteEntry.js"
+  },
+  "remotesProd": {
+    "components": "components@${domain}/components/latest/remoteEntry.js"
+  }
+}
