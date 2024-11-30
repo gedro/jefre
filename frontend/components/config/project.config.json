@@ -2,6 +2,7 @@
   "name": "components",
   "devServerPort": 9083,
   "exposes": {
+    "./MenuSidebar": "./src/components/MenuSidebar.js",
     "./InputTextField": "./src/components/InputTextField.js",
     "./Button": "./src/components/Button.js",
     "./Switch": "./src/components/Switch.js"
