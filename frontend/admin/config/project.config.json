@@ -5,9 +5,11 @@
     "./AdminApp": "./src/bootstrap"
   },
   "remotesDev": {
-    "components": "components@http://localhost:9083/remoteEntry.js"
+    "components": "components@http://localhost:9083/remoteEntry.js",
+    "dashboard": "dashboard@http://localhost:9099/remoteEntry.js"
   },
   "remotesProd": {
-    "components": "components@${domain}/components/latest/remoteEntry.js"
+    "components": "components@${domain}/components/latest/remoteEntry.js",
+    "dashboard": "dashboard@${domain}/dashboard/latest/remoteEntry.js"
   }
 }

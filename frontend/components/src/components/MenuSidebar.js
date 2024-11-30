@@ -161,7 +161,7 @@ export default function MenuSidebar({ name, items, children }) {
 
         <div className={classes.com_menu_elements} >
           {items.map((item) => (
-            <Tooltip key={item} title={`${openSidebar ? "" : item?.label}`}>
+            <Tooltip key={item?.link} title={`${openSidebar ? "" : item?.label}`}>
               <Link to={item?.link}
                 className={classes.com_menu_elmnt_link + " " + (!openSidebar ? classes.com_menu_elmnt_link_closed : "")} >
                 <span>{item?.icon}</span>

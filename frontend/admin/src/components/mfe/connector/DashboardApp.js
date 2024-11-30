@@ -8,5 +8,10 @@ export default () => {
     mount(ref.current);
   }, []);
 
-  return <div ref={ref} />;
+  return <div ref={ref} style={{
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }}/>;
 };

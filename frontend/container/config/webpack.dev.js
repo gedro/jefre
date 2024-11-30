@@ -31,7 +31,6 @@ const devConfig = {
         admin: 'admin@http://localhost:9092/remoteEntry.js',
         candidate: 'candidate@http://localhost:9093/remoteEntry.js',
         recruiter: 'recruiter@http://localhost:9094/remoteEntry.js',
-        dashboard: 'dashboard@http://localhost:9099/remoteEntry.js',
       },
       shared: packageJson.dependencies,
     }),

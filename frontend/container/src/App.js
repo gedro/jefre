@@ -19,7 +19,6 @@ const UserProfileLazy = lazy(() => import('./components/mfe/connector/UserProfil
 const AdminLazy = lazy(() => import('./components/mfe/connector/AdminApp'));
 const CandidateLazy = lazy(() => import('./components/mfe/connector/CandidateApp'));
 const RecruiterLazy = lazy(() => import('./components/mfe/connector/RecruiterApp'));
-const DashboardLazy = lazy(() => import('./components/mfe/connector/DashboardApp'));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'co',
@@ -149,10 +148,6 @@ export default () => {
                 <Route path="/auth">
                   {appContext.isSignedIn && <Redirect to="/" />}
                   <AuthLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
-                </Route>
-                <Route exact path="/dashboard">
-                  {!appContext.isSignedIn && <Redirect to="/" />}
-                  <DashboardLazy />
                 </Route>
                 <Route path="/recruiter">
                   {(!appContext.isSignedIn || !appContext.isRecruiter) && <Redirect to="/" />}
