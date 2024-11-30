@@ -1,25 +1,22 @@
-import React from 'react';
-import { Switch, Route, Router } from 'react-router-dom';
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+import React, { Fragment } from 'react';
+import { Router } from 'react-router-dom';
+import {StylesProvider, createGenerateClassName} from '@material-ui/core/styles';
 
-import Landing from './components/Landing';
-import Pricing from './components/Pricing';
+import StyledApp from './StyledApp';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'ad',
 });
 
 export default ({ appContext, onAppContextChanged, history }) => {
+
   return (
-    <div>
+    <Fragment>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
-          <Switch>
-            <Route exact path="/pricing" component={Pricing} />
-            <Route path="/" component={Landing} />
-          </Switch>
+          <StyledApp appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Router>
       </StylesProvider>
-    </div>
+    </Fragment>
   );
 };
