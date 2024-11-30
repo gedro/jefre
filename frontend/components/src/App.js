@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { useForm } from "react-hook-form";
+import { FaUser } from "react-icons/fa";
 
 import MenuSidebar from './components/MenuSidebar';
 import InputTextField from './components/InputTextField';
@@ -20,9 +21,17 @@ export default () => {
     mode: "onTouched",
   });
 
+  const items = [
+    {
+      label: 'All Users',
+      link: '/admin/users',
+      icon: <FaUser />
+    }
+  ];
+
   return (
     <Fragment>
-      <MenuSidebar>
+      <MenuSidebar name={"SHARED"} items={items} >
         <InputTextField
           label="UserName"
           id="username"
