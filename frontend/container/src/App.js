@@ -18,6 +18,7 @@ const AuthLazy = lazy(() => import('./components/mfe/connector/AuthApp'));
 const UserProfileLazy = lazy(() => import('./components/mfe/connector/UserProfileApp'));
 const AdminLazy = lazy(() => import('./components/mfe/connector/AdminApp'));
 const CandidateLazy = lazy(() => import('./components/mfe/connector/CandidateApp'));
+const RecruiterLazy = lazy(() => import('./components/mfe/connector/RecruiterApp'));
 const DashboardLazy = lazy(() => import('./components/mfe/connector/DashboardApp'));
 
 const generateClassName = createGenerateClassName({
@@ -155,7 +156,7 @@ export default () => {
                 </Route>
                 <Route path="/recruiter">
                   {(!appContext.isSignedIn || !appContext.isRecruiter) && <Redirect to="/" />}
-                  <AdminLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
+                  <RecruiterLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
                 </Route>
                 <Route path="/candidate">
                   {(!appContext.isSignedIn || !appContext.isCandidate) && <Redirect to="/" />}

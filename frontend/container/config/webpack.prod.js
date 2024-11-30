@@ -27,6 +27,7 @@ const prodConfig = {
         userprofile: `userprofile@${domain}/userprofile/latest/remoteEntry.js`,
         admin: `admin@${domain}/admin/latest/remoteEntry.js`,
         candidate: `candidate@${domain}/candidate/latest/remoteEntry.js`,
+        recruiter: `recruiter@${domain}/recruiter/latest/remoteEntry.js`,
         dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,

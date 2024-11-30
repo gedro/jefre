@@ -1,0 +1,13 @@
+{
+  "name": "recruiter",
+  "devServerPort": 9094,
+  "exposes": {
+    "./RecruiterApp": "./src/bootstrap"
+  },
+  "remotesDev": {
+    "components": "components@http://localhost:9083/remoteEntry.js"
+  },
+  "remotesProd": {
+    "components": "components@${domain}/components/latest/remoteEntry.js"
+  }
+}
