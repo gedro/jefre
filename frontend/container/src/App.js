@@ -4,7 +4,7 @@ import { StylesProvider, createGenerateClassName } from '@material-ui/core/style
 import { createBrowserHistory } from 'history';
 import toast, { Toaster } from "react-hot-toast";
 
-import Progress from './components/Progress';
+import Progress from 'components/Progress';
 
 const HeaderLazy = lazy(() => import('./components/mfe/connector/HeaderApp'));
 const FooterLazy = lazy(() => import('./components/mfe/connector/FooterApp'));

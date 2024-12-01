@@ -5,7 +5,9 @@
     "./MenuSidebar": "./src/components/MenuSidebar.js",
     "./InputTextField": "./src/components/InputTextField.js",
     "./Button": "./src/components/Button.js",
-    "./Switch": "./src/components/Switch.js"
+    "./Switch": "./src/components/Switch.js",
+    "./Progress": "./src/components/Progress.js",
+    "./Loader": "./src/components/Loader.js"
   },
   "remotesDev": { },
   "remotesProd": { }
