@@ -1,20 +1,35 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import { Switch, Route } from 'react-router-dom';
-import { FaUser } from "react-icons/fa";
+import {Switch, Route, Redirect} from 'react-router-dom';
+import { FaPlus, FaBriefcase, FaSearch, FaStar } from "react-icons/fa";
 
 import MenuSidebar from 'components/MenuSidebar';
 
 const items = [
   {
-    label: 'All Users',
-    link: '/admin/users',
-    icon: <FaUser />
+    label: 'Post New Job',
+    link: '/recruiter/newjob',
+    icon: <FaPlus />
+  },
+  {
+    label: 'Jobs',
+    link: '/recruiter/jobs',
+    icon: <FaBriefcase />
+  },
+  {
+    label: 'Search Candidates',
+    link: '/recruiter/search',
+    icon: <FaSearch />
+  },
+  {
+    label: 'Saved Candidates',
+    link: '/recruiter/candidates',
+    icon: <FaStar />
   }
 ];
 
 const useStyles = makeStyles((theme) => ({
-  xx_yyy: {
+  re_recruiter: {
   }
 }));
 
@@ -23,11 +38,20 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
   return (
     <MenuSidebar name={"RECRUITER"} items={items} >
       <Switch>
-        <Route path="/recruiter/users">
-          {/*<UserList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />*/}
+        <Route exact path="/recruiter/newjob">
         </Route>
-        <Route path="/recruiter/users/:userId">
-          {/*<UserDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />*/}
+        <Route exact path="/recruiter/jobs">
+        </Route>
+        <Route path="/recruiter/jobs/:jobId">
+        </Route>
+        <Route exact path="/recruiter/search">
+        </Route>
+        <Route exact path="/recruiter/candidates">
+        </Route>
+        <Route path="/recruiter/candidates/:candidateId">
+        </Route>
+        <Route exact path="/recruiter">
+          <Redirect to="/recruiter/search" />
         </Route>
       </Switch>
     </MenuSidebar>

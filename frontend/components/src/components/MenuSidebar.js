@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '2.5rem',
     paddingTop: '0.5rem',
     paddingBottom: '0.5rem',
-    paddingLeft: '2.0rem',
+    paddingLeft: '1.5rem',
     paddingRight: '0.5rem',
     borderRadius: '0.375rem',
     textDecoration: 'inherit',

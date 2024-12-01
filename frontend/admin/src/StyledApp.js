@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import { Switch, Route } from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import { FaUser, FaTachometerAlt } from "react-icons/fa";
 
 import UserList from './components/UserList';
@@ -219,6 +219,9 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
           </Route>
           <Route exact path="/admin/dashboard">
             <DashboardLazy />
+          </Route>
+          <Route exact path="/admin">
+            <Redirect to="/admin/users" />
           </Route>
         </Switch>
       </MenuSidebar>
