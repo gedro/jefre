@@ -5,16 +5,17 @@ import { FaSearch, FaClipboardList, FaBookmark, FaStar } from "react-icons/fa";
 
 import MenuSidebar from 'components/MenuSidebar';
 
+import Search from "./components/Search";
+import JobList from "./components/JobList";
+import JobDetails from "./components/JobDetails";
+import SavedSearchList from "./components/SavedSearchList";
+import SavedSearchDetails from "./components/SavedSearchDetails";
+
 const items = [
   {
     label: 'Search Job',
     link: '/candidate/search',
     icon: <FaSearch />
-  },
-  {
-    label: 'Applications',
-    link: '/candidate/applications',
-    icon: <FaClipboardList />
   },
   {
     label: 'Saved Jobs',
@@ -39,16 +40,19 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
     <MenuSidebar name={"CANDIDATE"} items={items} >
       <Switch>
         <Route exact path="/candidate/search">
-        </Route>
-        <Route exact path="/candidate/applications">
+          <Search classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route exact path="/candidate/jobs">
+          <JobList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route path="/candidate/jobs/:jobId">
+          <JobDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route exact path="/candidate/searches">
+          <SavedSearchList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route path="/candidate/searches/:searchId">
+          <SavedSearchDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route exact path="/candidate">
           <Redirect to="/candidate/search" />
