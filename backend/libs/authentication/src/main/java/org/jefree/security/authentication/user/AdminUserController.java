@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/api/admin", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,6 +34,14 @@ public class AdminUserController {
   @GetMapping("/roles")
   public List<RoleView> getAllRoles() {
     return userService.getRoles();
+  }
+
+  @PutMapping("/users/{id}/roles")
+  public ResponseEntity<String> updateUserRoles(
+    @PathVariable final Long id, @RequestParam final Set<String> roles
+  ) {
+    userService.updateRoles(id, roles);
+    return ResponseEntity.ok("Roles updated");
   }
 
   @PutMapping("/users/{id}/locked")

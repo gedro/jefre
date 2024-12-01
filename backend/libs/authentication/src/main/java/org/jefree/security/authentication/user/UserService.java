@@ -152,6 +152,19 @@ public class UserService {
       .filter(user -> passwordEncoder.matches(password, user.getPassword()));
   }
 
+  @Transactional(Transactional.TxType.REQUIRES_NEW)
+  public UserEntity updateRoles(final Long id, final Set<String> roles) {
+    final UserEntity userEntity = findById(id);
+
+    final Set<String> newRoles = new HashSet<>(roles);
+    newRoles.add(DefaultRole.USER.roleName());
+
+    userEntity.getRoles().clear();
+    roleRepository.findByNameIn(newRoles).forEach(userEntity::addRole);
+
+    return userRepository.save(userEntity);
+  }
+
   @Transactional(Transactional.TxType.MANDATORY)
   public UserEntity decorateWithRoles(final UserEntity userEntity) {
     final Set<Role> roles = new HashSet<>(EnumSet.of(DefaultRole.USER));
