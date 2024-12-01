@@ -7,6 +7,14 @@ import InputTextField from './components/InputTextField';
 import Switch from './components/Switch';
 import Button from './components/Button';
 
+const items = [
+  {
+    label: 'All Users',
+    link: '/admin/users',
+    icon: <FaUser />
+  }
+];
+
 export default () => {
 
   const {
@@ -20,14 +28,6 @@ export default () => {
     },
     mode: "onTouched",
   });
-
-  const items = [
-    {
-      label: 'All Users',
-      link: '/admin/users',
-      icon: <FaUser />
-    }
-  ];
 
   return (
     <Fragment>

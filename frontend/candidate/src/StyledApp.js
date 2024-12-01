@@ -5,6 +5,14 @@ import { FaUser } from "react-icons/fa";
 
 import MenuSidebar from 'components/MenuSidebar';
 
+const items = [
+  {
+    label: 'All Users',
+    link: '/admin/users',
+    icon: <FaUser />
+  }
+];
+
 const useStyles = makeStyles((theme) => ({
   xx_yyy: {
   }
@@ -12,15 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
   const classes = useStyles();
-
-  const items = [
-    {
-      label: 'All Users',
-      link: '/admin/users',
-      icon: <FaUser />
-    }
-  ];
-
   return (
     <MenuSidebar name={"CANDIDATE"} items={items} >
       <Switch>

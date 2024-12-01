@@ -7,6 +7,19 @@ import MenuSidebar from 'components/MenuSidebar';
 
 const DashboardLazy = lazy(() => import('./components/mfe/connector/DashboardApp'));
 
+const items = [
+  {
+    label: 'All Users',
+    link: '/admin/users',
+    icon: <FaUser />
+  },
+  {
+    label: 'Dashboard',
+    link: '/admin/dashboard',
+    icon: <FaTachometerAlt />
+  }
+];
+
 const useStyles = makeStyles((theme) => ({
   xx_yyy: {
   }
@@ -14,20 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
   const classes = useStyles();
-
-  const items = [
-    {
-      label: 'All Users',
-      link: '/admin/users',
-      icon: <FaUser />
-    },
-    {
-      label: 'Dashboard',
-      link: '/admin/dashboard',
-      icon: <FaTachometerAlt />
-    }
-  ];
-
   return (
     <Suspense fallback={<div>Loading ...</div>}>
       <MenuSidebar name={"ADMIN"} items={items} >
