@@ -53,7 +53,7 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
                 </Link>
               }
               {appContext?.isSignedIn && appContext?.isAdmin &&
-                <Link to='/admin' className={classes.he_link}>
+                <Link to='/admin/users' className={classes.he_link}>
                   <strong>ADMIN</strong>
                 </Link>
               }
