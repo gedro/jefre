@@ -140,7 +140,13 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
   const classes = useStyles();
   return (
     <Fragment>
-      <FooterLine classes={classes} />
+      <style> {`
+          .fo_mfe {
+            z-index: 50;
+            position: relative;
+          }
+      `} </style>
+      <FooterLine classes={classes}/>
     </Fragment>
   );
 };

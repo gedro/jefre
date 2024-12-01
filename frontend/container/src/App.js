@@ -127,6 +127,14 @@ export default () => {
   return (
     <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
+        <style> {`
+          .defaultMfaDiv {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+          }
+        `} </style>
         <Fragment>
           <Suspense fallback={<Progress />}>
             <BackendApiLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />

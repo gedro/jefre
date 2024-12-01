@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   he_appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    // borderBottom: `1px solid ${theme.palette.divider}`,
   },
   he_toolbar: {
     display: 'flex',
@@ -76,6 +76,15 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
 
   return (
     <Fragment>
+      <style> {`
+          .he_mfe {
+            display: block;
+            width: 100%;
+            z-index: 50;
+            top: 8px;
+            position: sticky;
+          }
+      `} </style>
       <HeaderBar
         appContext={appContext}
         onAppContextChanged={onAppContextChanged}

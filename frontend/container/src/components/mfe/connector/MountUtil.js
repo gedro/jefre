@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const doMount = (mount, { appContext, onAppContextChanged }) => {
+const doMount = (mount, { appContext, onAppContextChanged, className }) => {
   const ref = useRef(null);
   const history = useHistory();
   const refreshRef = useRef(null);
@@ -31,12 +31,7 @@ const doMount = (mount, { appContext, onAppContextChanged }) => {
     }
   }, [appContext, onAppContextChanged]);
 
-  return <div ref={ref} style={{
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }}/>;
+  return <div ref={ref} className={className ? className : "defaultMfaDiv"} />;
 };
 
 export default doMount;
