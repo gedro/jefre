@@ -25,7 +25,7 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
         >
           <Toolbar className={classes.he_toolbar}>
             <Link to='/'>
-              <img src={logo} alt="logo" width={260} height={262} className={classes.he_logo} />
+              <img src={logo} alt="logo" width={190} height={191} className={classes.he_logo} />
             </Link>
             {appContext?.user?.name &&
               <div className={classes.welcomeDiv}>Welcome<br /><strong>{appContext.user.name}</strong></div>

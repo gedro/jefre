@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   he_logo: {
     position: 'absolute',
     top: '100%',
-    transform: 'translateY(-36%)',
+    transform: 'translateY(-49%)',
   }
 }));
 
