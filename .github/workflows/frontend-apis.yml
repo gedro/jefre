@@ -8,7 +8,7 @@ on:
     paths:
       - 'frontend/services/apis/**'
       - 'frontend/utils/**'
-      - 'frontend-apis.yml'
+      - '.github/workflows/frontend-apis.yml'
 
 defaults:
     run:
