@@ -28,6 +28,9 @@ const history = createBrowserHistory();
 
 export default () => {
 
+  console.log("process.env.PRODUCTION_BACKEND_DOMAIN", process.env.PRODUCTION_BACKEND_DOMAIN);
+  console.log("process.env.PRODUCTION_DOMAIN", process.env.PRODUCTION_DOMAIN);
+
   const storageCsrfToken = localStorage.getItem("CSRF_TOKEN");
   const foundCsrfToken = storageCsrfToken ? JSON.parse(storageCsrfToken) : null;
 
