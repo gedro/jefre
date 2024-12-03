@@ -3,7 +3,7 @@
   "devServerPort": 9084,
   "exposes": {
     "./BackendApisApp": "./src/bootstrap",
-    "./BackendApis": "./src/services/apis"
+    "./BackendApis": "./src/services/api"
   },
   "remotesDev": { },
   "remotesProd": { }
