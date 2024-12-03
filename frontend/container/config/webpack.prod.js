@@ -18,7 +18,7 @@ const prodConfig = {
         header: `header@${domain}/header/latest/remoteEntry.js`,
         footer: `footer@${domain}/footer/latest/remoteEntry.js`,
         components: `components@${domain}/components/latest/remoteEntry.js`,
-        api: `api@${domain}/api/latest/remoteEntry.js`,
+        apis: `apis@${domain}/apis/latest/remoteEntry.js`,
         home: `home@${domain}/home/latest/remoteEntry.js`,
         aboutus: `aboutus@${domain}/aboutus/latest/remoteEntry.js`,
         contact: `contact@${domain}/contact/latest/remoteEntry.js`,

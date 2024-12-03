@@ -1,0 +1,10 @@
+{
+  "name": "apis",
+  "devServerPort": 9084,
+  "exposes": {
+    "./BackendApisApp": "./src/bootstrap",
+    "./BackendApis": "./src/services/apis"
+  },
+  "remotesDev": { },
+  "remotesProd": { }
+}

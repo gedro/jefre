@@ -1,4 +1,4 @@
-import { mount } from 'api/BackendApiApp';
+import { mount } from 'apis/BackendApisApp';
 import doMount from './MountUtil';
 
 export default ({ appContext, onAppContextChanged }) => {

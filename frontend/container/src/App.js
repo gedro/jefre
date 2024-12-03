@@ -8,7 +8,7 @@ import Progress from 'components/Progress';
 
 const HeaderLazy = lazy(() => import('./components/mfe/connector/HeaderApp'));
 const FooterLazy = lazy(() => import('./components/mfe/connector/FooterApp'));
-const BackendApiLazy = lazy(() => import('./components/mfe/connector/BackendApiApp'));
+const BackendApisLazy = lazy(() => import('./components/mfe/connector/BackendApisApp'));
 const HomeLazy = lazy(() => import('./components/mfe/connector/HomeApp'));
 const AboutUsLazy = lazy(() => import('./components/mfe/connector/AboutUsApp'));
 const ContactLazy = lazy(() => import('./components/mfe/connector/ContactApp'));
@@ -137,7 +137,7 @@ export default () => {
         `} </style>
         <Fragment>
           <Suspense fallback={<Progress />}>
-            <BackendApiLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
+            <BackendApisLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
             <HeaderLazy appContext={appContext} onAppContextChanged={onAppContextChanged} />
             <div style={{
               backgroundColor: 'rgb(243 244 246)',
