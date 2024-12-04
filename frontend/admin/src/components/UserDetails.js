@@ -28,8 +28,6 @@ export default function UserDetails({ classes, appContext, onAppContextChanged, 
 
       const selectedRoles = roles.filter(role => response.data.roles.includes(role.value));
       setUserRoles(selectedRoles);
-
-      console.log(response.data);
     } finally {
       setLoading(false);
     }

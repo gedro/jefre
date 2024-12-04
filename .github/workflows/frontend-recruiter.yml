@@ -21,6 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
+
+      - name: create env file
+        run: |
+          touch .env.production
+          echo PRODUCTION_DOMAIN=${{ secrets.JEFREE_FRONTEND_URL }} >> .env.production
+
       - run: npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.JEFREE_FRONTEND_URL }}
