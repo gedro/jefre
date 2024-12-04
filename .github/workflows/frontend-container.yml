@@ -30,6 +30,12 @@ jobs:
           export PRODUCTION_DOMAIN=${{secrets.JEFREE_FRONTEND_URL}} 
           export PRODUCTION_BACKEND_DOMAIN=${{secrets.JEFREE_BACKEND_URL}} 
 
+      - name: create env file
+        run: |
+          touch .env
+          echo PRODUCTION_DOMAIN=${{ secrets.JEFREE_FRONTEND_URL }} >> .env
+          echo PRODUCTION_BACKEND_DOMAIN=${{ secrets.JEFREE_BACKEND_URL }} >> .env
+
       - run: npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.JEFREE_FRONTEND_URL }}
