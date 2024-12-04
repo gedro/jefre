@@ -17,6 +17,9 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PRODUCTION_DOMAIN: ${{ secrets.JEFREE_FRONTEND_URL }}
+      PRODUCTION_BACKEND_DOMAIN: ${{ secrets.JEFREE_BACKEND_URL }}
 
     steps:
       - uses: actions/checkout@v2
