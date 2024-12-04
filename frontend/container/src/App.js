@@ -30,6 +30,8 @@ export default () => {
 
   console.log("process.env.PRODUCTION_BACKEND_DOMAIN", process.env.PRODUCTION_BACKEND_DOMAIN);
   console.log("process.env.PRODUCTION_DOMAIN", process.env.PRODUCTION_DOMAIN);
+  console.log("process.env.JEFREE_FRONTEND_URL", process.env.JEFREE_FRONTEND_URL);
+  console.log("process.env.JEFREE_BACKEND_URL", process.env.JEFREE_BACKEND_URL);
 
   const storageCsrfToken = localStorage.getItem("CSRF_TOKEN");
   const foundCsrfToken = storageCsrfToken ? JSON.parse(storageCsrfToken) : null;
