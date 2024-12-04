@@ -22,7 +22,7 @@ module.exports = {
     ],
   },
   plugins: [
-    // new Dotenv({ path: path.resolve(__dirname, '../' + dotenvFilename) }),
+    new Dotenv({ path: path.resolve(__dirname, dotenvFilename) }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico',
