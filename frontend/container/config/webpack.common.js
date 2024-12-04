@@ -3,7 +3,7 @@ const Dotenv = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const dotenvFilename = isProduction ? '.env.production' : '.env.development';
+const dotenvFilename = isProduction ? '.env.production' : '../.env.development';
 
 module.exports = {
   module: {
