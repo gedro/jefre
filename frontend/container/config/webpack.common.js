@@ -3,7 +3,7 @@ const Dotenv = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const dotenvFilename = isProduction ? '.env.production' : '../.env.development';
+const dotenvFilename = isProduction ? '.env.production' : '.env.development';
 
 module.exports = {
   module: {
@@ -22,7 +22,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new Dotenv({ path: path.resolve(__dirname, dotenvFilename) }),
+    new Dotenv({ path: path.resolve(__dirname, '../' + dotenvFilename) }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico',
