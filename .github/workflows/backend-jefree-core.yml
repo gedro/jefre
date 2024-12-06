@@ -14,5 +14,5 @@ jobs:
     uses: ./.github/workflows/backend-service-workflow.yml
     with:
       service: jefree
-      version: 1.0.0
+      version: latest
     secrets: inherit
