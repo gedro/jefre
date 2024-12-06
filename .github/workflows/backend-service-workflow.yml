@@ -23,7 +23,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build application
-        run: mvn clean package --projects :${{ inputs.service }} --also-make --batch-mode -e
+        run: mvn clean package --projects :${{ inputs.service }}-core --also-make --batch-mode -e
 
       - name: Login to docker hub
         run: echo ${{secrets.DOCKER_PASSWORD}} | docker login -u ${{secrets.DOCKER_USERNAME}} --password-stdin
