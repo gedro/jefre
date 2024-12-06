@@ -26,7 +26,7 @@ jobs:
         run: mvn clean package --projects :${{ inputs.service }} --also-make --batch-mode -e
 
       - name: Login to docker hub
-        run: echo "$DOCKER_PASSWORD" | docker login docker.io --username $DOCKER_USERNAME --password-stdin
+        run: docker login docker.io -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_USERNAME }}
