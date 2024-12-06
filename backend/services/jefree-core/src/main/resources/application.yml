@@ -1,4 +1,5 @@
 spring:
+  config.import: optional:configtree:/run/secrets/
   application.name: JEFREE
   jackson.default-property-inclusion: non_null
 
