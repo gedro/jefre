@@ -25,5 +25,11 @@ jobs:
       - name: Build application
         run: mvn clean package --projects :${{ inputs.service }} --also-make --batch-mode -e
 
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+
       - name: Build docker image
-        run: docker build . --build-arg JAR_FILE=services/${{ inputs.service }}/target/app.jar -t ${{ github.sha }}-${{ inputs.service }} --file services/Dockerfile
+        run: docker build . --build-arg JAR_FILE=services/${{ inputs.service }}/target/app.jar -t gaborharsanyi/${{ inputs.service }} --file services/Dockerfile
+
+      - name: Publish image to docker hub
+        run: docker push gaborharsanyi/${{ inputs.service }}:latest
