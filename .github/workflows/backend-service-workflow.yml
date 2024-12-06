@@ -53,5 +53,17 @@ jobs:
       - name: Delete old container
         run: docker rm -f jefree-backend-container
 
+      - name: Delete docker secrets
+        run: |
+          docker secret rm JEFREE_JWT_SECRET
+
+      - name: Create docker secret JEFREE_JWT_SECRET
+        run: |
+          echo ${{secrets.JEFREE_JWT_SECRET}} | docker secret create JEFREE_JWT_SECRET -
+
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name jefree-backend-container ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}
+        run: |
+          docker run -d -p 8080:8080 \
+            --name jefree-backend-container \
+            --secret JEFREE_JWT_SECRET \
+            ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}
