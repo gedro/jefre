@@ -80,7 +80,7 @@ jobs:
 
       - name: Run docker container
         run: |
-          docker run -d -p 8080:8080 \
+          docker service create -d -p 8080:8080 \
             --name jefree-backend-container \
             --secret JEFREE_JWT_SECRET \
             ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}
