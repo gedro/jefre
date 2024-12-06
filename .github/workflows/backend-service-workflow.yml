@@ -44,6 +44,12 @@ jobs:
       - name: Pull Image from docker hub
         run: docker pull ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:latest
 
+      - name: Delete old image
+        run: docker rmi -f gaborharsanyi/jefree
+
+      - name: Delete dangling images
+        run: docker rmi $(docker images -f "dangling=true" -q)
+
       - name: Delete old container
         run: docker rm -f jefree-backend-container
 
