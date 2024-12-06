@@ -42,7 +42,9 @@ public class JwtService {
     this.jwtHeader = jwtHeader;
     this.jwtPrefix = jwtPrefix;
 
-    logger.info("JWT Secret: {}", jwtSecret);
+    logger.info("************************************************************************* JWT Secret: {}", jwtSecret);
+    logger.error("************************************************************************* JWT Secret: {}", jwtSecret);
+    System.out.println("************************************************************************* JWT Secret: " + jwtSecret);
     jwtParser = Jwts.parser().verifyWith(key()).build();
   }
 
