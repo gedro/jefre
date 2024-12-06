@@ -26,10 +26,10 @@ jobs:
         run: mvn clean package --projects :${{ inputs.service }} --also-make --batch-mode -e
 
       - name: Login to docker hub
-        run: docker login docker.io -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.$DOCKER_PASSWORD }}
 
       - name: Build docker image
         run: docker build . --build-arg JAR_FILE=services/${{ inputs.service }}/target/app.jar -t ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }} --file services/Dockerfile
