@@ -66,6 +66,13 @@ jobs:
       - name: Remove old service
         run: docker service rm jefree-backend-container 2>/dev/null || true
 
+      - name: Wait for service removal
+        run: |
+          while docker service ls | grep -q jefree-backend-container; do
+            echo "Waiting for service to be removed..."
+            sleep 5
+          done
+
       - name: Delete old container
         run: docker rm -f jefree-backend-container
 
