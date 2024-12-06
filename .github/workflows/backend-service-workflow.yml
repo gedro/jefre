@@ -113,7 +113,7 @@ jobs:
 
       - name: Run docker container
         run: |
-          docker service create -d -p 8080:8080 \
+          docker service create -d -p 80:8080 \
             --name jefree-backend-container \
             --with-registry-auth \
             --secret JEFREE_JWT_SECRET \
