@@ -1,3 +1,5 @@
+server.forward-headers-strategy: framework
+
 spring:
   config.import: optional:configtree:/run/secrets/
   application.name: JEFREE
