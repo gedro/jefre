@@ -4,6 +4,9 @@ on:
       service:
         required: true
         type: string
+      version:
+        required: true
+        type: string
 
 defaults:
   run:
@@ -32,7 +35,7 @@ jobs:
         run: docker build . --build-arg JAR_FILE=services/${{ inputs.service }}-core/target/app.jar -t ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }} --file services/Dockerfile
 
       - name: Publish image to docker hub
-        run: docker push ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:latest
+        run: docker push ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }}
 
   deploy:
     needs: build
@@ -50,7 +53,7 @@ jobs:
           fi
 
       - name: Pull Image from docker hub
-        run: docker pull ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:latest
+        run: docker pull ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }}
 
       - name: Delete old image
         run: docker rmi -f gaborharsanyi/jefree
