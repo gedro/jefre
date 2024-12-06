@@ -54,7 +54,12 @@ jobs:
         run: docker rm -f jefree-backend-container
 
       - name: Delete dangling images
-        run: docker rmi -f $(docker images -f "dangling=true" -q)
+        run: |
+          if [ -n "$(docker images -f "dangling=true" -q)" ]; then
+            docker rmi -f $(docker images -f "dangling=true" -q)
+          else
+            echo "No dangling images to delete."
+          fi
 
       - name: Delete docker secrets
         run: |
