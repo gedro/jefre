@@ -42,7 +42,12 @@ jobs:
         run: echo ${{secrets.DOCKER_PASSWORD}} | docker login -u ${{secrets.DOCKER_USERNAME}} --password-stdin
 
       - name: Initialize docker swarm
-        run: docker swarm init
+        run: |
+          if ! docker info | grep -q "Swarm: active"; then
+            docker swarm init
+          else
+            echo "Swarm is already initialized."
+          fi
 
       - name: Pull Image from docker hub
         run: docker pull ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:latest
