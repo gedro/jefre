@@ -1,4 +1,4 @@
-server.forward-headers-strategy: framework
+server.forward-headers-strategy: native
 
 spring:
   config.import: optional:configtree:/run/secrets/
