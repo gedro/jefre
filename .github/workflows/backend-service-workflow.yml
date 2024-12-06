@@ -47,11 +47,11 @@ jobs:
       - name: Delete old image
         run: docker rmi -f gaborharsanyi/jefree
 
-      - name: Delete dangling images
-        run: docker rmi $(docker images -f "dangling=true" -q)
-
       - name: Delete old container
         run: docker rm -f jefree-backend-container
+
+      - name: Delete dangling images
+        run: docker rmi -f $(docker images -f "dangling=true" -q)
 
       - name: Delete docker secrets
         run: |
