@@ -68,7 +68,11 @@ jobs:
 
       - name: Delete docker secrets
         run: |
-          docker secret rm JEFREE_JWT_SECRET
+          docker secret rm JEFREE_JWT_SECRET 2>/dev/null || true
+          docker secret rm JEFREE_DATABASE_HOST 2>/dev/null || true
+          docker secret rm JEFREE_DATABASE_USER 2>/dev/null || true
+          docker secret rm JEFREE_DATABASE_PASSWORD 2>/dev/null || true
+          docker secret rm JEFREE_FRONTEND_URL 2>/dev/null || true
 
       - name: Create docker secret JEFREE_JWT_SECRET
         run: |
