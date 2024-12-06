@@ -42,6 +42,7 @@ public class JwtService {
     this.jwtHeader = jwtHeader;
     this.jwtPrefix = jwtPrefix;
 
+    logger.info("JWT Secret: {}", jwtSecret);
     jwtParser = Jwts.parser().verifyWith(key()).build();
   }
 
