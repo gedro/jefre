@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-contact
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-contact.yml'
 
 defaults:
-    run:
-        working-directory: frontend/contact
+  run:
+    working-directory: frontend/contact
 
 jobs:
   build:

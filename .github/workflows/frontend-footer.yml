@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-footer
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-footer.yml'
 
 defaults:
-    run:
-        working-directory: frontend/footer
+  run:
+    working-directory: frontend/footer
 
 jobs:
   build:

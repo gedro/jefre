@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-terms
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-terms.yml'
 
 defaults:
-    run:
-        working-directory: frontend/terms
+  run:
+    working-directory: frontend/terms
 
 jobs:
   build:

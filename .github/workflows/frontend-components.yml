@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-components
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-components.yml'
 
 defaults:
-    run:
-        working-directory: frontend/components
+  run:
+    working-directory: frontend/components
 
 jobs:
   build:

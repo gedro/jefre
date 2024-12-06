@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-privacy
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-privacy.yml'
 
 defaults:
-    run:
-        working-directory: frontend/privacy
+  run:
+    working-directory: frontend/privacy
 
 jobs:
   build:

@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-dashboard
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-dashboard.yml'
 
 defaults:
-    run:
-        working-directory: frontend/dashboard
+  run:
+    working-directory: frontend/dashboard
 
 jobs:
   build:

@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-header
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-header.yml'
 
 defaults:
-    run:
-        working-directory: frontend/header
+  run:
+    working-directory: frontend/header
 
 jobs:
   build:

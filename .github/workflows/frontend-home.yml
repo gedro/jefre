@@ -1,4 +1,3 @@
-#
 name: deploy-mfe-home
 
 on:
@@ -11,8 +10,8 @@ on:
       - '.github/workflows/frontend-home.yml'
 
 defaults:
-    run:
-        working-directory: frontend/home
+  run:
+    working-directory: frontend/home
 
 jobs:
   build:
