@@ -13,5 +13,5 @@ jobs:
   run:
     uses: ./.github/workflows/backend-service-workflow.yml
     with:
-      service: jefree-core
+      service: jefree
     secrets: inherit
