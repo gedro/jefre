@@ -63,17 +63,14 @@ jobs:
             echo "Swarm is already initialized."
           fi
 
-      - name: Pull Image from docker hub
-        run: docker pull ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }}
-
       - name: Remove old service
         run: docker service rm jefree-backend-container 2>/dev/null || true
 
-      - name: Delete old image
-        run: docker rmi -f ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }} 2>/dev/null || true
-
       - name: Delete old container
         run: docker rm -f jefree-backend-container
+
+      - name: Delete old image
+        run: docker rmi -f ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }} 2>/dev/null || true
 
       - name: Delete dangling images
         run: |
@@ -89,11 +86,30 @@ jobs:
           docker secret rm JEFREE_DATABASE_HOST 2>/dev/null || true
           docker secret rm JEFREE_DATABASE_USER 2>/dev/null || true
           docker secret rm JEFREE_DATABASE_PASSWORD 2>/dev/null || true
+          docker secret rm JEFREE_GITHUB_CLIENT_ID 2>/dev/null || true
+          docker secret rm JEFREE_GITHUB_CLIENT_SECRET 2>/dev/null || true
+          docker secret rm JEFREE_GOOGLE_CLIENT_ID 2>/dev/null || true
+          docker secret rm JEFREE_GOOGLE_CLIENT_SECRET 2>/dev/null || true
+          docker secret rm JEFREE_GOOGLE_REFRESH_TOKEN 2>/dev/null || true
+          docker secret rm JEFREE_GOOGLE_FROM_EMAIL 2>/dev/null || true
           docker secret rm JEFREE_FRONTEND_URL 2>/dev/null || true
+
+      - name: Pull Image from docker hub
+        run: docker pull ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }}
 
       - name: Create docker secret JEFREE_JWT_SECRET
         run: |
           echo ${{secrets.JEFREE_JWT_SECRET}} | docker secret create JEFREE_JWT_SECRET -
+          echo ${{secrets.JEFREE_DATABASE_HOST}} | docker secret create JEFREE_DATABASE_HOST -
+          echo ${{secrets.JEFREE_DATABASE_USER}} | docker secret create JEFREE_DATABASE_USER -
+          echo ${{secrets.JEFREE_DATABASE_PASSWORD}} | docker secret create JEFREE_DATABASE_PASSWORD -
+          echo ${{secrets.JEFREE_GITHUB_CLIENT_ID}} | docker secret create JEFREE_GITHUB_CLIENT_ID -
+          echo ${{secrets.JEFREE_GITHUB_CLIENT_SECRET}} | docker secret create JEFREE_GITHUB_CLIENT_SECRET -
+          echo ${{secrets.JEFREE_GOOGLE_CLIENT_ID}} | docker secret create JEFREE_GOOGLE_CLIENT_ID -
+          echo ${{secrets.JEFREE_GOOGLE_CLIENT_SECRET}} | docker secret create JEFREE_GOOGLE_CLIENT_SECRET -
+          echo ${{secrets.JEFREE_GOOGLE_REFRESH_TOKEN}} | docker secret create JEFREE_GOOGLE_REFRESH_TOKEN -
+          echo ${{secrets.JEFREE_GOOGLE_FROM_EMAIL}} | docker secret create JEFREE_GOOGLE_FROM_EMAIL -
+          echo ${{secrets.JEFREE_FRONTEND_URL}} | docker secret create JEFREE_FRONTEND_URL -
 
       - name: Run docker container
         run: |
@@ -101,4 +117,14 @@ jobs:
             --name jefree-backend-container \
             --with-registry-auth \
             --secret JEFREE_JWT_SECRET \
-            ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}
+            --secret JEFREE_DATABASE_HOST \
+            --secret JEFREE_DATABASE_USER \
+            --secret JEFREE_DATABASE_PASSWORD \
+            --secret JEFREE_GITHUB_CLIENT_ID \
+            --secret JEFREE_GITHUB_CLIENT_SECRET \
+            --secret JEFREE_GOOGLE_CLIENT_ID \
+            --secret JEFREE_GOOGLE_CLIENT_SECRET \
+            --secret JEFREE_GOOGLE_REFRESH_TOKEN \
+            --secret JEFREE_GOOGLE_FROM_EMAIL \
+            --secret JEFREE_FRONTEND_URL \
+            ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }}
