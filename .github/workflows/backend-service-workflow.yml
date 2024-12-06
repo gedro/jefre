@@ -59,10 +59,7 @@ jobs:
         run: docker service rm jefree-backend-container 2>/dev/null || true
 
       - name: Delete old image
-        run: docker rmi -f gaborharsanyi/jefree
-
-      - name: Delete old container
-        run: docker rm -f jefree-backend-container
+        run: docker rmi -f ${{secrets.DOCKER_USERNAME}}/${{ inputs.service }}:${{ inputs.version }} 2>/dev/null || true
 
       - name: Delete dangling images
         run: |
