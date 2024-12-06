@@ -26,9 +26,9 @@ jobs:
         run: mvn clean package --projects :${{ inputs.service }} --also-make --batch-mode -e
 
       - name: Login to docker hub
-        run: echo "pampampam" | docker login -u gaborharsanyi --password-stdin
+        run: echo "pampampam" | docker login -u $DOCKER_USERNAME --password-stdin
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_USERNAME: "gabor"
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build docker image
