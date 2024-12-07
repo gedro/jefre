@@ -116,6 +116,9 @@ export default function UserList({ classes, appContext, onAppContextChanged, his
       cellClassName: classes.ad_table_cell + " " + classes.ad_table_cell_last,
       renderHeader: (params) => "Action",
       renderCell: (params) => {
+        if(params.id == appContext?.user?.id) {
+          return (<span>-</span>);
+        }
         return (
           <Link to={`/admin/users/${params.id}`} className={classes.ad_table_cell_link} >
             <button className={classes.ad_table_cell_button} >

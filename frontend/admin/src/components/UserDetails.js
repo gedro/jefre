@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useCallback, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import Select from "react-select";
 
@@ -95,6 +95,8 @@ export default function UserDetails({ classes, appContext, onAppContextChanged, 
 
   return (
     <div className={classes.ad_userdetails} >
+      {userId == appContext?.user?.id && <Redirect to="/admin/users" />}
+
       {loading ? ( <Loader /> ) : (
         <Fragment>
           <div className={classes.ad_details_header}>
