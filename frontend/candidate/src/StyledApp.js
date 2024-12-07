@@ -31,6 +31,19 @@ const items = [
 
 const useStyles = makeStyles((theme) => ({
   ca_candidate: {
+    width: '100%',
+    minWidth: '976px',
+    maxWidth: '65rem',
+    backgroundColor: 'rgb(255 255 255)',
+    boxShadow: '0 10px 15px -3px #d1d5db, 0 4px 6px -4px #d1d5db',
+    borderRadius: '0.5rem',
+    padding: '2rem',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: '1em',
+    marginBottom: '2em',
+    display: 'block',
+    unicodeBidi: 'isolate',
   }
 }));
 
