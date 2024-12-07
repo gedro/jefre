@@ -77,13 +77,13 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
   return (
     <Fragment>
       <style> {`
-          .he_mfe {
-            display: block;
-            width: 100%;
-            z-index: 50;
-            top: 8px;
-            position: sticky;
-          }
+        .he_mfe {
+          display: block;
+          width: 100%;
+          z-index: 50;
+          top: 8px;
+          position: sticky;
+        }
       `} </style>
       <HeaderBar
         appContext={appContext}
