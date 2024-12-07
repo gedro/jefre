@@ -23,4 +23,6 @@ app:
   frontend-url: http://localhost:3000
 
 libs:
-  security.web.cors.allowed-origin-patterns: ["http://localhost:*", "https://localhost:*"]
+  security:
+    oauth2.redirectUri: "{baseScheme}://{baseHost}{basePort}{basePath}/login/oauth2/code/{registrationId}"
+    web.cors.allowed-origin-patterns: ["http://localhost:*", "https://localhost:*"]

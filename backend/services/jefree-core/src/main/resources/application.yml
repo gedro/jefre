@@ -1,4 +1,4 @@
-server.forward-headers-strategy: NATIVE
+server.forward-headers-strategy: FRAMEWORK
 
 spring:
   config.import: optional:configtree:/run/secrets/
@@ -51,11 +51,13 @@ spring:
       client-id: ${JEFREE_GITHUB_CLIENT_ID}
       client-secret: ${JEFREE_GITHUB_CLIENT_SECRET}
       scope: read:user,user:email
+      redirect-uri: ${libs.security.oauth2.redirectUri}
 
     # Google OAuth2 configuration
     google:
       client-id: ${JEFREE_GOOGLE_CLIENT_ID}
       client-secret: ${JEFREE_GOOGLE_CLIENT_SECRET}
+      redirect-uri: ${libs.security.oauth2.redirectUri}
 
 app:
   frontend-url: ${JEFREE_FRONTEND_URL:http://localhost:3000}
@@ -68,6 +70,7 @@ libs:
       refresh-token: ${JEFREE_GOOGLE_REFRESH_TOKEN}
       from-email: ${JEFREE_GOOGLE_FROM_EMAIL}
   security:
+    oauth2.redirectUri: "https://{baseHost}{basePort}{basePath}/login/oauth2/code/{registrationId}"
     jwt:
       secret: ${JEFREE_JWT_SECRET:JEFREE}
       expiration: 86400000 # 1 day
