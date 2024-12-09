@@ -9,7 +9,8 @@
     "./Progress": "./src/components/Progress.js",
     "./Loader": "./src/components/Loader.js",
     "./Editor": "./src/components/Editor.js",
-    "./DatePicker": "./src/components/DatePicker.js"
+    "./DatePicker": "./src/components/DatePicker.js",
+    "./LocationPicker": "./src/components/LocationPicker.js"
   },
   "remotesDev": { },
   "remotesProd": { }

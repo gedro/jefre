@@ -9,6 +9,7 @@ import Switch from './components/Switch';
 import Button from './components/Button';
 import Editor from './components/Editor';
 import DatePicker from './components/DatePicker';
+import LocationPicker from './components/LocationPicker';
 
 const items = [
   {
@@ -44,6 +45,10 @@ export default () => {
         />{" "}
         <Switch label={"Enabled"} checked={true} readOnly={false} />{" "} <br />
         <DatePicker label="Vacancy End Date" id="vacancyEndDate" />{" "}
+        <LocationPicker
+          countryLabel="Country of Interest" countryId="country"
+          cityLabel="City of Interest" cityId="city"
+        />{" "}
         <Button loading={false} text="Test" />{" "}
         <Editor id="briefDescription" />
       </MenuSidebar>
