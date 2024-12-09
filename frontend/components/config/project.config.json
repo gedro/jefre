@@ -8,7 +8,8 @@
     "./Switch": "./src/components/Switch.js",
     "./Progress": "./src/components/Progress.js",
     "./Loader": "./src/components/Loader.js",
-    "./Editor": "./src/components/Editor.js"
+    "./Editor": "./src/components/Editor.js",
+    "./DatePicker": "./src/components/DatePicker.js"
   },
   "remotesDev": { },
   "remotesProd": { }

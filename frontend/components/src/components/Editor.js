@@ -24,7 +24,7 @@ const editorToolbarOptions = [
   ['clean']
 ];
 
-export default function Editor({ id, value, onChange, readOnly }) {
+export default function Editor({ id, value, handleOnChange, readOnly }) {
   const classes = useStyles();
 
   return (
@@ -33,7 +33,7 @@ export default function Editor({ id, value, onChange, readOnly }) {
       bounds={'.re_new_job_desc_div'}
       className={classes.com_editor}
       value={value}
-      onChange={onChange}
+      onChange={handleOnChange}
       modules={{
         toolbar: editorToolbarOptions,
       }}

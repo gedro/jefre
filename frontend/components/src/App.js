@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { FaUser } from "react-icons/fa";
 
@@ -6,6 +7,8 @@ import MenuSidebar from './components/MenuSidebar';
 import InputTextField from './components/InputTextField';
 import Switch from './components/Switch';
 import Button from './components/Button';
+import Editor from './components/Editor';
+import DatePicker from './components/DatePicker';
 
 const items = [
   {
@@ -30,7 +33,7 @@ export default () => {
   });
 
   return (
-    <Fragment>
+    <BrowserRouter>
       <MenuSidebar name={"SHARED"} items={items} >
         <InputTextField
           label="UserName"
@@ -39,9 +42,11 @@ export default () => {
           register={register}
           errors={errors}
         />{" "}
-        <Switch label={"Enabled"} checked={true} readOnly={false}/>{" "}
-        <Button loading={false} text="Test" />
+        <Switch label={"Enabled"} checked={true} readOnly={false} />{" "} <br />
+        <DatePicker label="Vacancy End Date" id="vacancyEndDate" />{" "}
+        <Button loading={false} text="Test" />{" "}
+        <Editor id="briefDescription" />
       </MenuSidebar>
-    </Fragment>
+    </BrowserRouter>
   );
 };
