@@ -20,6 +20,7 @@ public class OccupationEntity {
   @Column(name="title", nullable = false)
   private String title;
 
+  @NotBlank
   @Column(name="description", columnDefinition = "TEXT", nullable = false)
   private String description;
 

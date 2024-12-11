@@ -23,7 +23,6 @@ public class SkillEntity {
   @JsonView(ConceptView.Collection.class)
   private String title;
 
-  @NotBlank
   @Column(name="description", columnDefinition = "TEXT", nullable = false)
   @JsonView(ConceptView.Description.class)
   private String description;

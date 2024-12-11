@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class DataLoader implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     if (conceptService.isSkillTableEmpty()) {
-      File file = new ClassPathResource("occ.json").getFile();
+      InputStream inputStream = new ClassPathResource("skills.json").getInputStream();
       ObjectMapper objectMapper = new ObjectMapper();
-      JsonNode rootNode = objectMapper.readTree(file);
+      JsonNode rootNode = objectMapper.readTree(inputStream);
       JsonNode resultsNode = rootNode.path("results").path("bindings");
 
       List<SkillEntity> skills = new ArrayList<>();
@@ -40,9 +40,9 @@ public class DataLoader implements CommandLineRunner {
     }
 
     if (conceptService.isOccupationTableEmpty()) {
-      File file = new ClassPathResource("skills.json").getFile();
+      InputStream inputStream = new ClassPathResource("occ.json").getInputStream();
       ObjectMapper objectMapper = new ObjectMapper();
-      JsonNode rootNode = objectMapper.readTree(file);
+      JsonNode rootNode = objectMapper.readTree(inputStream);
       JsonNode resultsNode = rootNode.path("results").path("bindings");
 
       List<OccupationEntity> occupations = new ArrayList<>();
