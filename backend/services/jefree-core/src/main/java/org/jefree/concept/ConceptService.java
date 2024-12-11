@@ -1,5 +1,7 @@
 package org.jefree.concept;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,20 @@ public class ConceptService {
 
   public List<OccupationEntity> getOccupations() {
     return occupationRepository.findAll();
+  }
+
+  public Page<SkillEntity> getSkills(final String query, final Pageable pageable) {
+    if (query == null || query.isEmpty()) {
+      return skillRepository.findAll(pageable);
+    }
+    return skillRepository.findByTitleContainingIgnoreCaseOrderByTitle(query, pageable);
+  }
+
+  public Page<OccupationEntity> getOccupations(final String query, final Pageable pageable) {
+    if (query == null || query.isEmpty()) {
+      return occupationRepository.findAll(pageable);
+    }
+    return occupationRepository.findByTitleContainingIgnoreCaseOrderByTitle(query, pageable);
   }
 
   public String getSkillDescription(final String url) {

@@ -5,6 +5,13 @@ spring:
   application.name: JEFREE
   jackson.default-property-inclusion: non_null
 
+  sql.init:
+    platform: mysql
+    mode: always
+    schema-locations: classpath:/db/schema.sql
+#    data-locations: classpath:/db/data.sql
+    continue-on-error: true
+
   data.rest:
     basePath: /api/repository
     defaultPageSize: 10
