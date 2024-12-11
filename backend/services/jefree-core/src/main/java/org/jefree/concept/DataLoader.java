@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 public class DataLoader implements CommandLineRunner {
 
   private final ConceptService conceptService;
