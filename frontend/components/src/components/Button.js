@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Button({ loading, text }) {
+export default function Button({ loading, text, children }) {
   const classes = useStyles();
   return (
     <button
@@ -44,7 +44,7 @@ export default function Button({ loading, text }) {
       className={classes.com_formButton}
       type="text"
     >
-      {loading ? <span>Loading...</span> : text}
+      {children ? children : loading ? <span>Loading...</span> : text}
     </button>
   );
 }

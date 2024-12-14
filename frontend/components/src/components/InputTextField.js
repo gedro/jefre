@@ -71,7 +71,8 @@ export default function InputTextField({
   min,
   readOnly,
   autoComplete,
-  autoFocus
+  autoFocus,
+  required = true
 }) {
 
   const classes = useStyles();
@@ -83,7 +84,7 @@ export default function InputTextField({
         className={ classes.com_inputField + (errors[id]?.message ? " " + classes.com_inputFieldError : "") }
         variant="outlined"
         margin="normal"
-        required
+        required={required}
         fullWidth
         name={inputName}
         id={id}
