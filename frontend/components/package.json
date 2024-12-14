@@ -20,6 +20,7 @@
     "react-quill": "^2.0.0",
     "react-datepicker": "^7.5.0",
     "react-country-region-selector": "^3.7.0",
+    "react-select-async-paginate": "^0.7.7",
     "@babel/runtime": "^7.12.3"
   },
   "devDependencies": {

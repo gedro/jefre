@@ -10,7 +10,8 @@
     "./Loader": "./src/components/Loader.js",
     "./Editor": "./src/components/Editor.js",
     "./DatePicker": "./src/components/DatePicker.js",
-    "./LocationPicker": "./src/components/LocationPicker.js"
+    "./LocationPicker": "./src/components/LocationPicker.js",
+    "./AsyncLazySelect": "./src/components/AsyncLazySelect.js"
   },
   "remotesDev": { },
   "remotesProd": { }
