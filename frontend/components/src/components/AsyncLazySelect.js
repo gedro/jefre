@@ -30,14 +30,19 @@ export default function AsyncLazySelect({
   const [selectedConcepts, setSelectedConcepts] = useState([]);
 
   useEffect(() => {
-    const concepts = JSON.parse(localStorage.getItem('concepts'));
-    if (concepts) {
-      setSelectedConcepts(concepts);
+    if (value && Array.isArray(value) && value.length > 0) {
+      setSelectedConcepts(value);
+    } else {
+      const concepts = JSON.parse(localStorage.getItem(id + '_concepts'));
+      if (concepts) {
+        setSelectedConcepts(concepts);
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('concepts', JSON.stringify(selectedConcepts));
+    localStorage.setItem(id + '_concepts', JSON.stringify(selectedConcepts));
+    handleOnChange(selectedConcepts);
   }, [selectedConcepts]);
 
   useEffect(() => {
@@ -48,6 +53,13 @@ export default function AsyncLazySelect({
       setDescription("");
     }
   }, [selectedConcept]);
+
+  useEffect(() => {
+    if (!appContext.isSignedIn) {
+      console.log('clearing local storage', appContext.isSignedIn);
+      localStorage.removeItem(id + '_concepts');
+    }
+  }, [appContext.isSignedIn]);
 
   const addConcept = () => {
     if(selectedConcept) {
