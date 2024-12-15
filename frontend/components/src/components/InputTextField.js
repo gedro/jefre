@@ -73,8 +73,7 @@ export default function InputTextField({
   readOnly,
   autoComplete,
   autoFocus,
-  required = true,
-  value = ""
+  required = true
 }) {
 
   const classes = useStyles();
@@ -91,10 +90,12 @@ export default function InputTextField({
         name={inputName}
         id={id}
         label={label}
-        type={inputName.includes("password") ? "password" : (inputName.includes("email") ? "email" : "text")}
+        type={
+          inputName.toLowerCase().includes("password") ? "password" :
+          (inputName.toLowerCase().includes("email") ? "email" : "text")
+        }
         autoComplete={autoComplete ? autoComplete : id}
         autoFocus={autoFocus ? autoFocus : false}
-        value={value}
 
         InputProps={{
           classes: {
@@ -104,7 +105,7 @@ export default function InputTextField({
         }}
 
         {...register(inputName, {
-          required: {value: true, message},
+          required: {value: required, message},
           minLength: min
             ? {value: min, message: "Minimum " + min + " character is required"}
             : null,

@@ -54,13 +54,6 @@ export default function AsyncLazySelect({
     }
   }, [selectedConcept]);
 
-  useEffect(() => {
-    if (!appContext.isSignedIn) {
-      console.log('clearing local storage', appContext.isSignedIn);
-      localStorage.removeItem(id + '_concepts');
-    }
-  }, [appContext.isSignedIn]);
-
   const addConcept = () => {
     if(selectedConcept) {
       setSelectedConcepts([...selectedConcepts, selectedConcept]);
