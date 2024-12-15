@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     display: 'flex',
     unicodeBidi: 'isolate',
+    width: '100%',
   },
   com_inputField: {
     outline: '2px solid transparent',
