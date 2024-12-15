@@ -73,7 +73,8 @@ export default function InputTextField({
   readOnly,
   autoComplete,
   autoFocus,
-  required = true
+  required = true,
+  value = ""
 }) {
 
   const classes = useStyles();
@@ -93,6 +94,7 @@ export default function InputTextField({
         type={inputName.includes("password") ? "password" : (inputName.includes("email") ? "email" : "text")}
         autoComplete={autoComplete ? autoComplete : id}
         autoFocus={autoFocus ? autoFocus : false}
+        value={value}
 
         InputProps={{
           classes: {
