@@ -1,5 +1,6 @@
 package org.jefree.concept;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -14,14 +15,17 @@ public class OccupationEntity {
 
   @Id
   @Column(name = "url", updatable = false, nullable = false)
+  @JsonView(ConceptView.Collection.class)
   private String url;
 
   @NotBlank
   @Column(name="title", nullable = false)
+  @JsonView(ConceptView.Collection.class)
   private String title;
 
   @NotBlank
   @Column(name="description", columnDefinition = "TEXT", nullable = false)
+  @JsonView(ConceptView.Description.class)
   private String description;
 
   public String getUrl() {
