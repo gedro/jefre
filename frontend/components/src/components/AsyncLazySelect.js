@@ -1,23 +1,63 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { FaPlus } from 'react-icons/fa';
 import { makeStyles } from "@material-ui/core/styles";
 import { AsyncPaginate } from "react-select-async-paginate";
+import { FaPlus } from 'react-icons/fa';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import ConceptList from "./ConceptList";
 
 const useStyles = makeStyles((theme) => ({
   com_async_select: {
-    color: 'rgb(51 65 85)',
-    fontWeight: '500',
-    fontSize: '0.875rem',
-    lineHeight: '1.25rem',
-    margin: '0',
-    display: 'inline',
-    marginBlockStart: '1em',
-    marginBlockEnd: '1em',
-    marginInlineStart: '0px',
-    marginInlineEnd: '0px',
-    unicodeBidi: 'isolate',
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  com_select_link_icon: {
+    float: "right",
+    marginLeft: "1rem",
+    marginRight: "0.5rem",
+    fontSize: "1.4em",
+  },
+  com_select_description: {
+    overflow: "overlay",
+    width: "30%",
+    height: "100%",
+    alignItems: "start",
+    marginLeft: "2em",
+  },
+  com_select_add_icon: {
+    float: "right",
+    marginLeft: "1rem",
+    fontSize: "1.6em",
+    marginTop: "0.5em",
+    cursor: "pointer",
+  },
+  com_select_remove_button: {
+    float: "left",
+    marginRight: "1rem",
+    fontSize: "1.1em",
+    marginTop: "0.5em",
+    padding: "0.5em",
+    fontWeight: "bold",
+    cursor: "pointer",
+  },
+  com_select_concept_list_container: {
+    clear: "both",
+    marginTop: "3.5em",
+  },
+  com_select_concept_list: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  com_select_concept_list_row: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    padding: "0.5em",
+    borderBottom: "1px solid #ccc",
   },
 }));
 
@@ -93,34 +133,56 @@ export default function AsyncLazySelect({
     setSelectedConcept(option);
   };
 
+  const handleItemChange = (e, item) => {
+    const updatedConcepts = selectedConcepts.map((concept) => {
+      if (concept.url === item.url) {
+        return { ...concept, month: e.target.value };
+      }
+      return concept;
+    });
+    setSelectedConcepts(updatedConcepts);
+  }
+
   const classes = useStyles();
   return (
-    <Fragment>
-      <AsyncPaginate
-        id={id}
-        loadOptions={loadOptions}
-        value={selectedConcept}
-        getOptionValue={(option) => option.url}
-        getOptionLabel={(option) => option.title}
-        isOptionDisabled={(option) => selectedConcepts.map(c => c.url).includes(option.url)}
-        isSearchable={true}
-        backspaceRemoves={true}
-        placeholder={placeholder}
-        debounceTimeout={500}
-        cacheOptions
-        additional={{
-          page: 0,
-        }}
-        onChange={handleSelection}
-      />
-      <button disabled={!selectedConcept} onClick={addConcept} type="button">
-        <FaPlus/>
-      </button>
-      <button disabled={!selectedConcepts || selectedConcepts.length <= 0} onClick={() => setSelectedConcepts([])} type="button">
-        Remove All
-      </button>
-      <ConceptList items={selectedConcepts} removeItem={removeConcept} />
-      <pre>{description}</pre>
-    </Fragment>
+    <div className={classes.com_async_select}>
+      <div style={{ width: "65%" }}>
+        <div>
+          <AsyncPaginate
+            id={id} value={selectedConcept} placeholder={placeholder}
+            onChange={handleSelection} loadOptions={loadOptions}
+            getOptionValue={(option) => option.url}
+            getOptionLabel={(option) => option.title}
+            isOptionDisabled={(option) => selectedConcepts.map(c => c.url).includes(option.url)}
+            isSearchable={true} backspaceRemoves={true} debounceTimeout={500} cacheOptions
+            additional={{
+              page: 0,
+            }}
+          />
+          <button type="button" className={classes.com_select_remove_button}
+                  disabled={!selectedConcepts || selectedConcepts.length <= 0}
+                  onClick={() => setSelectedConcepts([])} >
+            Remove All
+          </button>
+          <button className={classes.com_select_add_icon} type="button"
+                  disabled={!selectedConcept} onClick={addConcept}>
+            <FaPlus/>
+          </button>
+        </div>
+        <div className={classes.com_select_concept_list_container} >
+          <ConceptList items={selectedConcepts} classes={classes}
+                       removeItem={removeConcept} handleItemChange={handleItemChange} />
+        </div>
+      </div>
+      {selectedConcept ?
+        <div className={classes.com_select_description}>
+          <a className={classes.com_select_link_icon}
+             href={selectedConcept?.url} target="_blank" rel="noopener noreferrer">
+            <FaExternalLinkAlt/>
+          </a>
+          {description}
+        </div>
+      : null}
+    </div>
   );
 }

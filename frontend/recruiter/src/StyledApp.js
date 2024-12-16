@@ -23,11 +23,11 @@ const items = [
     link: '/recruiter/jobs',
     icon: <FaBriefcase />
   },
-  {
-    label: 'Search Candidates',
-    link: '/recruiter/search',
-    icon: <FaSearch />
-  },
+  // {
+  //   label: 'Search Candidates',
+  //   link: '/recruiter/search',
+  //   icon: <FaSearch />
+  // },
   {
     label: 'Saved Candidates',
     link: '/recruiter/candidates',
@@ -57,6 +57,44 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '2rem',
     fontWeight: '700',
     paddingBottom: '0rem',
+    margin: '0',
+  },
+  re_new_job_hr: {
+    border: 'none',
+    borderTop: '1px solid #ccc',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+  },
+  re_new_job_flex: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  re_new_job_form_line: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "start",
+    alignItems: "center",
+    marginTop: "0.5em",
+    marginBottom: "0.5em",
+  },
+  re_new_job_form_labeled_input: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "start",
+    alignItems: "center",
+    flex: "2"
+  },
+  re_new_job_form_label: {
+    marginRight: "1em",
+  },
+  re_new_job_form_select: {
+    minWidth: "15em",
+  },
+  re_new_job_desc_div: {
+    height: '18rem',
+    marginBottom: '3.5rem',
   }
 }));
 
