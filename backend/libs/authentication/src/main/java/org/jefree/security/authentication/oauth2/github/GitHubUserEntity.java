@@ -104,7 +104,7 @@ public class GitHubUserEntity extends AuditableEntity<String> implements OAuthEn
   @Column(name="two_factor_authentication", updatable = false)
   private Boolean twoFactorAuthentication;
 
-  @OneToOne(optional = true, cascade = CascadeType.ALL)
+  @OneToOne(optional = true, cascade = CascadeType.REFRESH)
   @JoinColumn(name = "registered_user_id", referencedColumnName = "id")
   private UserEntity registeredUser;
 

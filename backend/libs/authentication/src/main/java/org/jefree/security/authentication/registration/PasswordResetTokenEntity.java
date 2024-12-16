@@ -35,7 +35,7 @@ public class PasswordResetTokenEntity extends AuditableEntity<String> {
   @Column(name="used", updatable = true, nullable = false)
   private boolean used;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.REFRESH)
   @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
   private UserEntity user;
 

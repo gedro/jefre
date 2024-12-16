@@ -7,8 +7,10 @@ import jakarta.validation.constraints.Size;
 import org.jefree.job.ExperienceLevel;
 import org.jefree.job.JobType;
 import org.jefree.job.WorkType;
+import org.jefree.security.audit.AuditableEntity;
 import org.jefree.security.authentication.user.UserEntity;
 
+import java.util.Collections;
 import java.util.List;
 
 @Entity(name = "Candidate")
@@ -18,7 +20,7 @@ import java.util.List;
     @UniqueConstraint(columnNames = "user_id")
   }
 )
-public class CandidateEntity {
+public class CandidateEntity extends AuditableEntity<String> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,19 +36,19 @@ public class CandidateEntity {
   @CollectionTable(name = "candidate_job_types", joinColumns = @JoinColumn(name = "candidate_id"))
   @Enumerated(EnumType.STRING)
   @Column(name="job_types", updatable = true, nullable = false)
-  private List<JobType> jobTypes;
+  private List<JobType> jobTypes = Collections.emptyList();
 
   @ElementCollection(targetClass = ExperienceLevel.class)
   @CollectionTable(name = "candidate_experience_levels", joinColumns = @JoinColumn(name = "candidate_id"))
   @Enumerated(EnumType.STRING)
   @Column(name="experience_levels", updatable = true, nullable = false)
-  private List<ExperienceLevel> experienceLevels;
+  private List<ExperienceLevel> experienceLevels = Collections.emptyList();
 
   @ElementCollection(targetClass = WorkType.class)
   @CollectionTable(name = "candidate_work_types", joinColumns = @JoinColumn(name = "candidate_id"))
   @Enumerated(EnumType.STRING)
   @Column(name="work_types", updatable = true, nullable = false)
-  private List<WorkType> workTypes;
+  private List<WorkType> workTypes = Collections.emptyList();
 
   @NotBlank
   @Size(max = 120)
@@ -68,10 +70,10 @@ public class CandidateEntity {
   private UserEntity user;
 
   @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<SkillExperienceEntity> skills;
+  private List<SkillExperienceEntity> skills = Collections.emptyList();
 
   @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<OccupationExperienceEntity> occupations;
+  private List<OccupationExperienceEntity> occupations = Collections.emptyList();
 
   public Long getId() {
     return id;

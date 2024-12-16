@@ -27,7 +27,7 @@ public class OccupationExperienceEntity extends AuditableEntity<String> {
   @Column(name="month", updatable = true, nullable = false)
   private int month;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.REFRESH)
   @JoinColumn(name = "candidate_id", referencedColumnName = "id", nullable = false, updatable = false)
   private CandidateEntity candidate;
 

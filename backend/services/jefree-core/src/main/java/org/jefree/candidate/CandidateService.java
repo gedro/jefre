@@ -26,7 +26,7 @@ public class CandidateService {
 
   @Transactional(Transactional.TxType.REQUIRED)
   public CandidateEntity updateCandidate(final User user, final CandidateEntity candidate) {
-    final CandidateEntity oldCandidate = candidateRepository.findByUserId(candidate.getId()).orElse(null);
+    final CandidateEntity oldCandidate = candidateRepository.findByUserId(user.getId()).orElse(null);
 
     if(oldCandidate == null) {
       candidate.setUser(
@@ -34,12 +34,14 @@ public class CandidateService {
       );
     }
 
+    final CandidateEntity entity = oldCandidate != null ? oldCandidate : candidate;
+
     for (final OccupationExperienceEntity occupation : candidate.getOccupations()) {
-      occupation.setCandidate(candidate);
+      occupation.setCandidate(entity);
     }
 
     for (final SkillExperienceEntity skill : candidate.getSkills()) {
-      skill.setCandidate(candidate);
+      skill.setCandidate(entity);
     }
 
     if(oldCandidate != null) {
@@ -47,17 +49,23 @@ public class CandidateService {
         throw new IllegalArgumentException("Candidate does not belong to the user");
       }
 
+      oldCandidate.getWorkTypes().clear();
+      oldCandidate.getJobTypes().clear();
+      oldCandidate.getExperienceLevels().clear();
+      oldCandidate.getOccupations().clear();
+      oldCandidate.getSkills().clear();
+
       oldCandidate.setDisplayName(candidate.getDisplayName());
       oldCandidate.setContactEmail(candidate.getContactEmail());
       oldCandidate.setContactPhone(candidate.getContactPhone());
-      oldCandidate.setWorkTypes(candidate.getWorkTypes());
-      oldCandidate.setJobTypes(candidate.getJobTypes());
-      oldCandidate.setExperienceLevels(candidate.getExperienceLevels());
+      oldCandidate.getWorkTypes().addAll(candidate.getWorkTypes());
+      oldCandidate.getJobTypes().addAll(candidate.getJobTypes());
+      oldCandidate.getExperienceLevels().addAll(candidate.getExperienceLevels());
       oldCandidate.setResume(candidate.getResume());
-      oldCandidate.setOccupations(candidate.getOccupations());
-      oldCandidate.setSkills(candidate.getSkills());
+      oldCandidate.getOccupations().addAll(candidate.getOccupations());
+      oldCandidate.getSkills().addAll(candidate.getSkills());
     }
 
-    return candidateRepository.save(oldCandidate != null ? oldCandidate : candidate);
+    return candidateRepository.save(entity);
   }
 }

@@ -65,7 +65,7 @@ public class GoogleUserEntity extends AuditableEntity<String> implements OAuthEn
   @Column(name="email_verified", updatable = false)
   private boolean emailVerified;
 
-  @OneToOne(optional = true, cascade = CascadeType.ALL)
+  @OneToOne(optional = true, cascade = CascadeType.REFRESH)
   @JoinColumn(name = "registered_user_id", referencedColumnName = "id")
   private UserEntity registeredUser;
 

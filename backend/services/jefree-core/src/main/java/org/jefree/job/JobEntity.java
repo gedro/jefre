@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.jefree.security.audit.AuditableEntity;
 import org.jefree.security.authentication.user.UserEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity(name = "Job")
 @Table(name = "job_postings")
-public class JobEntity {
+public class JobEntity extends AuditableEntity<String> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
