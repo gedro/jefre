@@ -38,8 +38,8 @@ export default function NewJob({ classes, appContext, onAppContextChanged, histo
 
   useEffect(() => {
     if (!appContext?.isSignedIn) {
-      localStorage.removeItem('skillSelect_concepts');
-      localStorage.removeItem('occupationSelect_concepts');
+      localStorage.removeItem('job_skillSelect_concepts');
+      localStorage.removeItem('job_occupationSelect_concepts');
     }
   }, [appContext.isSignedIn]);
 
@@ -184,7 +184,7 @@ export default function NewJob({ classes, appContext, onAppContextChanged, histo
         <hr className={classes.re_new_job_hr}/>
         <div className={classes.re_new_job_form_line}>
           <AsyncLazySelect
-            id="occupationSelect"
+            id="job_occupationSelect"
             placeholder="Select an ESCO Occupation"
             value={selectedOptions} handleOnChange={setSelectedOptions}
             listEndpoint="/concepts/occupations"
@@ -198,7 +198,7 @@ export default function NewJob({ classes, appContext, onAppContextChanged, histo
         <hr className={classes.re_new_job_hr}/>
         <div className={classes.re_new_job_form_line}>
           <AsyncLazySelect
-            id="skillSelect"
+            id="job_skillSelect"
             placeholder="Select an ESCO Skill"
             value={selectedSkills} handleOnChange={setSelectedSkills}
             listEndpoint="/concepts/skills"
