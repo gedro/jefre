@@ -1,10 +1,10 @@
 package org.jefree.job;
 
+import jakarta.transaction.Transactional;
 import org.jefree.security.authentication.user.User;
 import org.jefree.security.authentication.user.UserNotFoundException;
 import org.jefree.security.authentication.user.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class JobService {
@@ -17,7 +17,7 @@ public class JobService {
     this.userRepository = userRepository;
   }
 
-  @Transactional
+  @Transactional(Transactional.TxType.REQUIRED)
   public JobEntity saveJob(final User user, final JobEntity job) {
     job.setRecruiter(
       userRepository.findById(user.getId()).orElseThrow(() -> new UserNotFoundException("User is logged out"))
