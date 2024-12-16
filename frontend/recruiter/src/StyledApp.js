@@ -1,14 +1,13 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import {Switch, Route, Redirect} from 'react-router-dom';
-import { FaPlus, FaBriefcase, FaSearch, FaStar } from "react-icons/fa";
+import { FaPlus, FaBriefcase, FaStar } from "react-icons/fa";
 
 import MenuSidebar from 'components/MenuSidebar';
 
 import NewJob from './components/NewJob';
 import JobList from "./components/JobList";
 import JobDetails from "./components/JobDetails";
-import Search from "./components/Search";
 import CandidateList from "./components/CandidateList";
 import CandidateDetails from "./components/CandidateDetails";
 
@@ -23,11 +22,6 @@ const items = [
     link: '/recruiter/jobs',
     icon: <FaBriefcase />
   },
-  // {
-  //   label: 'Search Candidates',
-  //   link: '/recruiter/search',
-  //   icon: <FaSearch />
-  // },
   {
     label: 'Saved Candidates',
     link: '/recruiter/candidates',
@@ -112,9 +106,6 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
         <Route path="/recruiter/jobs/:jobId">
           <JobDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
-        <Route exact path="/recruiter/search">
-          <Search classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
-        </Route>
         <Route exact path="/recruiter/candidates">
           <CandidateList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
@@ -122,7 +113,7 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
           <CandidateDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route exact path="/recruiter">
-          <Redirect to="/recruiter/search" />
+          <Redirect to="/recruiter/jobs" />
         </Route>
       </Switch>
     </MenuSidebar>
