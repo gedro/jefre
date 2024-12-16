@@ -28,7 +28,7 @@ public class ConceptController {
   public ResponseEntity<PaginatedResponse<SkillEntity>> getSkills(
     @RequestParam(required = false, defaultValue = "") final String query,
     @RequestParam(defaultValue = "0") final int page,
-    @RequestParam(defaultValue = "10") final int size
+    @RequestParam(defaultValue = "20") final int size
   ) {
     final Pageable pageable = PageRequest.of(page, size);
     final Page<SkillEntity> skillsPage = conceptService.getSkills(query, pageable);
@@ -40,7 +40,7 @@ public class ConceptController {
   public ResponseEntity<PaginatedResponse<OccupationEntity>> getOccupations(
     @RequestParam(required = false, defaultValue = "") final String query,
     @RequestParam(defaultValue = "0") final int page,
-    @RequestParam(defaultValue = "10") final int size
+    @RequestParam(defaultValue = "20") final int size
   ) {
     final Pageable pageable = PageRequest.of(page, size);
     final Page<OccupationEntity> occupationsPage = conceptService.getOccupations(query, pageable);

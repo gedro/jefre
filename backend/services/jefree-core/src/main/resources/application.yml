@@ -14,7 +14,7 @@ spring:
 
   data.rest:
     basePath: /api/repository
-    defaultPageSize: 10
+    defaultPageSize: 20
     maxPageSize: 100
     pageParamName: page
     limitParamName: limit
