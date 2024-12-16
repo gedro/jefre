@@ -50,9 +50,9 @@ public class CandidateService {
       oldCandidate.setDisplayName(candidate.getDisplayName());
       oldCandidate.setContactEmail(candidate.getContactEmail());
       oldCandidate.setContactPhone(candidate.getContactPhone());
-      oldCandidate.setWorkType(candidate.getWorkType());
+      oldCandidate.setWorkTypes(candidate.getWorkTypes());
       oldCandidate.setJobTypes(candidate.getJobTypes());
-      oldCandidate.setExperienceLevel(candidate.getExperienceLevel());
+      oldCandidate.setExperienceLevels(candidate.getExperienceLevels());
       oldCandidate.setResume(candidate.getResume());
       oldCandidate.setOccupations(candidate.getOccupations());
       oldCandidate.setSkills(candidate.getSkills());

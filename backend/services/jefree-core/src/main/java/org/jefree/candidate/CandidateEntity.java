@@ -40,13 +40,13 @@ public class CandidateEntity {
   @CollectionTable(name = "candidate_experience_levels", joinColumns = @JoinColumn(name = "candidate_id"))
   @Enumerated(EnumType.STRING)
   @Column(name="experience_levels", updatable = true, nullable = false)
-  private List<ExperienceLevel> experienceLevel;
+  private List<ExperienceLevel> experienceLevels;
 
   @ElementCollection(targetClass = WorkType.class)
   @CollectionTable(name = "candidate_work_types", joinColumns = @JoinColumn(name = "candidate_id"))
   @Enumerated(EnumType.STRING)
   @Column(name="work_types", updatable = true, nullable = false)
-  private List<WorkType> workType;
+  private List<WorkType> workTypes;
 
   @NotBlank
   @Size(max = 120)
@@ -97,20 +97,20 @@ public class CandidateEntity {
     this.jobTypes = jobTypes;
   }
 
-  public List<ExperienceLevel> getExperienceLevel() {
-    return experienceLevel;
+  public List<ExperienceLevel> getExperienceLevels() {
+    return experienceLevels;
   }
 
-  public void setExperienceLevel(final List<ExperienceLevel> experienceLevel) {
-    this.experienceLevel = experienceLevel;
+  public void setExperienceLevels(final List<ExperienceLevel> experienceLevels) {
+    this.experienceLevels = experienceLevels;
   }
 
-  public List<WorkType> getWorkType() {
-    return workType;
+  public List<WorkType> getWorkTypes() {
+    return workTypes;
   }
 
-  public void setWorkType(final List<WorkType> workType) {
-    this.workType = workType;
+  public void setWorkTypes(final List<WorkType> workTypes) {
+    this.workTypes = workTypes;
   }
 
   public String getContactEmail() {
