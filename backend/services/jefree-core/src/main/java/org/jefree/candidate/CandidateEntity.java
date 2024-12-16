@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.jefree.job.*;
+import org.jefree.job.ExperienceLevel;
+import org.jefree.job.JobType;
+import org.jefree.job.WorkType;
 import org.jefree.security.authentication.user.UserEntity;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "Candidate")
