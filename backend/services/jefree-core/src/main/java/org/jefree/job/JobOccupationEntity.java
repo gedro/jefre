@@ -5,14 +5,14 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import org.jefree.security.audit.AuditableEntity;
 
-@Entity(name = "JobSkillExperience")
+@Entity(name = "JobOccupation")
 @Table(
-  name = "skill_experience",
+  name = "job_occupations",
   uniqueConstraints = {
     @UniqueConstraint(columnNames = {"url", "job_id"})
   }
 )
-public class SkillExperienceEntity extends AuditableEntity<String> {
+public class JobOccupationEntity extends AuditableEntity<String> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

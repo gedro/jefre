@@ -23,11 +23,11 @@ public class JobService {
       userRepository.findById(user.getId()).orElseThrow(() -> new UserNotFoundException("User is logged out"))
     );
 
-    for (final OccupationExperienceEntity occupation : job.getOccupations()) {
+    for (final JobOccupationEntity occupation : job.getOccupations()) {
       occupation.setJob(job);
     }
 
-    for (final SkillExperienceEntity skill : job.getSkills()) {
+    for (final JobSkillEntity skill : job.getSkills()) {
       skill.setJob(job);
     }
 

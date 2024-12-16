@@ -11,13 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "Job")
-@Table(
-  name = "job_postings",
-  uniqueConstraints = {
-    @UniqueConstraint(columnNames = "username"),
-    @UniqueConstraint(columnNames = "email")
-  }
-)
+@Table(name = "job_postings")
 public class JobEntity {
 
   @Id
@@ -79,15 +73,15 @@ public class JobEntity {
   @Column(name="description", updatable = true, nullable = true)
   private String description;
 
-  @OneToOne(optional = false, cascade = CascadeType.DETACH)
+  @ManyToOne(optional = false, cascade = CascadeType.DETACH)
   @JoinColumn(name = "recruiter_id", referencedColumnName = "id")
   private UserEntity recruiter;
 
   @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<SkillExperienceEntity> skills;
+  private List<JobSkillEntity> skills;
 
   @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<OccupationExperienceEntity> occupations;
+  private List<JobOccupationEntity> occupations;
 
   public Long getId() {
     return id;
@@ -201,19 +195,19 @@ public class JobEntity {
     this.recruiter = recruiter;
   }
 
-  public List<SkillExperienceEntity> getSkills() {
+  public List<JobSkillEntity> getSkills() {
     return skills;
   }
 
-  public void setSkills(final List<SkillExperienceEntity> skills) {
+  public void setSkills(final List<JobSkillEntity> skills) {
     this.skills = skills;
   }
 
-  public List<OccupationExperienceEntity> getOccupations() {
+  public List<JobOccupationEntity> getOccupations() {
     return occupations;
   }
 
-  public void setOccupations(final List<OccupationExperienceEntity> occupations) {
+  public void setOccupations(final List<JobOccupationEntity> occupations) {
     this.occupations = occupations;
   }
 }
