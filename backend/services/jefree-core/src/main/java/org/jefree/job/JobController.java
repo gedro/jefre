@@ -1,8 +1,10 @@
 package org.jefree.job;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.jefree.candidate.CandidateEntity;
 import org.jefree.database.DefaultView;
 import org.jefree.security.authentication.user.User;
+import org.jefree.suggestion.SuggestionService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,9 +18,11 @@ import java.util.List;
 public class JobController {
 
   private final JobService jobService;
+  private final SuggestionService suggestionService;
 
-  public JobController(final JobService jobService) {
+  public JobController(final JobService jobService, final SuggestionService suggestionService) {
     this.jobService = jobService;
+    this.suggestionService = suggestionService;
   }
 
   @PreAuthorize("hasRole('RECRUITER')")
@@ -33,6 +37,16 @@ public class JobController {
   @JsonView(DefaultView.Entity.class)
   public ResponseEntity<JobEntity> getJob(@AuthenticationPrincipal final User user, @PathVariable final Long jobId) {
     return ResponseEntity.ok(jobService.getUserJob(user, jobId));
+  }
+
+  @PreAuthorize("hasRole('RECRUITER')")
+  @GetMapping("/{jobId}/candidates")
+  @JsonView(DefaultView.Entity.class)
+  public ResponseEntity<List<CandidateEntity>> suggestCandidates(
+    @AuthenticationPrincipal final User user, @PathVariable final Long jobId
+  ) {
+    jobService.getUserJob(user, jobId); // only to check if job exists and available for the logged in recruiter
+    return ResponseEntity.ok(suggestionService.suggestCandidates(jobId));
   }
 
   @PreAuthorize("hasRole('RECRUITER')")

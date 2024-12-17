@@ -6,6 +6,7 @@ import org.jefree.security.authentication.user.UserNotFoundException;
 import org.jefree.security.authentication.user.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -22,6 +23,11 @@ public class CandidateService {
   @Transactional(Transactional.TxType.REQUIRED)
   public CandidateEntity getCandidate(final User user) {
     return candidateRepository.findByUserId(user.getId()).orElse(null);
+  }
+
+  @Transactional(Transactional.TxType.REQUIRED)
+  public List<CandidateEntity> getFavoriteCandidates(final User user) {
+    return candidateRepository.findAll(); //TODO: implement favorite candidates logic
   }
 
   @Transactional(Transactional.TxType.REQUIRED)

@@ -139,6 +139,49 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     alignItems: "center"
   },
+  re_recruiter_candidates_container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  re_recruiter_candidates_card: {
+    width: '100%',
+    maxWidth: '17rem',
+    backgroundColor: '#FFE4E1',
+    // Lavender: #E6E6FA
+    // Light Pink: #FFB6C1
+    // Pale Turquoise: #AFEEEE
+    // Mint Cream: #F5FFFA
+    // Misty Rose: #FFE4E1
+    boxShadow: '0 10px 15px -3px #d1d5db, 0 4px 6px -4px #d1d5db',
+    borderRadius: '0.5rem',
+    padding: '0.8rem',
+    margin: '1rem',
+    display: 'block',
+    unicodeBidi: 'isolate',
+  },
+  re_recruiter_candidates_link: {
+    textDecoration: 'none',
+  },
+  re_recruiter_candidates_button: {
+    color: 'white',
+    border: 'none',
+    borderRadius: '0.25rem',
+    padding: '0.5rem',
+    paddingLeft: '2.5rem',
+    paddingRight: '2.5rem',
+    cursor: 'pointer',
+    width: '100%',
+    marginTop: '1rem',
+    fontSize: '0.9rem',
+    fontWeight: '600',
+  },
+  re_recruiter_candidates_button_div: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+  },
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
