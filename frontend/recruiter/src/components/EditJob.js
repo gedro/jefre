@@ -104,7 +104,7 @@ export default function EditJob({ classes, appContext, onAppContextChanged, hist
   }, [jobId, reset]);
 
   const onSubmitHandler = async (data) => {
-    const { jobTitle, vacancyEndDate, companyName, contactPerson, contactEmail, contactPhone } = data;
+    const { jobTitle, companyName, contactPerson, contactEmail, contactPhone } = data;
 
     try {
       setLoading(true);
@@ -140,8 +140,7 @@ export default function EditJob({ classes, appContext, onAppContextChanged, hist
         toast.success("Job is posted!");
       }
     } catch (error) {
-      toast.error("Error while creating / updating job posting.");
-      console.error(error);
+      toast.error("Error while " + (jobId ? "updating" : "creating") + "job posting.");
     } finally {
       setLoading(false);
     }
