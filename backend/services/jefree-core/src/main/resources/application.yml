@@ -8,7 +8,7 @@ spring:
   sql.init:
     platform: mysql
     mode: always
-    schema-locations: classpath:/db/schema.sql
+#    schema-locations: classpath:/db/schema.sql
 #    data-locations: classpath:/db/data.sql
     continue-on-error: true
 
