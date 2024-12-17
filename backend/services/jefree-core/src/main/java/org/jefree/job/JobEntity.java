@@ -77,7 +77,7 @@ public class JobEntity extends AuditableEntity<String> {
   @Column(name="description", updatable = true, nullable = true)
   private String description;
 
-  @ManyToOne(optional = false, cascade = CascadeType.DETACH)
+  @ManyToOne(optional = false, cascade = CascadeType.REFRESH)
   @JoinColumn(name = "recruiter_id", referencedColumnName = "id")
   @JsonView(DefaultView.Ignore.class)
   private UserEntity recruiter;

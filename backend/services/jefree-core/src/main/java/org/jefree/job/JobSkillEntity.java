@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import org.jefree.database.DefaultView;
-import org.jefree.security.audit.AuditableEntity;
 
 @Entity(name = "JobSkill")
 @Table(
@@ -14,23 +13,27 @@ import org.jefree.security.audit.AuditableEntity;
     @UniqueConstraint(columnNames = {"url", "job_id"})
   }
 )
-public class JobSkillEntity extends AuditableEntity<String> {
+public class JobSkillEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", updatable = false, nullable = false)
+  @JsonView(DefaultView.Entity.class)
   private Long id;
 
   @NotBlank
   @Column(name="url", updatable = false, nullable = false)
+  @JsonView(DefaultView.Entity.class)
   private String url;
 
   @NotBlank
   @Column(name="title", updatable = false, nullable = false)
+  @JsonView(DefaultView.Entity.class)
   private String title;
 
   @Min(1)
   @Column(name="month", updatable = true, nullable = false)
+  @JsonView(DefaultView.Entity.class)
   private int month;
 
   @ManyToOne(cascade = CascadeType.REFRESH)
