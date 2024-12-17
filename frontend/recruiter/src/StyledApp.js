@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     // Misty Rose: #FFE4E1
     boxShadow: '0 10px 15px -3px #d1d5db, 0 4px 6px -4px #d1d5db',
     borderRadius: '0.5rem',
-    padding: '1rem',
+    padding: '0.8rem',
     margin: '1rem',
     display: 'block',
     unicodeBidi: 'isolate',
@@ -128,10 +128,17 @@ const useStyles = makeStyles((theme) => ({
   re_recruiter_jobs_dotted: {
     border: '1px dotted #000',
     borderRadius: '0.5rem',
-    padding: '0.35rem',
+    padding: '0.38rem',
     marginBottom: '0.5rem',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-  }
+    fontSize: '0.75rem',
+  },
+  re_recruiter_jobs_dotted_container: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
