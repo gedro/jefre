@@ -1,9 +1,11 @@
 package org.jefree.job;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.jefree.database.DefaultView;
 import org.jefree.security.audit.AuditableEntity;
 import org.jefree.security.authentication.user.UserEntity;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -76,6 +78,7 @@ public class JobEntity extends AuditableEntity<String> {
 
   @ManyToOne(optional = false, cascade = CascadeType.DETACH)
   @JoinColumn(name = "recruiter_id", referencedColumnName = "id")
+  @JsonView(DefaultView.Ignore.class)
   private UserEntity recruiter;
 
   @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)

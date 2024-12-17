@@ -22,10 +22,10 @@ public class JobController {
 
   @PreAuthorize("hasRole('RECRUITER')")
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<JobEntity> createJob(
+  public ResponseEntity<String> createJob(
     @AuthenticationPrincipal final User user, @RequestBody final JobEntity job
   ) {
     final JobEntity savedJob = jobService.saveJob(user, job);
-    return ResponseEntity.ok(savedJob);
+    return ResponseEntity.ok("Saved");
   }
 }
