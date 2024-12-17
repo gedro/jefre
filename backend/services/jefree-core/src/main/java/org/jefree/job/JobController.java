@@ -1,14 +1,15 @@
 package org.jefree.job;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.jefree.database.DefaultView;
 import org.jefree.security.authentication.user.User;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/jobs", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,5 +28,12 @@ public class JobController {
   ) {
     final JobEntity savedJob = jobService.saveJob(user, job);
     return ResponseEntity.ok("Saved");
+  }
+
+  @PreAuthorize("hasRole('RECRUITER')")
+  @GetMapping
+  @JsonView(DefaultView.Entity.class)
+  public ResponseEntity<List<JobEntity>> getJobs(@AuthenticationPrincipal final User user) {
+    return ResponseEntity.ok(jobService.getUserJobs(user));
   }
 }

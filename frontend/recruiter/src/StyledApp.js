@@ -89,7 +89,42 @@ const useStyles = makeStyles((theme) => ({
   re_new_job_desc_div: {
     height: '18rem',
     marginBottom: '3.5rem',
-  }
+  },
+  re_recruiter_jobs_container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  re_recruiter_job_card: {
+    width: '100%',
+    maxWidth: '15rem',
+    // backgroundColor: 'rgb(255 255 255)',
+    backgroundColor: '#E6E6FA',
+    // Lavender: #E6E6FA
+    // Light Pink: #FFB6C1
+    // Pale Turquoise: #AFEEEE
+    // Mint Cream: #F5FFFA
+    // Misty Rose: #FFE4E1
+    boxShadow: '0 10px 15px -3px #d1d5db, 0 4px 6px -4px #d1d5db',
+    borderRadius: '0.5rem',
+    padding: '1rem',
+    margin: '1rem',
+    display: 'block',
+    unicodeBidi: 'isolate',
+  },
+  re_recruiter_jobs_link: {
+    textDecoration: 'none',
+  },
+  re_recruiter_jobs_button: {
+    color: 'white',
+    border: 'none',
+    borderRadius: '0.25rem',
+    padding: '0.5rem',
+    cursor: 'pointer',
+    width: '100%',
+    marginTop: '1rem',
+    fontSize: '0.875rem',
+  },
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
@@ -102,6 +137,9 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
         </Route>
         <Route exact path="/recruiter/jobs">
           <JobList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+        </Route>
+        <Route path="/recruiter/jobs/:jobId/candidates">
+          <CandidateList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route path="/recruiter/jobs/:jobId">
           <JobDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />

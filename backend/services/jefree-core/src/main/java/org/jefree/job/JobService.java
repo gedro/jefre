@@ -6,6 +6,8 @@ import org.jefree.security.authentication.user.UserNotFoundException;
 import org.jefree.security.authentication.user.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JobService {
 
@@ -15,6 +17,11 @@ public class JobService {
   public JobService(final JobRepository jobRepository, final UserRepository userRepository) {
     this.jobRepository = jobRepository;
     this.userRepository = userRepository;
+  }
+
+  @Transactional(Transactional.TxType.REQUIRED)
+  public List<JobEntity> getUserJobs(final User user) {
+    return jobRepository.findByRecruiterId(user.getId());
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
