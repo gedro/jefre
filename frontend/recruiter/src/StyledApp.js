@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
   },
   re_recruiter_job_card: {
     width: '100%',
-    maxWidth: '15rem',
+    maxWidth: '17rem',
     // backgroundColor: 'rgb(255 255 255)',
     backgroundColor: '#E6E6FA',
     // Lavender: #E6E6FA
@@ -123,8 +123,16 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     width: '100%',
     marginTop: '1rem',
-    fontSize: '0.875rem',
+    fontSize: '0.9rem',
+    fontWeight: '600',
   },
+  re_recruiter_jobs_dotted: {
+    border: '1px dotted #000',
+    borderRadius: '0.5rem',
+    padding: '0.35rem',
+    marginBottom: '0.5rem',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  }
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {

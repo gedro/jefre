@@ -44,9 +44,9 @@ export default function JobList({ classes, appContext, onAppContextChanged, hist
                   <hr className={classes.re_new_job_hr}/>
                 </h2>}
                 <div className={classes.re_new_job_flex}>
-                  {job.workType && <div>{transformEnum(workTypes, job.workType)}</div>}
-                  {job.jobType && <div>{transformEnum(jobTypes, job.jobType)}</div>}
-                  {job.experienceLevel && <div>{transformEnum(experienceLevels, job.experienceLevel)}</div>}
+                  {job.workType && <div className={classes.re_recruiter_jobs_dotted}>{transformEnum(workTypes, job.workType)}</div>}
+                  {job.jobType && <div className={classes.re_recruiter_jobs_dotted}>{transformEnum(jobTypes, job.jobType)}</div>}
+                  {job.experienceLevel && <div className={classes.re_recruiter_jobs_dotted}>{transformEnum(experienceLevels, job.experienceLevel)}</div>}
                 </div>
                 {job.vacancyEndDate && <p><u>Ends</u>: {job.vacancyEndDate}</p>}
                 {job.country && <p>{job.country}{job.city && `, ${job.city}`}</p>}
