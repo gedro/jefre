@@ -25,6 +25,10 @@ public class OccupationExperienceEntity extends AuditableEntity<String> {
   @Column(name="url", updatable = false, nullable = false)
   private String url;
 
+  @NotBlank
+  @Column(name="title", updatable = false, nullable = false)
+  private String title;
+
   @Min(1)
   @Column(name="month", updatable = true, nullable = false)
   private int month;
@@ -48,6 +52,14 @@ public class OccupationExperienceEntity extends AuditableEntity<String> {
 
   public void setUrl(final String url) {
     this.url = url;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(final String title) {
+    this.title = title;
   }
 
   public int getMonth() {

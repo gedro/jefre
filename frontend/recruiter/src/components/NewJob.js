@@ -73,8 +73,8 @@ export default function NewJob({ classes, appContext, onAppContextChanged, histo
         "contactEmail": contactEmail,
         "contactPhone": contactPhone,
         "description": jobDescription,
-        "skills": selectedSkills.map(skill => { return {"url": skill.url, "month": skill.month}; }),
-        "occupations": selectedOptions.map(occupation => { return {"url": occupation.url, "month": occupation.month}; }),
+        "skills": selectedSkills,
+        "occupations": selectedOptions,
       }
 
       await appContext.api.post("/jobs", job);
