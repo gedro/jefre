@@ -52,6 +52,8 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
       const response = await appContext.api.get('/candidate');
       const candidateData = response.data;
 
+      if(!candidateData) return;
+
       // Set form values with fetched data
       reset({
         displayName: candidateData.displayName,
@@ -66,9 +68,6 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
       setResume(candidateData.resume);
       setSelectedOptions(candidateData.occupations);
       setSelectedSkills(candidateData.skills);
-
-      // const selectedRoles = roles.filter(role => response.data.roles.includes(role.value));
-      // setUserRoles(selectedRoles);
     } finally {
       setLoading(false);
     }
