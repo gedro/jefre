@@ -115,7 +115,10 @@ jobs:
 
       - name: Run docker container
         run: |
-          docker service create -d -p 80:8080 \
+          docker service create -d \
+            -p 80:8080 \
+            -p 5005:5005 \
+            -e JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005" \
             --name jefree-backend-container \
             --with-registry-auth \
             --secret JEFREE_JWT_SECRET \
