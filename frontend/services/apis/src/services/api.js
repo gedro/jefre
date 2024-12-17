@@ -9,6 +9,7 @@ const api = (appContext) => {
       Accept: "application/json",
     },
     withCredentials: true,
+    withXSRFToken: false
   });
 
   // Add a request interceptor to include JWT and CSRF tokens
