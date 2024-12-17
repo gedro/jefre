@@ -1,9 +1,11 @@
 package org.jefree.candidate;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.jefree.database.DefaultView;
 import org.jefree.job.ExperienceLevel;
 import org.jefree.job.JobType;
 import org.jefree.job.WorkType;
@@ -67,6 +69,7 @@ public class CandidateEntity extends AuditableEntity<String> {
 
   @OneToOne(optional = false, cascade = CascadeType.ALL)
   @JoinColumn(name = "user_id", referencedColumnName = "id")
+  @JsonView(DefaultView.Ignore.class)
   private UserEntity user;
 
   @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)

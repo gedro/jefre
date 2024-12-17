@@ -1,9 +1,11 @@
 package org.jefree.security.audit;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
+import org.jefree.database.DefaultView;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,25 +16,31 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@JsonView(DefaultView.Entity.class)
 public abstract class AuditableEntity<U> {
 
   @CreatedBy
   @Column(name = "created_by")
+  @JsonView(DefaultView.Ignore.class)
   private U createdBy;
 
   @CreatedDate
   @Column(name = "created_date")
+  @JsonView(DefaultView.Ignore.class)
   private LocalDateTime createdDate;
 
   @LastModifiedBy
   @Column(name = "last_modified_by")
+  @JsonView(DefaultView.Ignore.class)
   private U modifiedBy;
 
   @LastModifiedDate
   @Column(name = "last_modified_date")
+  @JsonView(DefaultView.Ignore.class)
   private LocalDateTime lastModifiedDate;
 
   @Version
+  @JsonView(DefaultView.Ignore.class)
   private Long version;
 
   public U getCreatedBy() {

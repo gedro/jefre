@@ -1,5 +1,7 @@
 package org.jefree.candidate;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import org.jefree.database.DefaultView;
 import org.jefree.security.authentication.user.User;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +21,17 @@ public class CandidateController {
   }
 
   @GetMapping
+  @JsonView(DefaultView.Entity.class)
   public ResponseEntity<CandidateEntity> getCandidateInfo(@AuthenticationPrincipal final User user) {
     final CandidateEntity candidate = candidateService.getCandidate(user);
     return ResponseEntity.ok(candidate);
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<CandidateEntity> updateCandidateInfo(
+  public ResponseEntity<String> updateCandidateInfo(
     @AuthenticationPrincipal final User user, @RequestBody final CandidateEntity job
   ) {
     final CandidateEntity updatedCandidate = candidateService.updateCandidate(user, job);
-    return ResponseEntity.ok(updatedCandidate);
+    return ResponseEntity.ok("Updated");
   }
 }

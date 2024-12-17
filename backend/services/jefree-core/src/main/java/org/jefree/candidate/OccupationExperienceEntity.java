@@ -1,8 +1,10 @@
 package org.jefree.candidate;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import org.jefree.database.DefaultView;
 import org.jefree.security.audit.AuditableEntity;
 
 @Entity(name = "OccupationExperience")
@@ -29,6 +31,7 @@ public class OccupationExperienceEntity extends AuditableEntity<String> {
 
   @ManyToOne(cascade = CascadeType.REFRESH)
   @JoinColumn(name = "candidate_id", referencedColumnName = "id", nullable = false, updatable = false)
+  @JsonView(DefaultView.Ignore.class)
   private CandidateEntity candidate;
 
   public Long getId() {
