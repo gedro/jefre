@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import {Switch, Route, Redirect} from 'react-router-dom';
-import { FaSearch, FaClipboardList, FaBookmark, FaStar } from "react-icons/fa";
+import { FaEdit, FaSearch, FaBookmark, FaStar } from "react-icons/fa";
 
 import MenuSidebar from 'components/MenuSidebar';
 
+import CandidateDetails from "./components/CandidateDetails";
 import Search from "./components/Search";
 import JobList from "./components/JobList";
 import JobDetails from "./components/JobDetails";
@@ -12,6 +13,11 @@ import SavedSearchList from "./components/SavedSearchList";
 import SavedSearchDetails from "./components/SavedSearchDetails";
 
 const items = [
+  {
+    label: 'Candidate details',
+    link: '/candidate/details',
+    icon: <FaEdit />
+  },
   {
     label: 'Search Job',
     link: '/candidate/search',
@@ -44,7 +50,45 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2em',
     display: 'block',
     unicodeBidi: 'isolate',
-  }
+  },
+  ca_details_h1: {
+    color: 'rgb(30 41 59)',
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+    fontWeight: '700',
+    paddingBottom: '0rem',
+    margin: '0',
+  },
+  ca_details_hr: {
+    border: 'none',
+    borderTop: '1px solid #ccc',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+  },
+  ca_details_flex: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  ca_details_form_line: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "start",
+    alignItems: "center",
+    marginTop: "0.5em",
+    marginBottom: "0.5em",
+  },
+  ca_details_form_label: {
+    marginRight: "1em",
+  },
+  ca_details_form_select: {
+    minWidth: "45em",
+  },
+  ca_details_desc_div: {
+    height: '18rem',
+    marginBottom: '3.5rem',
+  },
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
@@ -52,6 +96,9 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
   return (
     <MenuSidebar name={"CANDIDATE"} items={items} >
       <Switch>
+        <Route exact path="/candidate/details">
+          <CandidateDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+        </Route>
         <Route exact path="/candidate/search">
           <Search classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
