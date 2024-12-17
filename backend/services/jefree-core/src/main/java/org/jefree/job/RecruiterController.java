@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +31,11 @@ public class RecruiterController {
   @JsonView(DefaultView.Entity.class)
   public ResponseEntity<List<CandidateEntity>> getFavoriteCandidates(@AuthenticationPrincipal final User user) {
     return ResponseEntity.ok(candidateService.getFavoriteCandidates(user));
+  }
+
+  @GetMapping("/candidates/{candidateId}")
+  @JsonView(DefaultView.Entity.class)
+  public ResponseEntity<CandidateEntity> getCandidate(@PathVariable final Long candidateId) {
+    return ResponseEntity.ok(candidateService.getCandidate(candidateId));
   }
 }

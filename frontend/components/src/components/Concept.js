@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaExternalLinkAlt} from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import TextField from '@material-ui/core/TextField';
 
 export default function Concept({ classes, item, removeItem, handleOnChange }) {

@@ -26,6 +26,12 @@ public class CandidateService {
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
+  public CandidateEntity getCandidate(final Long candidateId) {
+    return candidateRepository.findById(candidateId).
+      orElseThrow(() -> new IllegalArgumentException("Candidate not found"));
+  }
+
+  @Transactional(Transactional.TxType.REQUIRED)
   public List<CandidateEntity> getFavoriteCandidates(final User user) {
     return candidateRepository.findAll(); //TODO: implement favorite candidates logic
   }

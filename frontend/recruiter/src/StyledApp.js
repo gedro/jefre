@@ -182,6 +182,38 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center"
   },
+  re_details_h4: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    fontSize: '1.5rem',
+    lineHeight: '1.8rem',
+    fontWeight: '600',
+    paddingBottom: '0rem',
+    margin: '0',
+  },
+  re_details_dotted: {
+    border: '3px dotted #000',
+    borderRadius: '0.5rem',
+    padding: '0.5rem',
+    marginBottom: '0.5rem',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    fontSize: '1.5rem',
+  },
+  re_details_concept_list: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  re_details_concept_list_row: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "start",
+    alignItems: "center",
+    width: "100%",
+    padding: "0.5em",
+    borderBottom: "2px dashed #ccc",
+    fontSize: '1.5rem',
+  },
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
