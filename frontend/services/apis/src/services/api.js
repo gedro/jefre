@@ -21,7 +21,6 @@ const api = (appContext) => {
 
       if (appContext.csrfToken) {
         config.headers["X-XSRF-TOKEN"] = appContext.csrfToken;
-        console.log("headers", config.headers);
       }
       return config;
     },
