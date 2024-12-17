@@ -31,7 +31,7 @@ public class CandidateController {
   public ResponseEntity<String> updateCandidateInfo(
     @AuthenticationPrincipal final User user, @RequestBody final CandidateEntity job
   ) {
-    final CandidateEntity updatedCandidate = candidateService.updateCandidate(user, job);
+    candidateService.updateCandidate(user, job);
     return ResponseEntity.ok("Updated");
   }
 }

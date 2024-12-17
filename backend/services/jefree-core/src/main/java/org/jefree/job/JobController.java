@@ -22,18 +22,34 @@ public class JobController {
   }
 
   @PreAuthorize("hasRole('RECRUITER')")
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<String> createJob(
-    @AuthenticationPrincipal final User user, @RequestBody final JobEntity job
-  ) {
-    final JobEntity savedJob = jobService.saveJob(user, job);
-    return ResponseEntity.ok("Saved");
-  }
-
-  @PreAuthorize("hasRole('RECRUITER')")
   @GetMapping
   @JsonView(DefaultView.Entity.class)
   public ResponseEntity<List<JobEntity>> getJobs(@AuthenticationPrincipal final User user) {
     return ResponseEntity.ok(jobService.getUserJobs(user));
+  }
+
+  @PreAuthorize("hasRole('RECRUITER')")
+  @GetMapping("/{jobId}")
+  @JsonView(DefaultView.Entity.class)
+  public ResponseEntity<JobEntity> getJob(@AuthenticationPrincipal final User user, @PathVariable final Long jobId) {
+    return ResponseEntity.ok(jobService.getUserJob(user, jobId));
+  }
+
+  @PreAuthorize("hasRole('RECRUITER')")
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<String> createJob(
+    @AuthenticationPrincipal final User user, @RequestBody final JobEntity job
+  ) {
+    jobService.saveJob(user, job);
+    return ResponseEntity.ok("Saved");
+  }
+
+  @PreAuthorize("hasRole('RECRUITER')")
+  @PutMapping(value = "/{jobId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<String> updateJob(
+    @AuthenticationPrincipal final User user, @PathVariable final Long jobId, @RequestBody final JobEntity job
+  ) {
+    jobService.updateJob(user, jobId, job);
+    return ResponseEntity.ok("Updated");
   }
 }

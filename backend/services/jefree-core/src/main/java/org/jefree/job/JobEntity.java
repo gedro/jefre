@@ -11,6 +11,7 @@ import org.jefree.security.authentication.user.UserEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @Entity(name = "Job")
@@ -82,10 +83,10 @@ public class JobEntity extends AuditableEntity<String> {
   private UserEntity recruiter;
 
   @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<JobSkillEntity> skills;
+  private List<JobSkillEntity> skills = Collections.emptyList();
 
   @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<JobOccupationEntity> occupations;
+  private List<JobOccupationEntity> occupations = Collections.emptyList();
 
   public Long getId() {
     return id;
