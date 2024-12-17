@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import Loader from 'components/Loader';
@@ -6,7 +7,6 @@ import Loader from 'components/Loader';
 import workTypes from /*webpackIgnore: true*/ '../../../utils/workTypes';
 import jobTypes from /*webpackIgnore: true*/ '../../../utils/jobTypes';
 import experienceLevels from /*webpackIgnore: true*/ '../../../utils/experienceLevels';
-import {Link} from "react-router-dom";
 
 export default function JobList({ classes, appContext, onAppContextChanged, history }) {
   const [loading, setLoading] = useState(false);
