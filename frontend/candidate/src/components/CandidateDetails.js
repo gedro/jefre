@@ -108,104 +108,104 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
 
   return (
     <Fragment>
-    {loading ? ( <Loader /> ) : (
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className={classes.ca_candidate}>
-          <div>
-            <div className={classes.ca_details_flex}>
-              <div>
-                <h1 className={classes.ca_details_h1}>Candidate Details</h1>
+      {loading ? ( <Loader /> ) : (
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <div className={classes.ca_candidate}>
+            <div>
+              <div className={classes.ca_details_flex}>
+                <div>
+                  <h1 className={classes.ca_details_h1}>Candidate Details</h1>
+                </div>
+                <div>
+                  <Button loading={loading} text="Submit">
+                    <div style={{width: "15em", height: "1.5em", paddingTop: "0.35em"}}>Update</div>
+                  </Button>
+                </div>
               </div>
-              <div>
-                <Button loading={loading} text="Submit">
-                  <div style={{width: "15em", height: "1.5em", paddingTop: "0.35em"}}>Update</div>
-                </Button>
-              </div>
+              <hr className={classes.ca_details_hr}/>
             </div>
+            <div className={classes.ca_details_form_line}>
+              <InputTextField
+                label="Display Name" message="*Display Name is required"
+                id="displayName" min={1}
+                register={register} errors={errors}
+              />
+            </div>
+            <div className={classes.ca_details_form_line}>
+              <label className={classes.ca_details_form_label}>Job Type *:{" "}</label>
+              <Select
+                name="jobType" required={true} className={classes.ca_details_form_select} isMulti
+                value={jobType} onChange={setJobType} options={jobTypes}
+              />
+            </div>
+            <div className={classes.ca_details_form_line}>
+              <label className={classes.ca_details_form_label}>Work Type *:{" "}</label>
+              <Select
+                name="workType" required={true} className={classes.ca_details_form_select} isMulti
+                value={workType} onChange={setWorkType} options={workTypes}
+              />
+            </div>
+            <div className={classes.ca_details_form_line}>
+              <label className={classes.ca_details_form_label}>Experience Level *:{" "}</label>
+              <Select
+                name="experienceLevel" required={true} className={classes.ca_details_form_select} isMulti
+                value={experienceLevel} onChange={setExperienceLevel} options={experienceLevels}
+              />
+            </div>
+          </div>
+          <div className={classes.ca_candidate}>
+            <h1 className={classes.ca_details_h1}>Contact Information</h1>
             <hr className={classes.ca_details_hr}/>
+            <div className={classes.ca_details_form_line}>
+              <InputTextField
+                label="Contact Email" id="contactEmail" value={appContext?.user?.email}
+                register={register} errors={errors} readOnly={true}
+              />
+            </div>
+            <div className={classes.ca_details_form_line}>
+              <InputTextField
+                label="Contact Phone" message="*Contact Phone is required" id="contactPhone"
+                register={register} errors={errors}
+              />
+            </div>
           </div>
-          <div className={classes.ca_details_form_line}>
-            <InputTextField
-              label="Display Name" message="*Display Name is required"
-              id="displayName" min={1}
-              register={register} errors={errors}
-            />
+          <div className={classes.ca_candidate}>
+            <h1 className={classes.ca_details_h1}>Occupations</h1>
+            <hr className={classes.ca_details_hr}/>
+            <div className={classes.ca_details_form_line}>
+              <AsyncLazySelect
+                id="candidate_occupationSelect"
+                placeholder="Select an ESCO Occupation"
+                value={selectedOptions} handleOnChange={setSelectedOptions}
+                listEndpoint="/concepts/occupations"
+                detailsEndpoint="/concepts/occupation-description"
+                appContext={appContext}
+              />
+            </div>
           </div>
-          <div className={classes.ca_details_form_line}>
-            <label className={classes.ca_details_form_label}>Job Type *:{" "}</label>
-            <Select
-              name="jobType" required={true} className={classes.ca_details_form_select} isMulti
-              value={jobType} onChange={setJobType} options={jobTypes}
-            />
+          <div className={classes.ca_candidate}>
+            <h1 className={classes.ca_details_h1}>Skills</h1>
+            <hr className={classes.ca_details_hr}/>
+            <div className={classes.ca_details_form_line}>
+              <AsyncLazySelect
+                id="candidate_skillSelect"
+                placeholder="Select an ESCO Skill"
+                value={selectedSkills} handleOnChange={setSelectedSkills}
+                listEndpoint="/concepts/skills"
+                detailsEndpoint="/concepts/skill-description"
+                appContext={appContext}
+              />
+            </div>
           </div>
-          <div className={classes.ca_details_form_line}>
-            <label className={classes.ca_details_form_label}>Work Type *:{" "}</label>
-            <Select
-              name="workType" required={true} className={classes.ca_details_form_select} isMulti
-              value={workType} onChange={setWorkType} options={workTypes}
-            />
+          <div className={classes.ca_candidate}>
+            <h1 className={classes.ca_details_h1}>Resume</h1>
+            <hr className={classes.ca_details_hr}/>
+            <div className={classes.ca_details_desc_div}>
+              <Editor id="resume" value={resume} handleOnChange={setResume}/>
+            </div>
           </div>
-          <div className={classes.ca_details_form_line}>
-            <label className={classes.ca_details_form_label}>Experience Level *:{" "}</label>
-            <Select
-              name="experienceLevel" required={true} className={classes.ca_details_form_select} isMulti
-              value={experienceLevel} onChange={setExperienceLevel} options={experienceLevels}
-            />
-          </div>
-        </div>
-        <div className={classes.ca_candidate}>
-          <h1 className={classes.ca_details_h1}>Contact Information</h1>
-          <hr className={classes.ca_details_hr}/>
-          <div className={classes.ca_details_form_line}>
-            <InputTextField
-              label="Contact Email" id="contactEmail" value={appContext?.user?.email}
-              register={register} errors={errors} readOnly={true}
-            />
-          </div>
-          <div className={classes.ca_details_form_line}>
-            <InputTextField
-              label="Contact Phone" message="*Contact Phone is required" id="contactPhone"
-              register={register} errors={errors}
-            />
-          </div>
-        </div>
-        <div className={classes.ca_candidate}>
-          <h1 className={classes.ca_details_h1}>Occupations</h1>
-          <hr className={classes.ca_details_hr}/>
-          <div className={classes.ca_details_form_line}>
-            <AsyncLazySelect
-              id="candidate_occupationSelect"
-              placeholder="Select an ESCO Occupation"
-              value={selectedOptions} handleOnChange={setSelectedOptions}
-              listEndpoint="/concepts/occupations"
-              detailsEndpoint="/concepts/occupation-description"
-              appContext={appContext}
-            />
-          </div>
-        </div>
-        <div className={classes.ca_candidate}>
-          <h1 className={classes.ca_details_h1}>Skills</h1>
-          <hr className={classes.ca_details_hr}/>
-          <div className={classes.ca_details_form_line}>
-            <AsyncLazySelect
-              id="candidate_skillSelect"
-              placeholder="Select an ESCO Skill"
-              value={selectedSkills} handleOnChange={setSelectedSkills}
-              listEndpoint="/concepts/skills"
-              detailsEndpoint="/concepts/skill-description"
-              appContext={appContext}
-            />
-          </div>
-        </div>
-        <div className={classes.ca_candidate}>
-          <h1 className={classes.ca_details_h1}>Resume</h1>
-          <hr className={classes.ca_details_hr}/>
-          <div className={classes.ca_details_desc_div}>
-            <Editor id="resume" value={resume} handleOnChange={setResume}/>
-          </div>
-        </div>
-      </form>
-    )}
+        </form>
+      )}
     </Fragment>
   );
 };
