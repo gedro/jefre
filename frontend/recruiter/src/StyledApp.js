@@ -5,9 +5,8 @@ import { FaPlus, FaBriefcase, FaStar } from "react-icons/fa";
 
 import MenuSidebar from 'components/MenuSidebar';
 
-import NewJob from './components/NewJob';
+import EditJob from './components/EditJob';
 import JobList from "./components/JobList";
-import JobDetails from "./components/JobDetails";
 import CandidateList from "./components/CandidateList";
 import CandidateDetails from "./components/CandidateDetails";
 
@@ -141,7 +140,7 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
     <MenuSidebar name={"RECRUITER"} items={items} >
       <Switch>
         <Route exact path="/recruiter/newjob">
-          <NewJob classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+          <EditJob classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route exact path="/recruiter/jobs">
           <JobList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
@@ -150,7 +149,7 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
           <CandidateList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route path="/recruiter/jobs/:jobId">
-          <JobDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+          <EditJob classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route exact path="/recruiter/candidates">
           <CandidateList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />

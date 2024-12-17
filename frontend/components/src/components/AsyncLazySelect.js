@@ -96,6 +96,9 @@ export default function AsyncLazySelect({
 
   const addConcept = () => {
     if(selectedConcept) {
+      if(!selectedConcept?.month) {
+        selectedConcept.month = 1;
+      }
       setSelectedConcepts([...selectedConcepts, selectedConcept]);
       setSelectedConcept(null);
     }
