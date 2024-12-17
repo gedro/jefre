@@ -121,6 +121,7 @@ libs:
           "Origin",
           "Pragma",
           "Prefer",
+          "Priority",
           "Range",
           "Referer",
           "Transfer-Encoding",
@@ -142,6 +143,12 @@ libs:
           "Save-Data",
           "withcredentials",
           "enctype",
+          "sec-ch-ua",
+          "sec-ch-ua-mobile",
+          "sec-ch-ua-platform",
+          "sec-fetch-dest",
+          "sec-fetch-mode",
+          "sec-fetch-site",
 
           # Implemented as a misunderstanding of the HTTP specifications.
           # Has exactly the same functionality as standard Connection field. Must not be used with HTTP/2
@@ -202,5 +209,8 @@ libs:
           "X-UA-Compatible",
           "X-XSS-Protection",
           "X-CZ-RESPONSECODE",
-          "Clear-Site-Data"
+          "Clear-Site-Data",
+          "x-amz-cf-id",
+          "x-amz-cf-pop",
+          "x-cache",
         ]
