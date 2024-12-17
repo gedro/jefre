@@ -6,6 +6,7 @@ on:
     paths:
       - 'backend/services/jefree-core/**'
       - 'backend/libs/**'
+      - 'backend/services/Dockerfile'
       - .github/workflows/backend-service-workflow.yml
       - .github/workflows/backend-jefree-core.yml
 
