@@ -69,8 +69,9 @@ export default function ProfileDetails({ classes, appContext, onAppContextChange
     accountNonExpired: false,
     credentialsNonExpired: false,
   });
+
   useEffect(() => {
-    if( userDetails !== {} ) {
+    if( userDetails !== {} && appContext?.api?.get ) {
       appContext.api.get(`/user`)
         .then((response) => {
           setUserDetails(response.data);
