@@ -1,253 +1,149 @@
 <template>
   <div class="p-grid p-fluid dashboard">
-    <div class="p-col-12 p-lg-4">
-      <div class="card summary">
-        <span class="title">Users</span>
-        <span class="detail">Number of visitors</span>
-        <span class="count visitors">12</span>
-      </div>
-    </div>
-    <div class="p-col-12 p-lg-4">
-      <div class="card summary">
-        <span class="title">Sales</span>
-        <span class="detail">Number of purchases</span>
-        <span class="count purchases">534</span>
-      </div>
-    </div>
-    <div class="p-col-12 p-lg-4">
-      <div class="card summary">
-        <span class="title">Revenue</span>
-        <span class="detail">Income for today</span>
-        <span class="count revenue">$3,200</span>
-      </div>
-    </div>
-
-    <div class="p-col-12 p-md-6 p-xl-3">
-      <div class="highlight-box">
-        <div class="initials" style="background-color: #007be5; color: #00448f">
-          <span>TV</span>
-        </div>
-        <div class="highlight-details">
-          <i class="pi pi-search"></i>
-          <span>Total Queries</span>
-          <span class="count">523</span>
-        </div>
-      </div>
-    </div>
-    <div class="p-col-12 p-md-6 p-xl-3">
-      <div class="highlight-box">
-        <div class="initials" style="background-color: #ef6262; color: #a83d3b">
-          <span>TI</span>
-        </div>
-        <div class="highlight-details">
-          <i class="pi pi-question-circle"></i>
-          <span>Total Issues</span>
-          <span class="count">81</span>
-        </div>
-      </div>
-    </div>
-    <div class="p-col-12 p-md-6 p-xl-3">
-      <div class="highlight-box">
-        <div class="initials" style="background-color: #20d077; color: #038d4a">
-          <span>OI</span>
-        </div>
-        <div class="highlight-details">
-          <i class="pi pi-filter"></i>
-          <span>Open Issues</span>
-          <span class="count">21</span>
-        </div>
-      </div>
-    </div>
-    <div class="p-col-12 p-md-6 p-xl-3">
-      <div class="highlight-box">
-        <div class="initials" style="background-color: #f9c851; color: #b58c2b">
-          <span>CI</span>
-        </div>
-        <div class="highlight-details">
-          <i class="pi pi-check"></i>
-          <span>Closed Issues</span>
-          <span class="count">60</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-col-12 p-md-6 p-lg-4">
-      <Panel header="Tasks" style="height: 100%">
-        <ul class="task-list">
-          <li>
-            <Checkbox name="task" value="reports" v-model="tasksCheckbox" />
-            <span class="task-name">Sales Reports</span>
-            <i class="pi pi-chart-bar" />
-          </li>
-          <li>
-            <Checkbox name="task" value="invoices" v-model="tasksCheckbox" />
-            <span class="task-name">Pay Invoices</span>
-            <i class="pi pi-dollar" />
-          </li>
-          <li>
-            <Checkbox name="task" value="dinner" v-model="tasksCheckbox" />
-            <span class="task-name">Dinner with Tony</span>
-            <i class="pi pi-user" />
-          </li>
-          <li>
-            <Checkbox name="task" value="meeting" v-model="tasksCheckbox" />
-            <span class="task-name">Client Meeting</span>
-            <i class="pi pi-users" />
-          </li>
-          <li>
-            <Checkbox name="task" value="theme" v-model="tasksCheckbox" />
-            <span class="task-name">New Theme</span>
-            <i class="pi pi-globe" />
-          </li>
-          <li>
-            <Checkbox name="task" value="flight" v-model="tasksCheckbox" />
-            <span class="task-name">Flight Ticket</span>
-            <i class="pi pi-briefcase" />
-          </li>
-        </ul>
-      </Panel>
-    </div>
-
-    <div class="p-col-12 p-md-6 p-lg-4 p-fluid contact-form">
-      <Panel header="Contact Us">
-        <div class="p-grid">
-          <div class="p-col-12">
-            <Dropdown
-              v-model="dropdownCity"
-              :options="dropdownCities"
-              optionLabel="name"
-              placeholder="Select a City"
-            />
-          </div>
-          <div class="p-col-12">
-            <InputText type="text" placeholder="Name" />
-          </div>
-          <div class="p-col-12">
-            <InputText type="text" placeholder="Age" />
-          </div>
-          <div class="p-col-12">
-            <InputText type="text" placeholder="Message" />
-          </div>
-          <div class="p-col-12">
-            <Button type="button" label="Send" icon="pi pi-envelope" />
+    <div class="two-column-layout">
+      <div class="p-col-12 p-lg-4">
+        <div class="p-col-12 p-lg-4" style="margin-top: 0.7em" >
+          <div class="card summary">
+            <span class="title">Job Skills</span>
+            <span class="detail">Count of ESCO skills used in open positions</span>
+            <span class="count jobSkills">{{ countJobSkills }}</span>
           </div>
         </div>
-      </Panel>
-    </div>
+        <div class="p-col-12 p-lg-4">
+          <div class="card summary">
+            <span class="title">Job Occupations</span>
+            <span class="detail">Count of ESCO occupations used in open positions</span>
+            <span class="count jobOccupations">{{ countJobOccupations }}</span>
+          </div>
+        </div>
+        <div class="p-col-12 p-lg-4">
+          <div class="card summary">
+            <span class="title">Candidate Skills</span>
+            <span class="detail">Count of ESCO skills used in candidates profiles</span>
+            <span class="count candidateSkills">{{ countCandidateSkills }}</span>
+          </div>
+        </div>
+        <div class="p-col-12 p-lg-4">
+          <div class="card summary">
+            <span class="title">Candidate Occupations</span>
+            <span class="detail">Count of ESCO occupations used in candidates profiles</span>
+            <span class="count candidateOccupations">{{ countCandidateOccupations }}</span>
+          </div>
+        </div>
+      </div>
 
-    <!-- <div class="p-col-12 p-lg-4 contacts">
-      <Panel header="Contacts">
-        <ul>
-          <li>
-            <button class="p-link">
-              <span class="name">Claire Williams</span>
-              <span class="email">clare@primevue.com</span>
-            </button>
-          </li>
-          <li>
-            <button class="p-link">
-              <span class="name">Jason Dourne</span>
-              <span class="email">jason@primevue.com</span>
-            </button>
-          </li>
-          <li>
-            <button class="p-link">
-              <span class="name">Jane Davidson</span>
-              <span class="email">jane@primevue.com</span>
-            </button>
-          </li>
-          <li>
-            <button class="p-link">
-              <span class="name">Tony Corleone</span>
-              <span class="email">tony@primevue.com</span>
-            </button>
-          </li>
-        </ul>
-      </Panel>
-    </div>  -->
-
-    <div class="p-col-12 p-lg-4">
-      <Panel header="Activity" style="height: 100%">
-        <div class="activity-header">
-          <div class="p-grid">
-            <div class="p-col-6">
-              <span style="font-weight: bold">Last Activity</span>
-              <p>Updated 1 minute ago</p>
+      <div class="p-col-12 p-lg-4">
+        <div class="p-col-12 p-md-6 p-xl-3">
+          <div class="highlight-box">
+            <div class="initials" style="background-color: #007be5; color: #00448f">
+              <span>TU</span>
             </div>
-            <div class="p-col-6" style="text-align: right">
-              <Button label="Refresh" icon="pi pi-refresh" />
+            <div class="highlight-details">
+              <i class="pi pi-users"></i>
+              <span>Total Users</span>
+              <span class="count">{{ countRegisteredUsers }}</span>
             </div>
           </div>
         </div>
-
-        <ul class="activity-list">
-          <li>
-            <div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-              <h5 class="activity p-m-0">Income</h5>
-              <div class="count">$900</div>
+        <div class="p-col-12 p-md-6 p-xl-3">
+          <div class="highlight-box">
+            <div class="initials" style="background-color: #ef6262; color: #a83d3b">
+              <span>TC</span>
             </div>
-            <ProgressBar :value="95" :showValue="false" />
-          </li>
-          <li>
-            <div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-              <h5 class="activity p-m-0">Tax</h5>
-              <div class="count" style="background-color: #f9c851">$250</div>
+            <div class="highlight-details">
+              <i class="pi pi-user"></i>
+              <span>Total Candidates</span>
+              <span class="count">{{ countRegisteredCandidates }}</span>
             </div>
-            <ProgressBar :value="24" :showValue="false" />
-          </li>
-        </ul>
-      </Panel>
-    </div>
+          </div>
+        </div>
+        <div class="p-col-12 p-md-6 p-xl-3">
+          <div class="highlight-box">
+            <div class="initials" style="background-color: #20d077; color: #038d4a">
+              <span>TR</span>
+            </div>
+            <div class="highlight-details">
+              <i class="pi pi-briefcase"></i>
+              <span>Total Recruiters</span>
+              <span class="count">{{ countRegisteredRecruiters }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-col-12 p-md-6 p-xl-3">
+          <div class="highlight-box">
+            <div class="initials" style="background-color: #f9c851; color: #b58c2b">
+              <span>OP</span>
+            </div>
+            <div class="highlight-details">
+              <i class="pi pi-folder-open"></i>
+              <span>Open Positions</span>
+              <span class="count">{{ countRegisteredJobs }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="p-col-12 p-lg-6">
-      <div class="card">
-        <h1 style="font-size: 16px">Recent Sales</h1>
-        <DataTable
-          :value="products"
-          class="p-datatable-customers"
-          :rows="5"
-          style="margin-bottom: 20px"
-          :paginator="true"
-        >
-          <Column>
-            <template #header> Logo </template>
-            <template #body="slotProps">
-              <img
-                :src="'assets/layout/images/product/' + slotProps.data.image"
-                :alt="slotProps.data.image"
-                width="50"
-              />
-            </template>
-          </Column>
-          <Column field="name" header="Name" :sortable="true"></Column>
-          <Column field="category" header="Category" :sortable="true"></Column>
-          <Column field="price" header="Price" :sortable="true">
-            <template #body="slotProps">
-              {{ formatCurrency(slotProps.data.price) }}
-            </template>
-          </Column>
-          <Column>
-            <template #header> View </template>
-            <template #body>
-              <Button
-                icon="pi pi-search"
-                type="button"
-                class="p-button-success p-mr-2 p-mb-1"
-              ></Button>
-              <Button
-                icon="pi pi-times"
-                type="button"
-                class="p-button-danger p-mb-1"
-              ></Button>
-            </template>
-          </Column>
-        </DataTable>
+      <div class="p-col-12 p-lg-4">
+        <Panel header="ESCO Skills and Occupations Usage Overview" style="height: 100%">
+          <ul class="activity-list">
+            <li>
+              <div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+                <h5 class="activity p-m-0">Occupations</h5>
+                <div class="count">{{ countAllOccupations }}</div>
+              </div>
+              <ProgressBar :value=escoOccupationUsagePercentage :showValue="true"/>
+            </li>
+            <li>
+              <div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+                <h5 class="activity p-m-0">Skills</h5>
+                <div class="count" style="background-color: #f9c851">{{ countAllSkills }}</div>
+              </div>
+              <ProgressBar :value=escoSkillUsagePercentage :showValue="true"/>
+            </li>
+          </ul>
+        </Panel>
       </div>
-    </div>
-    <div class="p-col-12 p-lg-6">
-      <div class="card">
-        <Chart type="line" :data="lineData" />
+
+      <div class="p-col-12 p-lg-6">
+        <div class="card">
+          <h1 style="font-size: 16px"><strong>Recently opened positions</strong></h1>
+          <DataTable
+              :value=recentJobs
+              class="p-datatable-customers"
+              :rows="3"
+              style="margin-bottom: 20px"
+              :paginator="true"
+          >
+            <Column field="creationDate" header="Creation Date" :sortable="true">
+              <template #body="slotProps">
+                {{ new Date(slotProps.data.createdDate).toLocaleDateString('en-CA') }} <!--YYYY-MM-DD-->
+              </template>
+            </Column>
+            <Column field="title" header="Title" :sortable="true">
+              <template #body="slotProps">
+                {{ slotProps.data.title }}
+              </template>
+            </Column>
+            <Column>
+              <template #header> View</template>
+              <template #body="slotProps">
+                <Button
+                    icon="pi pi-external-link"
+                    type="button"
+                    class="p-button p-mr-2 p-mb-1"
+                    @click="gotoLink(slotProps.data.id)"
+                ></Button>
+              </template>
+            </Column>
+          </DataTable>
+        </div>
       </div>
+      <div class="p-col-12 p-lg-6">
+        <div class="card">
+          <Chart type="line" :data="lineData"/>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -269,6 +165,12 @@ import Chart from 'primevue/chart';
 import ProgressBar from 'primevue/progressbar';
 
 export default {
+  props: {
+    appContext: {
+      type: Object,
+      required: true,
+    },
+  },
   components: {
     ProgressBar,
     Checkbox,
@@ -282,69 +184,89 @@ export default {
   },
   data() {
     return {
-      tasksCheckbox: [],
-      dropdownCities: [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' },
-      ],
-      dropdownCity: null,
-      options: {
-        defaultDate: '2019-01-01',
-        header: {
-          left: 'prev,next',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay',
-        },
-        editable: true,
-      },
-      events: null,
-      products: null,
-      selectedProducts: null,
-      lineData: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
-        datasets: [
-          {
-            label: 'First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40],
-            fill: false,
-            backgroundColor: '#2f4860',
-            borderColor: '#2f4860',
-          },
-          {
-            label: 'Second Dataset',
-            data: [28, 48, 40, 19, 86, 27, 90],
-            fill: false,
-            backgroundColor: '#00bb7e',
-            borderColor: '#00bb7e',
-          },
-        ],
-      },
+      countJobSkills: null,
+      countJobOccupations: null,
+      countCandidateSkills: null,
+      countCandidateOccupations: null,
+      countRegisteredUsers: null,
+      countRegisteredCandidates: null,
+      countRegisteredRecruiters: null,
+      countRegisteredJobs: null,
+      countAllOccupations: null,
+      countAllSkills: null,
+      escoOccupationUsagePercentage: null,
+      escoSkillUsagePercentage: null,
+      recentJobs: [],
+      lineData: null,
     };
   },
+  mounted() {
+    this.fetchDataFromAPI();
+  },
   methods: {
-    formatCurrency(value) {
-      return value.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      });
+    gotoLink(jobId) {
+      window.open(`/admin/jobs/${jobId}`, '_blank');
+    },
+    async fetchDataFromAPI() {
+      this.appContext.api.get('/admin/statistics')
+        .then((response) => {
+          this.countJobSkills = response.data.countJobSkills;
+          this.countJobOccupations = response.data.countJobOccupations;
+          this.countCandidateSkills = response.data.countCandidateSkills;
+          this.countCandidateOccupations = response.data.countCandidateOccupations;
+          this.countRegisteredUsers = response.data.countRegisteredUsers;
+          this.countRegisteredCandidates = response.data.countRegisteredCandidates;
+          this.countRegisteredRecruiters = response.data.countRegisteredRecruiters;
+          this.countRegisteredJobs = response.data.countRegisteredJobs;
+          this.countAllOccupations = response.data.countAllOccupations;
+          this.countAllSkills = response.data.countAllSkills;
+          this.escoOccupationUsagePercentage = response.data.escoOccupationUsagePercentage;
+          this.escoSkillUsagePercentage = response.data.escoSkillUsagePercentage;
+          this.recentJobs = response.data.recentJobs;
+          this.lineData = {
+            labels: response.data.lineData.labels,
+            datasets: [
+              {
+                label: 'Registered Users',
+                data: response.data.lineData.registeredUsers,
+                fill: false,
+                backgroundColor: '#2f4860',
+                borderColor: '#2f4860',
+              },
+              {
+                label: 'Registered Candidates',
+                data: response.data.lineData.registeredCandidates,
+                fill: false,
+                backgroundColor: '#00bb7e',
+                borderColor: '#00bb7e',
+              },
+              {
+                label: 'Registered Recruiters',
+                data: response.data.lineData.registeredRecruiters,
+                fill: false,
+                backgroundColor: '#f9c851',
+                borderColor: '#f9c851',
+              },
+              {
+                label: 'Open Positions',
+                data: response.data.lineData.openJobs,
+                fill: false,
+                backgroundColor: '#007be5',
+                borderColor: '#007be5',
+              },
+            ],
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 976px) and (max-width: 65rem) {
   ::v-deep(.p-datatable) {
     &.p-datatable-customers {
       .p-datatable-thead > tr > th,
@@ -354,6 +276,7 @@ export default {
 
       .p-datatable-tbody > tr {
         border-bottom: 1px solid #dee2e6;
+
         > td {
           text-align: left;
           display: flex;
@@ -381,6 +304,7 @@ export default {
     }
   }
 }
+
 $fontSize: 14px;
 $bodyBgColor: #edf0f5;
 $textColor: #333333;
@@ -476,6 +400,7 @@ h5 {
 h6 {
   font-size: 1rem;
 }
+
 @mixin icon-override($icon) {
   &:before {
     content: $icon;
@@ -485,13 +410,13 @@ h6 {
 @mixin linear-gradient($top, $bottom) {
   background: $top; /* Old browsers */
   background: linear-gradient(to bottom, $top 0%, $bottom 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000', GradientType=0); /* IE6-9 */
 }
 
 @mixin linear-gradient-left($left, $right) {
   background: $left; /* Old browsers */
   background: linear-gradient(to right, $left 0%, $right 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$left, endColorstr=$right,GradientType=1 ); /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$left, endColorstr=$right, GradientType=1); /* IE6-9 */
 }
 
 @mixin opacity($opacity) {
@@ -519,6 +444,7 @@ h6 {
     clear: both;
   }
 }
+
 mark {
   background: #fff8e1;
   padding: 0.25rem 0.4rem;
@@ -561,12 +487,27 @@ p {
     }
   }
 }
+
 /* Footer */
 $footerBgColor: #ffffff;
 .dashboard {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
-    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   background-color: #edf0f5;
+  min-width: 976px;
+  max-width: 65rem;
+
+  .two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .two-column-layout > .p-col-12 {
+    flex: 1 1 50%; /* Each child takes up 50% of the container's width */
+    box-sizing: border-box;
+    padding: 0.3rem;
+  }
+
   .summary {
     position: relative;
 
@@ -589,16 +530,20 @@ $footerBgColor: #ffffff;
       padding: 7px 14px;
       border-radius: $borderRadius;
 
-      &.visitors {
+      &.jobSkills {
         background-color: #20d077;
       }
 
-      &.purchases {
+      &.jobOccupations {
         background-color: #f9c851;
       }
 
-      &.revenue {
+      &.candidateSkills {
         background-color: #007be5;
+      }
+
+      &.candidateOccupations {
+        background-color: #282889;
       }
     }
   }

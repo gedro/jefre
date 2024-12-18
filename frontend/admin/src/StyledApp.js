@@ -8,6 +8,7 @@ import UserDetails from './components/UserDetails';
 
 import Loader from 'components/Loader';
 import MenuSidebar from 'components/MenuSidebar';
+
 const DashboardLazy = lazy(() => import('./components/mfe/connector/DashboardApp'));
 
 const items = [
@@ -218,7 +219,7 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
             <UserDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
           </Route>
           <Route exact path="/admin/dashboard">
-            <DashboardLazy />
+            <DashboardLazy appContext={appContext} />
           </Route>
           <Route exact path="/admin">
             <Redirect to="/admin/users" />

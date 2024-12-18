@@ -22,5 +22,8 @@ public interface OccupationRepository extends JpaRepository<OccupationEntity, St
     "         WHERE LOWER(TRIM(o.title)) LIKE LOWER(CONCAT('%', :title, '%')) " +
     "ORDER BY LEVENSHTEIN(LOWER(TRIM(o.title)), LOWER(:title))")
   Page<OccupationEntity> findByTitleContainingIgnoreCaseOrderByTitle(@Param("title") String title, Pageable pageable);
+
+  @Query("SELECT COUNT(DISTINCT e.url) FROM EscoOccupation e")
+  long countEscoOccupations();
 }
 

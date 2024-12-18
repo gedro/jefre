@@ -22,5 +22,8 @@ public interface SkillRepository extends JpaRepository<SkillEntity, String> {
     "         WHERE LOWER(TRIM(s.title)) LIKE LOWER(CONCAT('%', :title, '%')) " +
     "ORDER BY LEVENSHTEIN(LOWER(TRIM(s.title)), LOWER(:title))")
   Page<SkillEntity> findByTitleContainingIgnoreCaseOrderByTitle(@Param("title") String title, Pageable pageable);
+
+  @Query("SELECT COUNT(DISTINCT e.url) FROM EscoSkill e")
+  long countEscoSkills();
 }
 

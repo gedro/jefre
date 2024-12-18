@@ -2,8 +2,8 @@ import { createApp } from "vue";
 import Dashboard from "./components/Dashboard.vue";
 
 
-const mount = (el) => {
-  const app = createApp(Dashboard);
+const mount = (el, appContext) => {
+  const app = createApp(Dashboard, { appContext });
   app.mount(el);
 };
 
