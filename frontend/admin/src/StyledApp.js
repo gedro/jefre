@@ -5,6 +5,7 @@ import { FaUser, FaTachometerAlt } from "react-icons/fa";
 
 import UserList from './components/UserList';
 import UserDetails from './components/UserDetails';
+import JobDetails from './components/JobDetails';
 
 import Loader from 'components/Loader';
 import MenuSidebar from 'components/MenuSidebar';
@@ -203,7 +204,102 @@ const useStyles = makeStyles((theme) => ({
   ad_details_checkbox: {
     width: '1.25rem',
     height: '1.25rem',
-  }
+  },
+  ad_jobdetails: {
+    width: '100%',
+    minWidth: '976px',
+    maxWidth: '65rem',
+    backgroundColor: 'rgb(255 255 255)',
+    boxShadow: '0 10px 15px -3px #d1d5db, 0 4px 6px -4px #d1d5db',
+    borderRadius: '0.5rem',
+    padding: '2rem',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: '1em',
+    marginBottom: '2em',
+    display: 'block',
+    unicodeBidi: 'isolate',
+  },
+  ad_jobdetails_h1: {
+    color: 'rgb(30 41 59)',
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+    fontWeight: '700',
+    paddingBottom: '0rem',
+    margin: '0',
+  },
+  ad_jobdetails_hr: {
+    border: 'none',
+    borderTop: '1px solid #ccc',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+  },
+  ad_jobdetails_h4: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    fontSize: '1.5rem',
+    lineHeight: '1.8rem',
+    fontWeight: '600',
+    paddingBottom: '0rem',
+    margin: '0',
+  },
+  ad_jobdetails_form_line: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "start",
+    alignItems: "center",
+    marginTop: "0.5em",
+    marginBottom: "0.5em",
+  },
+  ad_jobdetails_dotted_container: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginTop: "2.5em",
+  },
+  ad_jobdetails_dotted: {
+    border: '3px dotted #000',
+    borderRadius: '0.5rem',
+    padding: '0.5rem',
+    marginBottom: '0.5rem',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    fontSize: '1.5rem',
+  },
+  ad_jobdetails_concept_list: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  ad_jobdetails_concept_list_row: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "start",
+    alignItems: "center",
+    width: "100%",
+    padding: "0.5em",
+    borderBottom: "2px dashed #ccc",
+    fontSize: '1.5rem',
+  },
+  ad_jobdetails_job_desc_div: {
+    height: '18rem',
+    marginBottom: '3.5rem',
+  },
+  ad_jobdetails_contact_list: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  ad_jobdetails_contact_list_row: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "left",
+    alignItems: "center",
+    width: "100%",
+    padding: "0.5em",
+    borderBottom: "2px dashed #ccc",
+    fontSize: '1.5rem',
+  },
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {
@@ -217,6 +313,9 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
           </Route>
           <Route path="/admin/users/:userId">
             <UserDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+          </Route>
+          <Route path="/admin/jobs/:jobId">
+            <JobDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
           </Route>
           <Route exact path="/admin/dashboard">
             <DashboardLazy appContext={appContext} />

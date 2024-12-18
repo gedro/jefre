@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaExternalLinkAlt } from "react-icons/fa";
+
+import 'react-quill/dist/quill.snow.css';
 import ReactQuill from "react-quill";
 
 import workTypes from /*webpackIgnore: true*/ '../../../utils/workTypes';

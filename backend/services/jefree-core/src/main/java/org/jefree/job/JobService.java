@@ -20,6 +20,11 @@ public class JobService {
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
+  public JobEntity getJob(final Long jobId) {
+    return jobRepository.findById(jobId).orElseThrow(() -> new RuntimeException("Job not found"));
+  }
+
+  @Transactional(Transactional.TxType.REQUIRED)
   public List<JobEntity> getUserJobs(final User user) {
     return jobRepository.findByRecruiterId(user.getId());
   }
