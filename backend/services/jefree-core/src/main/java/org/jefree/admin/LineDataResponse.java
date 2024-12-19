@@ -31,14 +31,14 @@ public class LineDataResponse {
         Pair::getSecond
       ));
 
-    Long previousSum = 0L;
+    Long total = 0L;
     final List<Long> data = new ArrayList<>();
     for(int i = 0; i < this.labels.size(); i++) {
       final String date = this.labels.get(i);
       if (dateToSumMap.containsKey(date)) {
-        previousSum = dateToSumMap.get(date);
+        total += dateToSumMap.get(date);
       }
-      data.add(previousSum);
+      data.add(total);
     }
 
     return data;
