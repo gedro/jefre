@@ -81,6 +81,11 @@ export default function InputTextField({
 
   return (
     <div className={classes.com_inputFieldDiv}>
+      <style> {`
+        .MuiFormControl-root {
+          z-index: 0;
+        }
+      `} </style>
       <TextField
         className={ classes.com_inputField + (errors[id]?.message ? " " + classes.com_inputFieldError : "") }
         variant="outlined"
