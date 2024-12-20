@@ -2,6 +2,7 @@ package org.jefree.job;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import org.jefree.database.DefaultView;
@@ -37,9 +38,10 @@ public class JobOccupationEntity {
   private int month = 1;
 
   @Min(1)
-  @Column(name="max_month", updatable = true, nullable = false, columnDefinition = "integer DEFAULT 1")
+  @Max(960)
+  @Column(name="max_month", updatable = true, nullable = false, columnDefinition = "integer DEFAULT 960")
   @JsonView(DefaultView.Entity.class)
-  private int maxMonth = 1;
+  private int maxMonth = 960;
 
   @ManyToOne(cascade = CascadeType.REFRESH)
   @JoinColumn(name = "job_id", referencedColumnName = "id", nullable = false, updatable = false)

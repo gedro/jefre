@@ -11,6 +11,7 @@ import Editor from './components/Editor';
 import DatePicker from './components/DatePicker';
 import LocationPicker from './components/LocationPicker';
 import AsyncLazySelect from './components/AsyncLazySelect';
+import MonthText from "./components/MonthText";
 
 const items = [
   {
@@ -37,6 +38,7 @@ export default () => {
   return (
     <BrowserRouter>
       <MenuSidebar name={"SHARED"} items={items} >
+        <MonthText months={47} />
         <InputTextField
           label="UserName"
           id="username"

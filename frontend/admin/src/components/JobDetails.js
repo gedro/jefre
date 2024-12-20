@@ -11,6 +11,7 @@ import jobTypes from /*webpackIgnore: true*/ '../../../utils/jobTypes';
 import experienceLevels from /*webpackIgnore: true*/ '../../../utils/experienceLevels';
 
 import Loader from 'components/Loader';
+import MonthText from 'components/MonthText';
 
 export default function JobDetails({ classes, appContext, onAppContextChanged, history }) {
   const { jobId } = useParams();
@@ -104,9 +105,15 @@ export default function JobDetails({ classes, appContext, onAppContextChanged, h
               <div className={classes.ad_jobdetails_concept_list}>
                 {job?.occupations?.map((occupation) => (
                   <div key={occupation?.id} className={classes.ad_jobdetails_concept_list_row}>
-                    <span style={{ paddingRight: "4em" }}>
-                      {occupation?.month} {occupation?.month && " months"}
-                    </span>
+                    <div style={{ paddingRight: "4em", display: 'flex' }}>
+                      {occupation?.month && <MonthText months={occupation.month}/>}
+                      {occupation?.maxMonth && occupation?.month != occupation.maxMonth && (
+                        <Fragment>
+                          <span>&nbsp;-&nbsp;</span>
+                          <MonthText months={occupation.maxMonth} />
+                        </Fragment>
+                      )}
+                    </div>
                     <span>
                       {occupation?.title}{" "}
                       <a style={{marginLeft: "0.5em"}} href={occupation?.url} target="_blank" rel="noopener noreferrer">
@@ -125,9 +132,15 @@ export default function JobDetails({ classes, appContext, onAppContextChanged, h
               <div className={classes.ad_jobdetails_concept_list}>
                 {job?.skills?.map((skill) => (
                   <div key={skill?.id} className={classes.ad_jobdetails_concept_list_row}>
-                    <span style={{paddingRight: "4em"}}>
-                      {skill?.month} {skill?.month && " months"}
-                    </span>
+                    <div style={{paddingRight: "4em", display: 'flex'}}>
+                      {skill?.month && <MonthText months={skill.month}/>}
+                      {skill?.maxMonth && skill?.month != skill.maxMonth && (
+                        <Fragment>
+                          <span>&nbsp;-&nbsp;</span>
+                          <MonthText months={skill.maxMonth}/>
+                        </Fragment>
+                      )}
+                    </div>
                     <span>
                       {skill?.title}{" "}
                       <a style={{marginLeft: "0.5em"}} href={skill?.url} target="_blank" rel="noopener noreferrer">

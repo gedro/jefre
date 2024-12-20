@@ -11,7 +11,8 @@
     "./Editor": "./src/components/Editor.js",
     "./DatePicker": "./src/components/DatePicker.js",
     "./LocationPicker": "./src/components/LocationPicker.js",
-    "./AsyncLazySelect": "./src/components/AsyncLazySelect.js"
+    "./AsyncLazySelect": "./src/components/AsyncLazySelect.js",
+    "./MonthText": "./src/components/MonthText.js"
   },
   "remotesDev": { },
   "remotesProd": { }

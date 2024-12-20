@@ -100,7 +100,7 @@ export default function AsyncLazySelect({
         selectedConcept.month = 1;
       }
       if(withRange && !selectedConcept?.maxMonth) {
-        selectedConcept.maxMonth = 1;
+        selectedConcept.maxMonth = 960;
       }
       setSelectedConcepts([...selectedConcepts, selectedConcept]);
       setSelectedConcept(null);

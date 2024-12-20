@@ -11,6 +11,7 @@ import jobTypes from /*webpackIgnore: true*/ '../../../utils/jobTypes';
 import experienceLevels from /*webpackIgnore: true*/ '../../../utils/experienceLevels';
 
 import Loader from 'components/Loader';
+import MonthText from 'components/MonthText';
 
 export default function CandidateDetails({ classes, appContext, onAppContextChanged, history }) {
   const { candidateId } = useParams();
@@ -83,7 +84,7 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
                 {candidate?.occupations?.map((occupation) => (
                   <div key={occupation?.id} className={classes.re_details_concept_list_row}>
                     <span style={{ paddingRight: "4em" }}>
-                      {occupation?.month} {occupation?.month && " months"}
+                      {occupation?.month && <MonthText months={occupation.month}/>}
                     </span>
                     <span>
                       {occupation?.title}{" "}
@@ -104,7 +105,7 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
                 {candidate?.skills?.map((skill) => (
                   <div key={skill?.id} className={classes.re_details_concept_list_row}>
                     <span style={{paddingRight: "4em"}}>
-                      {skill?.month} {skill?.month && " months"}
+                      {skill?.month && <MonthText months={skill.month}/>}
                     </span>
                     <span>
                       {skill?.title}{" "}
