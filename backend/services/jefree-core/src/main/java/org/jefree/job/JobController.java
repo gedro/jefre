@@ -29,7 +29,7 @@ public class JobController {
   @GetMapping
   @JsonView(DefaultView.Entity.class)
   public ResponseEntity<List<JobEntity>> getJobs(@AuthenticationPrincipal final User user) {
-    return ResponseEntity.ok(jobService.getUserJobs(user));
+    return ResponseEntity.ok(jobService.getRecruiterJobs(user));
   }
 
   @PreAuthorize("hasRole('RECRUITER')")

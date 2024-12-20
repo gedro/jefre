@@ -89,6 +89,68 @@ const useStyles = makeStyles((theme) => ({
     height: '18rem',
     marginBottom: '3.5rem',
   },
+  ca_search_jobs_container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  ca_search_job_card: {
+    width: '100%',
+    maxWidth: '17rem',
+    // backgroundColor: 'rgb(255 255 255)',
+    backgroundColor: '#F5FFFA',
+    // Lavender: #E6E6FA
+    // Light Pink: #FFB6C1
+    // Pale Turquoise: #AFEEEE
+    // Mint Cream: #F5FFFA
+    // Misty Rose: #FFE4E1
+    boxShadow: '0 10px 15px -3px #d1d5db, 0 4px 6px -4px #d1d5db',
+    borderRadius: '0.5rem',
+    padding: '0.8rem',
+    margin: '1rem',
+    display: 'block',
+    unicodeBidi: 'isolate',
+  },
+  ca_search_hr: {
+    border: 'none',
+    borderTop: '1px solid #ccc',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+  },
+  ca_search_jobs_dotted_container: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  ca_search_jobs_dotted: {
+    border: '1px dotted #000',
+    borderRadius: '0.5rem',
+    padding: '0.38rem',
+    marginBottom: '0.5rem',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    fontSize: '0.75rem',
+  },
+  ca_search_flex: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  ca_search_jobs_link: {
+    textDecoration: 'none',
+  },
+  ca_search_jobs_button: {
+    color: 'white',
+    border: 'none',
+    borderRadius: '0.25rem',
+    padding: '0.5rem',
+    cursor: 'pointer',
+    width: '100%',
+    marginTop: '1rem',
+    fontSize: '0.9rem',
+    fontWeight: '600',
+  },
 }));
 
 export default function StyledApp({ appContext, onAppContextChanged, history }) {

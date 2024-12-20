@@ -25,8 +25,13 @@ public class JobService {
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
-  public List<JobEntity> getUserJobs(final User user) {
-    return jobRepository.findByRecruiterId(user.getId());
+  public List<JobEntity> getRecruiterJobs(final User recruiter) {
+    return jobRepository.findByRecruiterId(recruiter.getId());
+  }
+
+  @Transactional(Transactional.TxType.REQUIRED)
+  public List<JobEntity> getSuggestedJobsFor(final User candidate) {
+    return jobRepository.findAll(); //TODO: Implement suggestion logic
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
