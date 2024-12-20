@@ -17,7 +17,7 @@ const items = [
     icon: <FaPlus />
   },
   {
-    label: 'Jobs',
+    label: 'My Jobs',
     link: '/recruiter/jobs',
     icon: <FaBriefcase />
   },
