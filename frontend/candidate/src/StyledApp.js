@@ -23,16 +23,16 @@ const items = [
     link: '/candidate/search',
     icon: <FaSearch />
   },
-  {
-    label: 'Saved Jobs',
-    link: '/candidate/jobs',
-    icon: <FaBookmark />
-  },
-  {
-    label: 'Saved Searches',
-    link: '/candidate/searches',
-    icon: <FaStar />
-  }
+  // {
+  //   label: 'Saved Jobs',
+  //   link: '/candidate/jobs',
+  //   icon: <FaBookmark />
+  // },
+  // {
+  //   label: 'Saved Searches',
+  //   link: '/candidate/searches',
+  //   icon: <FaStar />
+  // }
 ];
 
 const useStyles = makeStyles((theme) => ({
