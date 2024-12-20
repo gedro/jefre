@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AsyncLazySelect({
-  appContext, id, value, handleOnChange, listEndpoint, detailsEndpoint,
+  appContext, id, value, handleOnChange, listEndpoint, detailsEndpoint, withRange,
   placeholder = "Select an option"
 }) {
   const [description, setDescription] = useState("");
@@ -98,6 +98,9 @@ export default function AsyncLazySelect({
     if(selectedConcept) {
       if(!selectedConcept?.month) {
         selectedConcept.month = 1;
+      }
+      if(withRange && !selectedConcept?.maxMonth) {
+        selectedConcept.maxMonth = 1;
       }
       setSelectedConcepts([...selectedConcepts, selectedConcept]);
       setSelectedConcept(null);
@@ -136,9 +139,12 @@ export default function AsyncLazySelect({
     setSelectedConcept(option);
   };
 
-  const handleItemChange = (e, item) => {
+  const handleItemChange = (e, item, which) => {
     const updatedConcepts = selectedConcepts.map((concept) => {
       if (concept.url === item.url) {
+        if(withRange && which === "max") {
+          return { ...concept, maxMonth: e.target.value };
+        }
         return { ...concept, month: e.target.value };
       }
       return concept;
@@ -173,7 +179,7 @@ export default function AsyncLazySelect({
           </button>
         </div>
         <div className={classes.com_select_concept_list_container} >
-          <ConceptList items={selectedConcepts} classes={classes}
+          <ConceptList items={selectedConcepts} classes={classes} withRange={withRange}
                        removeItem={removeConcept} handleItemChange={handleItemChange} />
         </div>
       </div>

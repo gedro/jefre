@@ -126,8 +126,6 @@ export default function EditJob({ classes, appContext, onAppContextChanged, hist
         "occupations": selectedOptions,
       }
 
-      console.log("jobData: ", jobData);
-
       if(jobId) {
         await appContext.api.put(`/jobs/${jobId}`, jobData);
         reset();
@@ -140,7 +138,7 @@ export default function EditJob({ classes, appContext, onAppContextChanged, hist
         toast.success("Job is posted!");
       }
     } catch (error) {
-      toast.error("Error while " + (jobId ? "updating" : "creating") + "job posting.");
+      toast.error("Error while " + (jobId ? "updating" : "creating") + " job posting.");
     } finally {
       setLoading(false);
     }
@@ -250,7 +248,7 @@ export default function EditJob({ classes, appContext, onAppContextChanged, hist
                 value={selectedOptions} handleOnChange={setSelectedOptions}
                 listEndpoint="/concepts/occupations"
                 detailsEndpoint="/concepts/occupation-description"
-                appContext={appContext}
+                withRange={true} appContext={appContext}
               />
             </div>
           </div>
@@ -264,7 +262,7 @@ export default function EditJob({ classes, appContext, onAppContextChanged, hist
                 value={selectedSkills} handleOnChange={setSelectedSkills}
                 listEndpoint="/concepts/skills"
                 detailsEndpoint="/concepts/skill-description"
-                appContext={appContext}
+                withRange={true} appContext={appContext}
               />
             </div>
           </div>

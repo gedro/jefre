@@ -34,7 +34,12 @@ public class JobOccupationEntity {
   @Min(1)
   @Column(name="month", updatable = true, nullable = false)
   @JsonView(DefaultView.Entity.class)
-  private int month;
+  private int month = 1;
+
+  @Min(1)
+  @Column(name="max_month", updatable = true, nullable = false, columnDefinition = "integer DEFAULT 1")
+  @JsonView(DefaultView.Entity.class)
+  private int maxMonth = 1;
 
   @ManyToOne(cascade = CascadeType.REFRESH)
   @JoinColumn(name = "job_id", referencedColumnName = "id", nullable = false, updatable = false)
@@ -71,6 +76,14 @@ public class JobOccupationEntity {
 
   public void setMonth(final int month) {
     this.month = month;
+  }
+
+  public int getMaxMonth() {
+    return maxMonth;
+  }
+
+  public void setMaxMonth(final int maxMonth) {
+    this.maxMonth = maxMonth;
   }
 
   public JobEntity getJob() {
