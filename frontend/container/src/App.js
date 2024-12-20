@@ -82,11 +82,15 @@ export default () => {
           csrfToken: null,
           token: null,
           user: null,
+          api: null,
           isAdmin: false,
           isCandidate: false,
-          isRecruiter: false
+          isRecruiter: false,
         }))
         .then(() => history.push('/'))
+        .then(() => setTimeout(() => {
+          window.location.reload();
+        }, 1000))
         .catch(() => toast.error("Failed to logout"));
     }
   }, [appContext.isSignedIn]);
