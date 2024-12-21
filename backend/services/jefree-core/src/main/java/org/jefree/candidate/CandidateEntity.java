@@ -18,6 +18,9 @@ import java.util.List;
 @Entity(name = "Candidate")
 @Table(
   name = "candidates",
+  indexes = {
+    @Index(columnList = "user_id", unique = true)
+  },
   uniqueConstraints = {
     @UniqueConstraint(columnNames = "user_id")
   }

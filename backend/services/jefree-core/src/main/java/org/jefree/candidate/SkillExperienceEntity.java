@@ -9,6 +9,9 @@ import org.jefree.database.DefaultView;
 @Entity(name = "SkillExperience")
 @Table(
   name = "skill_experience",
+  indexes = {
+    @Index(columnList = "url, candidate_id", unique = true)
+  },
   uniqueConstraints = {
     @UniqueConstraint(columnNames = {"url", "candidate_id"})
   }

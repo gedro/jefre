@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotBlank;
 @Entity(name = "EscoSkill")
 @Table(
   name = "skills",
+  indexes = {
+    @Index(columnList = "url", unique = true)
+  },
   uniqueConstraints = {
     @UniqueConstraint(columnNames = "url")
   }
