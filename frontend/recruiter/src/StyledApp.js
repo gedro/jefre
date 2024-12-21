@@ -21,11 +21,11 @@ const items = [
     link: '/recruiter/jobs',
     icon: <FaBriefcase />
   },
-  // {
-  //   label: 'Saved Candidates',
-  //   link: '/recruiter/candidates',
-  //   icon: <FaStar />
-  // }
+  {
+    label: 'Candidates',
+    link: '/recruiter/candidates',
+    icon: <FaStar />
+  }
 ];
 
 const useStyles = makeStyles((theme) => ({
