@@ -321,7 +321,7 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
             <DashboardLazy appContext={appContext} />
           </Route>
           <Route exact path="/admin">
-            <Redirect to="/admin/dashboard" />
+            <Redirect to="/admin/users" />
           </Route>
         </Switch>
       </MenuSidebar>
