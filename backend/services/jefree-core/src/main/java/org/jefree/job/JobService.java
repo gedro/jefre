@@ -30,11 +30,6 @@ public class JobService {
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
-  public List<JobEntity> getSuggestedJobsFor(final User candidate) {
-    return jobRepository.findAll(); //TODO: Implement suggestion logic
-  }
-
-  @Transactional(Transactional.TxType.REQUIRED)
   public JobEntity getUserJob(final User user, final Long jobId) {
     return jobRepository.findByIdAndRecruiterId(jobId, user.getId())
       .orElseThrow(() -> new RuntimeException("Job not found"));

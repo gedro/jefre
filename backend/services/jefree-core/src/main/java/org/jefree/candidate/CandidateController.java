@@ -5,6 +5,7 @@ import org.jefree.database.DefaultView;
 import org.jefree.job.JobEntity;
 import org.jefree.job.JobService;
 import org.jefree.security.authentication.user.User;
+import org.jefree.suggestion.SuggestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +22,16 @@ public class CandidateController {
 
   private final CandidateService candidateService;
   private final JobService jobService;
+  private final SuggestionService suggestionService;
 
   public CandidateController(
     final CandidateService candidateService,
-    final JobService jobService
+    final JobService jobService,
+    final SuggestionService suggestionService
   ) {
     this.candidateService = candidateService;
     this.jobService = jobService;
+    this.suggestionService = suggestionService;
   }
 
   @GetMapping
@@ -48,7 +52,7 @@ public class CandidateController {
   @GetMapping("/jobs")
   @JsonView(DefaultView.Entity.class)
   public ResponseEntity<List<JobEntity>> getSuggestedJobsFor(@AuthenticationPrincipal final User user) {
-    return new ResponseEntity<>(jobService.getSuggestedJobsFor(user), HttpStatus.OK);
+    return new ResponseEntity<>(suggestionService.getSuggestedJobsFor(user), HttpStatus.OK);
   }
 
   @GetMapping("/jobs/{id}")
