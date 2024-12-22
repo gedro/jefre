@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -123,7 +124,7 @@ public class OAuth2UserService {
 
     entity.setEmail(oAuthUser.getEmail());
     entity.setUsername(oAuthUser.getUsername());
-    entity.setName(oAuthUser.getName());
+    entity.setName(StringUtils.hasLength(oAuthUser.getName()) ? oAuthUser.getName() : oAuthUser.getUsername());
     entity.setSignUpMethod(type);
     entity.setPassword("");
 

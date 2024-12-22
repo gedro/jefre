@@ -12,7 +12,7 @@ public interface OAuthEntity {
 
   @NotBlank @Size(max = 60) String getUsername();
 
-  @NotBlank @Size(max = 120) String getName();
+  @Size(max = 120) String getName();
 
   @NotBlank @Size(max = 40) String getExternalId();
 
