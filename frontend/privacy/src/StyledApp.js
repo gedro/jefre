@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
   pp_h2: {
   },
+  pp_h3: {
+
+  },
   pp_p: {
     marginBottom: '1rem',
     margin: '0px',
