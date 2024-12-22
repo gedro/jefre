@@ -164,7 +164,7 @@ public class GitHubUserEntity extends AuditableEntity<String> implements OAuthEn
   }
 
   @Override
-  public @Size(max = 120) String getName() {
+  public String getName() {
     return name;
   }
 
