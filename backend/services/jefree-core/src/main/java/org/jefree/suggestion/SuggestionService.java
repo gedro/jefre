@@ -2,35 +2,30 @@ package org.jefree.suggestion;
 
 import jakarta.transaction.Transactional;
 import org.jefree.candidate.CandidateEntity;
-import org.jefree.candidate.CandidateRepository;
 import org.jefree.job.JobEntity;
-import org.jefree.job.JobRepository;
-import org.jefree.security.authentication.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 public class SuggestionService {
 
-  private final CandidateRepository candidateRepository;
-  private final JobRepository jobRepository;
+  private static final AtomicBoolean REFRESH_SCORES = new AtomicBoolean(false);
 
-  public SuggestionService(
-    final CandidateRepository candidateRepository,
-    final JobRepository jobRepository
-  ) {
-    this.candidateRepository = candidateRepository;
-    this.jobRepository = jobRepository;
+  private final MatchingScoreRepository matchingScoreRepository;
+
+  public SuggestionService(final MatchingScoreRepository matchingScoreRepository) {
+    this.matchingScoreRepository = matchingScoreRepository;
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
-  public List<CandidateEntity> suggestCandidates(final Long jobId) {
-    return candidateRepository.findAll(); //TODO: implement suggestion logic
+  public List<Suggestion<CandidateEntity>>  suggestCandidates(final Long jobId) {
+    return matchingScoreRepository.findTop20ByJobIdOrderByScoreDesc(jobId);
   }
 
   @Transactional(Transactional.TxType.REQUIRED)
-  public List<JobEntity> getSuggestedJobsFor(final User candidate) {
-    return jobRepository.findAll(); //TODO: Implement suggestion logic
+  public List<Suggestion<JobEntity>>  getSuggestedJobsFor(final Long candidateId) {
+    return matchingScoreRepository.findTop20ByCandidateIdOrderByScoreDesc(candidateId);
   }
 }

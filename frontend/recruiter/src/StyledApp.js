@@ -8,6 +8,7 @@ import MenuSidebar from 'components/MenuSidebar';
 import EditJob from './components/EditJob';
 import JobList from "./components/JobList";
 import CandidateList from "./components/CandidateList";
+import FavoriteCandidateList from "./components/FavoriteCandidateList";
 import CandidateDetails from "./components/CandidateDetails";
 
 const items = [
@@ -137,7 +138,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "100%",
     justifyContent: "space-around",
-    alignItems: "center"
+    alignItems: "center",
+    flexWrap: "wrap",
   },
   re_recruiter_candidates_container: {
     display: 'flex',
@@ -234,7 +236,7 @@ export default function StyledApp({ appContext, onAppContextChanged, history }) 
           <EditJob classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route exact path="/recruiter/candidates">
-          <CandidateList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
+          <FavoriteCandidateList classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />
         </Route>
         <Route path="/recruiter/candidates/:candidateId">
           <CandidateDetails classes={classes} appContext={appContext} onAppContextChanged={onAppContextChanged} history={history} />

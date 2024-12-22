@@ -5,7 +5,9 @@ import org.jefree.database.DefaultView;
 import org.jefree.job.JobEntity;
 import org.jefree.job.JobService;
 import org.jefree.security.authentication.user.User;
+import org.jefree.suggestion.Suggestion;
 import org.jefree.suggestion.SuggestionService;
+import org.jefree.suggestion.SuggestionView;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -50,9 +52,14 @@ public class CandidateController {
   }
 
   @GetMapping("/jobs")
-  @JsonView(DefaultView.Entity.class)
-  public ResponseEntity<List<JobEntity>> getSuggestedJobsFor(@AuthenticationPrincipal final User user) {
-    return new ResponseEntity<>(suggestionService.getSuggestedJobsFor(user), HttpStatus.OK);
+  @JsonView(SuggestionView.Job.class)
+  public ResponseEntity<List<Suggestion<JobEntity>>> getSuggestedJobsFor(@AuthenticationPrincipal final User user) {
+    final CandidateEntity candidate = candidateService.getCandidate(user);
+    if(candidate == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    return new ResponseEntity<>(suggestionService.getSuggestedJobsFor(candidate.getId()), HttpStatus.OK);
   }
 
   @GetMapping("/jobs/{id}")

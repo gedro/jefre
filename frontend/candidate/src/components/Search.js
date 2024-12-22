@@ -13,7 +13,14 @@ export default function Search({ classes, appContext, onAppContextChanged, histo
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetchJobs().catch((err) => { toast.error("Error fetching jobs", err); });
+    fetchJobs().catch((err) => {
+      if (err.response?.status === 404) {
+        toast.error("Please complete your candidate profile first");
+        history.push("/candidate/details");
+      } else {
+        toast.error("Error fetching jobs", err);
+      }
+    });
   }, []);
 
   const fetchJobs = async () => {
@@ -35,19 +42,24 @@ export default function Search({ classes, appContext, onAppContextChanged, histo
     <Fragment>
       {loading ? ( <Loader /> ) : (
         <div className={classes.ca_candidate}>
-          <h1>Posted Jobs</h1>
+          <h1>Suggested Jobs</h1>
           <div className={classes.ca_search_jobs_container}>
-            {jobs.map((job) => (
+            {jobs.map(({job, score, occupationCoverage, skillCoverage}) => (
               <div key={job.id} className={classes.ca_search_job_card}>
                 {job.title && <h2>
                   {job.title}
                   <hr className={classes.ca_search_hr}/>
                 </h2>}
                 <div className={classes.ca_search_jobs_dotted_container}>
-                  {job.workType && <div className={classes.ca_search_jobs_dotted}>{transformEnum(workTypes, job.workType)}</div>}
-                  {job.jobType && <div className={classes.ca_search_jobs_dotted}>{transformEnum(jobTypes, job.jobType)}</div>}
-                  {job.experienceLevel && <div className={classes.ca_search_jobs_dotted}>{transformEnum(experienceLevels, job.experienceLevel)}</div>}
+                  {job.workType &&
+                    <div className={classes.ca_search_jobs_dotted}>{transformEnum(workTypes, job.workType)}</div>}
+                  {job.jobType &&
+                    <div className={classes.ca_search_jobs_dotted}>{transformEnum(jobTypes, job.jobType)}</div>}
+                  {job.experienceLevel && <div
+                    className={classes.ca_search_jobs_dotted}>{transformEnum(experienceLevels, job.experienceLevel)}</div>}
                 </div>
+                <p><strong>Occupations match: </strong>{occupationCoverage}%</p>
+                <p><strong>Skills match: </strong>{skillCoverage}%</p>
                 {job.vacancyEndDate && <p><u>Ends</u>: {job.vacancyEndDate}</p>}
                 {job.country && <p>{job.country}{job.city && `, ${job.city}`}</p>}
                 <div className={classes.ca_search_flex}>
