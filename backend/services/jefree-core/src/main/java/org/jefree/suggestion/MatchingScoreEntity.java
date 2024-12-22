@@ -3,16 +3,18 @@ package org.jefree.suggestion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-@Entity
+@Entity(name = "MatchingScore")
 @Table(
   name = "matching_scores",
   indexes = {
     @Index(columnList = "candidate_id, candidate_version, job_id, job_version", unique = true),
+    @Index(columnList = "job_id, candidate_id", unique = true),
     @Index(columnList = "job_id"),
     @Index(columnList = "candidate_id")
   },
   uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"candidate_id", "candidate_version", "job_id", "job_version"})
+    @UniqueConstraint(columnNames = {"candidate_id", "candidate_version", "job_id", "job_version"}),
+    @UniqueConstraint(columnNames = {"job_id", "candidate_id"})
   }
 )
 @IdClass(MatchingScoreId.class)

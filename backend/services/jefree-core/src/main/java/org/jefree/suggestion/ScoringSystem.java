@@ -17,8 +17,14 @@ public class ScoringSystem {
   private static final int DELAYED = 30;
   private static final int MAX_DELAYED_COUNTER = 300 /* 5m */ / DELAYED;
 
-  public static final AtomicBoolean REFRESH_SCORES = new AtomicBoolean(false);
+  public static final AtomicBoolean REFRESH_SCORES = new AtomicBoolean(true);
   private static final AtomicInteger DELAYED_COUNTER  = new AtomicInteger(0);
+
+  private final SuggestionService  suggestionService;
+
+  public ScoringSystem(final SuggestionService suggestionService) {
+    this.suggestionService = suggestionService;
+  }
 
   @Scheduled(initialDelay = 90, fixedDelay = DELAYED, timeUnit = TimeUnit.SECONDS)
   public void refreshScores() {
@@ -27,6 +33,7 @@ public class ScoringSystem {
       DELAYED_COUNTER.compareAndSet(MAX_DELAYED_COUNTER, 0)
     ) {
       LOG.info("Refreshing scores...");
+      suggestionService.refreshScores();
       LOG.info("Scores refreshed!");
     }
     DELAYED_COUNTER.incrementAndGet();

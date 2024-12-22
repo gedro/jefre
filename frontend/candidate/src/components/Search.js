@@ -58,6 +58,7 @@ export default function Search({ classes, appContext, onAppContextChanged, histo
                   {job.experienceLevel && <div
                     className={classes.ca_search_jobs_dotted}>{transformEnum(experienceLevels, job.experienceLevel)}</div>}
                 </div>
+                <p><strong>Score: </strong>{score}</p>
                 <p><strong>Occupations match: </strong>{occupationCoverage}%</p>
                 <p><strong>Skills match: </strong>{skillCoverage}%</p>
                 {job.vacancyEndDate && <p><u>Ends</u>: {job.vacancyEndDate}</p>}

@@ -87,6 +87,7 @@ export default function CandidateList({ classes, appContext, onAppContextChanged
                     <div key={tag} className={classes.re_recruiter_jobs_dotted}>{tag}</div>
                   ))}
                 </div>
+                <p><strong>Score: </strong>{score}</p>
                 <p><strong>Occupations match: </strong>{occupationCoverage}%</p>
                 <p><strong>Skills match: </strong>{skillCoverage}%</p>
                 <div className={classes.re_recruiter_candidates_button_div}>
