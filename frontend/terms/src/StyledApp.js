@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
   tos_h2: {
   },
+  tos_h3: {
+  },
   tos_p: {
     marginBottom: '1rem',
     margin: '0px',
