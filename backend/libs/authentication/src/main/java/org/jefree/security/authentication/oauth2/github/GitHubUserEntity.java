@@ -60,9 +60,8 @@ public class GitHubUserEntity extends AuditableEntity<String> implements OAuthEn
   @Column(name="site_admin", updatable = false)
   private Boolean siteAdmin;
 
-  @NotBlank
   @Size(max = 120)
-  @Column(name="name", length = 120, updatable = false)
+  @Column(name="name", length = 120, updatable = false, nullable = true)
   private String name;
 
   @Size(max = 120)
