@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.jefree.security.authentication.user.User;
 import org.jefree.security.authentication.user.UserNotFoundException;
 import org.jefree.security.authentication.user.UserRepository;
+import org.jefree.suggestion.ScoringSystem;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class JobService {
       skill.setJob(job);
     }
 
+    ScoringSystem.REFRESH_SCORES.set(true);
     return jobRepository.save(job);
   }
 
@@ -83,6 +85,7 @@ public class JobService {
     oldJob.getSkills().addAll(job.getSkills());
     oldJob.getOccupations().addAll(job.getOccupations());
 
+    ScoringSystem.REFRESH_SCORES.set(true);
     return jobRepository.save(oldJob);
   }
 }

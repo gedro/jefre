@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.jefree.security.authentication.user.User;
 import org.jefree.security.authentication.user.UserNotFoundException;
 import org.jefree.security.authentication.user.UserRepository;
+import org.jefree.suggestion.ScoringSystem;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -78,6 +79,7 @@ public class CandidateService {
       oldCandidate.getSkills().addAll(candidate.getSkills());
     }
 
+    ScoringSystem.REFRESH_SCORES.set(true);
     return candidateRepository.save(entity);
   }
 }

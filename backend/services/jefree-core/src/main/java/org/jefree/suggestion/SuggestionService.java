@@ -6,12 +6,9 @@ import org.jefree.job.JobEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 public class SuggestionService {
-
-  private static final AtomicBoolean REFRESH_SCORES = new AtomicBoolean(false);
 
   private final MatchingScoreRepository matchingScoreRepository;
 
