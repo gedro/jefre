@@ -12,7 +12,7 @@ export default ({ appContext, onAppContextChanged, history }) => {
 
   useEffect(() => {
     if(appContext.apiUrl && appContext.csrfToken) {
-      onAppContextChanged({ api: api(appContext) });
+      onAppContextChanged({ api: api(appContext, onAppContextChanged) });
     }
   }, [appContext.apiUrl, appContext.csrfToken, appContext.token]);
 

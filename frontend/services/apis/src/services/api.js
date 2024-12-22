@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const api = (appContext) => {
+const api = (appContext, onAppContextChanged) => {
 
   const apiInstance = axios.create({
     baseURL: `${appContext.apiUrl}/api`,
@@ -25,6 +25,9 @@ const api = (appContext) => {
       return config;
     },
     (error) => {
+      if (error.response?.status === 401) {
+        onAppContextChanged({ toLogout: true });
+      }
       return Promise.reject(error);
     }
   );

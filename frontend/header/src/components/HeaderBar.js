@@ -10,7 +10,7 @@ export default function HeaderBar({ appContext, onAppContextChanged, classes }) 
 
   const onClick = () => {
     if (appContext?.isSignedIn) {
-      onAppContextChanged({ isSignedIn: false });
+      onAppContextChanged({ toLogout: true });
     }
   };
 

@@ -30,13 +30,6 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
     mode: "onTouched",
   });
 
-  useEffect(() => {
-    if (!appContext?.isSignedIn) {
-      localStorage.removeItem('candidate_skillSelect_concepts');
-      localStorage.removeItem('candidate_occupationSelect_concepts');
-    }
-  }, [appContext.isSignedIn]);
-
   const [loading, setLoading] = useState(false);
   const [jobType, setJobType] = useState([]);
   const [experienceLevel, setExperienceLevel] = useState([]);

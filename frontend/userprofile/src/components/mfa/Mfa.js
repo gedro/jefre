@@ -27,7 +27,7 @@ export default function Mfa({ classes, appContext, onAppContextChanged, history 
     try {
       await appContext.api.post(`/auth/mfa/disable`);
       setQrCodeUrl("");
-      onAppContextChanged({ isSignedIn: false });
+      onAppContextChanged({ toLogout: true });
     } catch (error) {
       toast.error("Error disabling MFA");
     } finally {

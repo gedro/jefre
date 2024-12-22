@@ -39,6 +39,7 @@ const MountBuilder = (function () {
         isAdmin: false,
         isCandidate: false,
         isRecruiter: false,
+        toLogout: false
       };
 
       const devRoot = document.querySelector('#_testing-dev-root');

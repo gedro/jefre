@@ -50,12 +50,13 @@ export default () => {
     apiUrl: process.env.PRODUCTION_BACKEND_DOMAIN,
     api: null,
     csrfToken: foundCsrfToken,
-    token: foundToken && foundUser ? foundToken : null,
-    user: foundToken && foundUser ? foundUser : null,
-    isSignedIn: foundToken && foundUser,
-    isAdmin: foundToken && foundUser && foundUser.roles?.includes("ROLE_ADMIN"),
-    isCandidate: foundToken && foundUser && foundUser.roles?.includes("ROLE_CANDIDATE"),
-    isRecruiter: foundToken && foundUser && foundUser.roles?.includes("ROLE_RECRUITER"),
+    token: !!foundToken && !!foundUser ? foundToken : null,
+    user: !!foundToken && !!foundUser ? foundUser : null,
+    isSignedIn: !!foundToken && !!foundUser,
+    isAdmin: !!foundToken && !!foundUser && foundUser.roles?.includes("ROLE_ADMIN"),
+    isCandidate: !!foundToken && !!foundUser && foundUser.roles?.includes("ROLE_CANDIDATE"),
+    isRecruiter: !!foundToken && !!foundUser && foundUser.roles?.includes("ROLE_RECRUITER"),
+    toLogout: false
   });
 
   if(!appContext?.isAdmin) {
@@ -75,9 +76,15 @@ export default () => {
   }
 
   useEffect(() => {
-    if (!appContext.isSignedIn && (appContext?.user || appContext?.token)) {
+    if (appContext.toLogout && appContext?.isSignedIn) {
       appContext.api.post("/logout")
         .then(() => toast.success("Logged out"))
+        .then(() => {
+          localStorage.removeItem('job_skillSelect_concepts');
+          localStorage.removeItem('job_occupationSelect_concepts');
+          localStorage.removeItem('candidate_skillSelect_concepts');
+          localStorage.removeItem('candidate_occupationSelect_concepts');
+        })
         .then(() => onAppContextChanged({
           csrfToken: null,
           token: null,
@@ -86,6 +93,8 @@ export default () => {
           isAdmin: false,
           isCandidate: false,
           isRecruiter: false,
+          isSignedIn: false,
+          toLogout: false,
         }))
         .then(() => history.push('/'))
         .then(() => setTimeout(() => {
@@ -93,7 +102,7 @@ export default () => {
         }, 1000))
         .catch(() => toast.error("Failed to logout"));
     }
-  }, [appContext.isSignedIn]);
+  }, [appContext.toLogout, appContext.isSignedIn]);
 
   useEffect(() => {
     if (appContext.csrfToken) {

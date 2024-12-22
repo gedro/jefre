@@ -40,13 +40,6 @@ export default function EditJob({ classes, appContext, onAppContextChanged, hist
   });
 
   useEffect(() => {
-    if (!appContext?.isSignedIn) {
-      localStorage.removeItem('job_skillSelect_concepts');
-      localStorage.removeItem('job_occupationSelect_concepts');
-    }
-  }, [appContext.isSignedIn]);
-
-  useEffect(() => {
     fetchJobData().catch((err) => { toast.error("Error fetching job details", err); });
   }, [fetchJobData, jobId, reset]);
 

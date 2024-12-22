@@ -43,7 +43,7 @@ export default function MfaChallenge({ classes, appContext, onAppContextChanged,
       });
       toast.success("MFA verified successful");
 
-      onAppContextChanged({ isSignedIn: false });
+      onAppContextChanged({ toLogout: true });
     } catch (error) {
       toast.error("Invalid MFA Code");
     } finally {

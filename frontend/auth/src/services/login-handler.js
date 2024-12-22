@@ -20,7 +20,8 @@ export const SuccessfulLoginHandler = (token, appContext, onAppContextChanged, h
     isSignedIn: true,
     isAdmin: user.roles.includes("ROLE_ADMIN"),
     isCandidate: user.roles.includes("ROLE_CANDIDATE"),
-    isRecruiter: user.roles.includes("ROLE_RECRUITER")
+    isRecruiter: user.roles.includes("ROLE_RECRUITER"),
+    toLogout: false
   };
 
   onAppContextChanged(newAppContext);
