@@ -87,7 +87,7 @@ export default function PrivacyPolicy({ classes }) {
 
       <h2 className={classes.pp_h2}>8. Contact Us</h2>
       <p className={classes.pp_p}>
-        If you have any questions about this Privacy Policy, please contact us at <a href="mailto:gabor.harsanyi@ptl.expert">gabor.harsanyi@ptl.expert</a>.
+        If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@jefree.org">info@jefree.org</a>.
       </p>
     </div>
   );

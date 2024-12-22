@@ -85,7 +85,7 @@ export default function TermsOfService({ classes }) {
 
       <h2 className={classes.tos_h2}>8. Contact Us</h2>
       <p className={classes.tos_p}>
-        If you have any questions about these Terms of Service, please contact us at <a href="mailto:gabor.harsanyi@ptl.expert">gabor.harsanyi@ptl.expert</a>.
+        If you have any questions about these Terms of Service, please contact us at <a href="mailto:info@jefree.org">info@jefree.org</a>.
       </p>
     </div>
   );
