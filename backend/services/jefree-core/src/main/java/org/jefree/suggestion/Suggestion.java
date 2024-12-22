@@ -1,10 +1,12 @@
 package org.jefree.suggestion;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.jefree.database.DefaultView;
 
 @JsonView(DefaultView.Entity.class)
 public class Suggestion<T> {
+
   private final T value;
   private final double score;
   private final float occupationCoverage;
@@ -27,14 +29,17 @@ public class Suggestion<T> {
     return  value;
   }
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.##")
   public double getScore() {
     return score;
   }
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.##")
   public float getOccupationCoverage() {
     return occupationCoverage;
   }
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.##")
   public float getSkillCoverage() {
     return skillCoverage;
   }
