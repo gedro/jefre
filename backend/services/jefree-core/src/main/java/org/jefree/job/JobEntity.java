@@ -17,7 +17,7 @@ import java.util.List;
 @Entity(name = "Job")
 @Table(name = "job_postings",
   indexes = {
-    @Index(columnList = "recruiter_id")
+    @Index(columnList = "recruiter_id", unique = false)
   }
 )
 public class JobEntity extends AuditableEntity<String> {
