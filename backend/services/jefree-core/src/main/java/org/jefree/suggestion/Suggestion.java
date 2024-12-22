@@ -1,22 +1,25 @@
 package org.jefree.suggestion;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.jefree.database.DefaultView;
+
+import java.text.DecimalFormat;
 
 @JsonView(DefaultView.Entity.class)
 public class Suggestion<T> {
 
   private final T value;
-  private final double score;
-  private final float occupationCoverage;
-  private final float skillCoverage;
+
+  private final String score;
+  private final String occupationCoverage;
+  private final String skillCoverage;
 
   public Suggestion(final T value, final double score, final float occupationCoverage, final float skillCoverage) {
+    final DecimalFormat format = new DecimalFormat("0.##");
     this.value = value;
-    this.score = score;
-    this.occupationCoverage = occupationCoverage;
-    this.skillCoverage = skillCoverage;
+    this.score = format.format(score);
+    this.occupationCoverage = format.format(occupationCoverage);
+    this.skillCoverage = format.format(skillCoverage);
   }
 
   @JsonView(SuggestionView.Candidate.class)
@@ -29,18 +32,15 @@ public class Suggestion<T> {
     return  value;
   }
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.##")
-  public double getScore() {
+  public String getScore() {
     return score;
   }
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.##")
-  public float getOccupationCoverage() {
+  public String getOccupationCoverage() {
     return occupationCoverage;
   }
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.##")
-  public float getSkillCoverage() {
+  public String getSkillCoverage() {
     return skillCoverage;
   }
 }
