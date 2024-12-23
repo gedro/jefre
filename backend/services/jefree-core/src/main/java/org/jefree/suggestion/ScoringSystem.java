@@ -14,8 +14,8 @@ public class ScoringSystem {
 
   private static final Logger LOG = LoggerFactory.getLogger(ScoringSystem.class);
 
-  private static final int DELAYED = 20;
-  private static final int MAX_DELAYED_COUNTER = 300 /* 5m */ / DELAYED;
+  private static final int DELAYED = 10;
+  private static final int MAX_DELAYED_COUNTER = 600 /* 10m */ / DELAYED;
 
   public static final AtomicBoolean REFRESH_SCORES = new AtomicBoolean(true);
   private static final AtomicInteger DELAYED_COUNTER  = new AtomicInteger(0);
