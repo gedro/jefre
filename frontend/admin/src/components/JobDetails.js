@@ -18,10 +18,6 @@ export default function JobDetails({ classes, appContext, onAppContextChanged, h
   const [loading, setLoading] = useState(false);
   const [job, setJob] = useState(null);
 
-  useEffect(() => {
-    fetchJobData(jobId).catch((err) => { toast.error("Error fetching job details", err); });
-  }, [fetchJobData, jobId]);
-
   const fetchJobData = async (jobId) => {
     try {
       setLoading(true);
@@ -32,6 +28,13 @@ export default function JobDetails({ classes, appContext, onAppContextChanged, h
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchJobData(jobId).catch((err) => {
+      toast.error("Error fetching job details", err);
+      console.log("Error fetching job details", err);
+    });
+  }, [fetchJobData, jobId]);
 
   const transformEnum = (enums, value) => {
     return enums.find((item) => item.value === value)?.label;
