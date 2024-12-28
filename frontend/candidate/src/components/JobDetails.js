@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -18,11 +18,7 @@ export default function JobDetails({ classes, appContext, onAppContextChanged, h
   const [loading, setLoading] = useState(false);
   const [job, setJob] = useState(null);
 
-  useEffect(() => {
-    fetchJobData(jobId).catch((err) => { toast.error("Error fetching job details", err); });
-  }, [fetchJobData, jobId]);
-
-  const fetchJobData = async (jobId) => {
+  const fetchJobData = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -31,7 +27,11 @@ export default function JobDetails({ classes, appContext, onAppContextChanged, h
     } finally {
       setLoading(false);
     }
-  };
+  }, [jobId]);
+
+  useEffect(() => {
+    fetchJobData().catch((err) => { toast.error("Error fetching job details", err); });
+  }, [fetchJobData, jobId]);
 
   const transformEnum = (enums, value) => {
     return enums.find((item) => item.value === value)?.label;

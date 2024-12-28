@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -18,11 +18,7 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
   const [loading, setLoading] = useState(false);
   const [candidate, setCandidate] = useState(null);
 
-  useEffect(() => {
-    fetchCandidateData(candidateId).catch((err) => { toast.error("Error fetching candidate details", err); });
-  }, [fetchCandidateData, candidateId]);
-
-  const fetchCandidateData = async (candidateId) => {
+  const fetchCandidateData = useCallback( async () => {
     try {
       setLoading(true);
 
@@ -31,7 +27,11 @@ export default function CandidateDetails({ classes, appContext, onAppContextChan
     } finally {
       setLoading(false);
     }
-  };
+  }, [candidateId]);
+
+  useEffect(() => {
+    fetchCandidateData().catch((err) => { toast.error("Error fetching candidate details", err); });
+  }, [fetchCandidateData, candidateId]);
 
   const transformEnum = (enums, value) => {
     return enums.find((item) => item.value === value)?.label;
