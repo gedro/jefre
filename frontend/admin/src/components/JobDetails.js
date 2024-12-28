@@ -30,10 +30,7 @@ export default function JobDetails({ classes, appContext, onAppContextChanged, h
   }, [jobId]);
 
   useEffect(() => {
-    fetchJobData().catch((err) => {
-      toast.error("Error fetching job details", err);
-      console.log("Error fetching job details", err);
-    });
+    fetchJobData().catch((err) => { toast.error("Error fetching job details", err); });
   }, [fetchJobData, jobId]);
 
   const transformEnum = (enums, value) => {
