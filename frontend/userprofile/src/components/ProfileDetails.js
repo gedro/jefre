@@ -49,7 +49,7 @@ export default function ProfileDetails({ classes, appContext, onAppContextChange
       //TODO: Check if new password and confirm new password match
 
       setLoading(true);
-      await appContext.api.post("/public/auth/update-credentials", data, {
+      await appContext.api.post("/user/password", data, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },

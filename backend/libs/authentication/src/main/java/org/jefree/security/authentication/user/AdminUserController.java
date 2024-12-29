@@ -75,16 +75,4 @@ public class AdminUserController {
     userService.userCredentialsExpired(id, expired);
     return ResponseEntity.ok("Credentials are " + (expired ? "expired" : "not expired"));
   }
-
-  @PutMapping("/users/{id}/password")
-  public ResponseEntity<String> updatePassword(
-    @PathVariable final Long id, @RequestParam final String password
-  ) {
-    try {
-      userService.updatePassword(id, password);
-      return ResponseEntity.ok("Password updated");
-    } catch (final RuntimeException e) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-    }
-  }
 }
