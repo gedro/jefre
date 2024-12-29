@@ -57,7 +57,7 @@ export default function ProfileDetails({ classes, appContext, onAppContextChange
 
       toast.success("Update Password successful");
     } catch (error) {
-      toast.error("Update Password failed");
+      toast.error("Update Password failed: " + error?.response?.data);
     } finally {
       setLoading(false);
     }
