@@ -29,9 +29,9 @@ public class UserController {
   @PutMapping("/password")
   public ResponseEntity<String> updatePassword(
     @AuthenticationPrincipal final User user,
-    @RequestParam final String oldPassword,
-    @RequestParam final String newPassword,
-    @RequestParam final String newPasswordConfirmation
+    @RequestParam("old_password") final String oldPassword,
+    @RequestParam("new_password") final String newPassword,
+    @RequestParam("new_password_confirmation") final String newPasswordConfirmation
   ) {
     try {
       if(!StringUtils.hasLength(oldPassword) || !StringUtils.hasLength(newPassword)) {
