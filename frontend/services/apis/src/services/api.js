@@ -23,9 +23,15 @@ const api = (appContext, onAppContextChanged) => {
         config.headers["X-XSRF-TOKEN"] = appContext.csrfToken;
       }
       return config;
+    }
+  );
+
+  apiInstance.interceptors.response.use(
+    (response) => {
+      return response;
     },
     (error) => {
-      if (error.response?.status === 401) {
+      if (error?.response?.status === 401) {
         onAppContextChanged({ toLogout: true });
       }
       return Promise.reject(error);
