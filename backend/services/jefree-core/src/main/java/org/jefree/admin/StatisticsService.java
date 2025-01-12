@@ -54,13 +54,13 @@ public class StatisticsService {
   }
 
   private LineDataResponse getLineData() {
-    final LocalDateTime threeWeeksAgo = LocalDateTime.now().minusWeeks(3);
-    final LineDataResponse response = new LineDataResponse(threeWeeksAgo);
+    final LocalDateTime oneMonthAgo = LocalDateTime.now().minusMonths(1);
+    final LineDataResponse response = new LineDataResponse(oneMonthAgo);
 
-    response.setRegisteredUsers(userRepository.findDailyUserSumData(threeWeeksAgo));
-    response.setRegisteredCandidates(candidateRepository.findDailySumData(threeWeeksAgo));
-    response.setRegisteredRecruiters(userRepository.findDailyRecruiterSumData(threeWeeksAgo));
-    response.setOpenJobs(jobRepository.findDailySumData(threeWeeksAgo));
+    response.setRegisteredUsers(userRepository.findDailyUserSumData(oneMonthAgo));
+    response.setRegisteredCandidates(candidateRepository.findDailySumData(oneMonthAgo));
+    response.setRegisteredRecruiters(userRepository.findDailyRecruiterSumData(oneMonthAgo));
+    response.setOpenJobs(jobRepository.findDailySumData(oneMonthAgo));
 
     return response;
   }
